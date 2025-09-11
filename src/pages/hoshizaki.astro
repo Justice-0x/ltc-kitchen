@@ -1,0 +1,122 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import DocsButtons from "../components/DocsButtons.astro";
+import SectionCard from "../components/SectionCard.astro";
+import TroubleshootingDropdown from "../components/TroubleshootingDropdown.astro";
+
+const troubleshootingIssues = [
+  {
+    problem: "Not making ice",
+    solution: "Check power, water supply, and condenser cleanliness",
+    steps: [
+      "Verify power supply and circuit breakers",
+      "Check water inlet valve and supply pressure",
+      "Clean condenser coil and verify fan operation",
+      "Check refrigerant charge/subcooling levels"
+    ]
+  },
+  {
+    problem: "Ice won't harvest/drop",
+    solution: "Hot gas valve or harvest cycle issue",
+    steps: [
+      "Test hot gas valve coil for continuity",
+      "Verify cube thickness control setting",
+      "Check harvest timer operation",
+      "Inspect water temperature at inlet"
+    ]
+  },
+  {
+    problem: "Ice too thin or hollow",
+    solution: "Scale buildup or expansion valve hunting",
+    steps: [
+      "Descale evaporator with approved cleaner",
+      "Check TXV superheat settings",
+      "Verify refrigerant charge levels",
+      "Clean water distribution system"
+    ]
+  },
+  {
+    problem: "Ice too thick",
+    solution: "Cube thickness control needs adjustment",
+    steps: [
+      "Adjust cube thickness control clockwise",
+      "Check harvest initiation timing",
+      "Verify hot gas valve operation",
+      "Test harvest thermistor resistance"
+    ]
+  },
+  {
+    problem: "Machine won't start",
+    solution: "Power, safety switches, or control issues",
+    steps: [
+      "Check main power supply and fuses",
+      "Verify bin switch operation",
+      "Test safety switches and interlocks",
+      "Check control board connections"
+    ]
+  }
+];
+---
+
+<BaseLayout>
+  <div class="mb-8">
+    <div class="flex items-center space-x-4 mb-4">
+      <div class="w-16 h-16 bg-gradient-to-br from-cyan-400 to-blue-700 rounded-xl flex items-center justify-center text-3xl">🧊</div>
+      <div>
+        <h1 class="text-4xl font-bold text-slate-100 md:text-slate-900">Hoshizaki Ice Maker</h1>
+        <p class="text-lg text-slate-400 md:text-slate-600">Cycle overview, maintenance, troubleshooting</p>
+      </div>
+    </div>
+  </div>
+
+  <DocsButtons id="hoshizaki" />
+
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+    <SectionCard title="Cycle Overview" class="lg:col-span-2">
+      <ol class="list-decimal pl-6 space-y-2 text-slate-700">
+        <li>Fill → Water valve opens to target level</li>
+        <li>Freeze → Compressor on, water pump circulating</li>
+        <li>Harvest → Hot gas valve energizes, ice drops</li>
+        <li>Refill → Bin switch checked, repeat cycle</li>
+      </ol>
+    </SectionCard>
+    <SectionCard title="Service Intervals">
+      <ul class="list-disc pl-6 space-y-1 text-slate-700">
+        <li>Clean condenser coil monthly</li>
+        <li>Descale evaporator quarterly</li>
+        <li>Sanitize water circuit quarterly</li>
+        <li>Replace inlet filter every 6 months</li>
+      </ul>
+    </SectionCard>
+  </div>
+
+  <SectionCard title="Troubleshooting" id="troubleshooting">
+    <TroubleshootingDropdown issues={troubleshootingIssues} />
+    
+    <div class="mt-6">
+      <h4 class="font-bold mb-3">Common Issues Reference:</h4>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <div class="font-medium mb-1">No Ice Production</div>
+          <ul class="list-disc pl-6 text-sm text-slate-700">
+            <li>Clean condenser; verify fan operation</li>
+            <li>Check refrigerant charge/subcooling</li>
+            <li>Verify bin switch not stuck</li>
+          </ul>
+        </div>
+        <div>
+          <div class="font-medium mb-1">No Harvest</div>
+          <ul class="list-disc pl-6 text-sm text-slate-700">
+            <li>Test hot gas valve coil</li>
+            <li>Verify cube thickness control</li>
+            <li>Check water temperature</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </SectionCard>
+
+  <SectionCard title="Wiring Diagram">
+    <img src="/diagrams/hoshizaki.png" alt="Hoshizaki wiring diagram placeholder" class="w-full rounded border" />
+  </SectionCard>
+</BaseLayout>

@@ -1,0 +1,64 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import DocsButtons from "../components/DocsButtons.astro";
+import SectionCard from "../components/SectionCard.astro";
+---
+
+<BaseLayout>
+  <div class="mb-8">
+    <div class="flex items-center space-x-4 mb-4">
+      <div class="w-16 h-16 bg-gradient-to-br from-fuchsia-500 to-violet-600 rounded-xl flex items-center justify-center text-3xl">🍦</div>
+      <div>
+        <h1 class="text-4xl font-bold text-slate-100 md:text-slate-900">Frosty Soft-Serve</h1>
+        <p class="text-lg text-slate-400 md:text-slate-600">Cleaning, operation, and troubleshooting</p>
+      </div>
+    </div>
+  </div>
+
+  <DocsButtons id="frosty" />
+
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+    <div class="lg:col-span-2 bg-white rounded-xl shadow p-6">
+      <h2 class="text-2xl font-bold mb-4">Cleaning Schedule</h2>
+      <ul class="list-disc pl-6 space-y-2 text-slate-700">
+        <li>Daily: Rinse, sanitize, lube seals and O-rings</li>
+        <li>Weekly: Full teardown, soak parts, inspect beater</li>
+        <li>Monthly: Replace wearable seals and gaskets</li>
+      </ul>
+    </div>
+    <div class="bg-white rounded-xl shadow p-6">
+      <h3 class="text-lg font-semibold mb-3">Operating Specs</h3>
+      <div class="space-y-2 text-slate-700">
+        <div class="flex justify-between"><span>Draw Temp</span><span class="font-medium">18°F</span></div>
+        <div class="flex justify-between"><span>Viscosity</span><span class="font-medium">Target 220</span></div>
+        <div class="flex justify-between"><span>Hopper Temp</span><span class="font-medium">36°F</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-white rounded-xl shadow p-6" id="troubleshooting">
+    <h3 class="text-xl font-bold mb-4">Troubleshooting</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div>
+        <div class="font-medium mb-1">Product Too Soft</div>
+        <ul class="list-disc pl-6 text-sm">
+          <li>Increase viscosity setting</li>
+          <li>Verify mix temperature</li>
+          <li>Check beater motor amps</li>
+        </ul>
+      </div>
+      <div>
+        <div class="font-medium mb-1">Won't Freeze</div>
+        <ul class="list-disc pl-6 text-sm">
+          <li>Check refrigeration pressures</li>
+          <li>Clean condenser coil</li>
+          <li>Verify mix in hopper</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <SectionCard title="Wiring Diagram">
+    <img src="/diagrams/frosty.png" alt="Frosty wiring diagram placeholder" class="w-full rounded border" />
+  </SectionCard>
+</BaseLayout>

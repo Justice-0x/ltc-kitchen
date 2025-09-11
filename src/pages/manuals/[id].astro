@@ -1,0 +1,241 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const equipmentIds = [
+    'perlick', 'turbochef', 'frosty', 'hoshizaki', 
+    'southbend', 'chicago-folders', 'ironers', 'laundry', 'bills-bitch'
+  ];
+  
+  return equipmentIds.map(id => ({
+    params: { id }
+  }));
+}
+
+const { id } = Astro.params;
+const pdfPath = `/manuals/${id}.pdf`;
+
+const manualData = {
+  'hoshizaki': {
+    title: 'Hoshizaki Ice Maker Manual',
+    icon: '🧊',
+    model: 'KM-500MAH',
+    specs: {
+      'Ice Production': '500 lbs/24hr',
+      'Storage Capacity': '250 lbs',
+      'Water Usage': '6.8 gal/100 lbs',
+      'Power': '115V/60Hz/1Ph',
+      'Refrigerant': 'R-404A',
+      'Dimensions': '30"W x 24"D x 39"H'
+    },
+    sections: [
+      'Installation Requirements',
+      'Startup Procedures',
+      'Operation & Controls',
+      'Cleaning & Sanitizing',
+      'Troubleshooting Guide',
+      'Wiring Diagrams',
+      'Parts Breakdown',
+      'Warranty Information'
+    ]
+  },
+  'perlick': {
+    title: 'Perlick Glycol Chiller Manual',
+    icon: '🍺',
+    model: '4420-2',
+    specs: {
+      'Cooling Capacity': '2 HP',
+      'Glycol Flow Rate': '15 GPM',
+      'Temperature Range': '28-40°F',
+      'Power': '208-230V/60Hz/1Ph',
+      'Refrigerant': 'R-404A',
+      'Dimensions': '24"W x 30"D x 36"H'
+    },
+    sections: [
+      'System Overview',
+      'Installation Guide',
+      'Glycol Concentration',
+      'Temperature Controls',
+      'Preventive Maintenance',
+      'Troubleshooting',
+      'Electrical Schematics',
+      'Service Parts List'
+    ]
+  },
+  'turbochef': {
+    title: 'TurboChef Oven Manual',
+    icon: '🔥',
+    model: 'Tornado 2',
+    specs: {
+      'Cooking Power': '3000W Microwave + Convection',
+      'Cavity Size': '1.2 cu ft',
+      'Temperature Range': '200-500°F',
+      'Power': '208-240V/60Hz/1Ph',
+      'Ventilation': 'Type I Hood Required',
+      'Dimensions': '24"W x 26"D x 26"H'
+    },
+    sections: [
+      'Safety Information',
+      'Installation Requirements',
+      'Programming Guide',
+      'Cooking Procedures',
+      'Cleaning Instructions',
+      'Error Code Reference',
+      'Component Testing',
+      'Technical Support'
+    ]
+  },
+  'frosty': {
+    title: 'Frosty Soft-Serve Manual',
+    icon: '🍦',
+    model: 'F-2000',
+    specs: {
+      'Production Rate': '200 servings/hour',
+      'Hopper Capacity': '20 quarts',
+      'Draw Temperature': '18-22°F',
+      'Power': '208-230V/60Hz/3Ph',
+      'Refrigerant': 'R-404A',
+      'Dimensions': '22"W x 32"D x 68"H'
+    },
+    sections: [
+      'Setup & Installation',
+      'Daily Operations',
+      'Mix Preparation',
+      'Cleaning Procedures',
+      'Troubleshooting',
+      'Maintenance Schedule',
+      'Parts Diagrams',
+      'FDA Compliance'
+    ]
+  },
+  'southbend': {
+    title: 'Southbend Range Manual',
+    icon: '🍳',
+    model: 'SRG-36',
+    specs: {
+      'Burner Output': '30,000 BTU/hr each',
+      'Oven Capacity': '26"W x 20"D x 14"H',
+      'Temperature Range': '200-500°F',
+      'Gas Connection': '3/4" NPT',
+      'Gas Type': 'Natural or LP',
+      'Dimensions': '36"W x 32"D x 36"H'
+    },
+    sections: [
+      'Safety Guidelines',
+      'Gas Connection',
+      'Burner Adjustment',
+      'Oven Calibration',
+      'Cleaning Procedures',
+      'Troubleshooting',
+      'Parts Identification',
+      'Conversion Instructions'
+    ]
+  }
+};
+
+const currentManual = manualData[id] || {
+  title: `${id} Manual`,
+  icon: '📖',
+  model: 'Unknown',
+  specs: {},
+  sections: ['Manual not available']
+};
+---
+
+<BaseLayout>
+  <div class="mb-8">
+    <div class="flex items-center space-x-4 mb-4">
+      <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center text-3xl">
+        {currentManual.icon}
+      </div>
+      <div>
+        <h1 class="text-3xl font-bold">{currentManual.title}</h1>
+        <p class="text-slate-600">Model: {currentManual.model}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+    <div class="lg:col-span-2">
+      <div class="bg-white rounded-xl shadow p-6 mb-6">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-xl font-bold">📄 Technical Manual</h2>
+          <a class="px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700 text-sm" href={pdfPath} target="_blank">
+            Open PDF Manual
+          </a>
+        </div>
+        <div class="bg-gray-100 rounded-lg p-8 text-center border-2 border-dashed border-gray-300 mb-4">
+          <div class="text-4xl mb-2">📋</div>
+          <p class="text-gray-600">Complete service and operation manual</p>
+          <p class="text-sm text-gray-500 mt-2">Click "Open PDF Manual" to view the full technical documentation</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl shadow p-6">
+        <h3 class="text-xl font-bold mb-4">📚 Manual Sections</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+          {currentManual.sections.map((section, index) => (
+            <div class="flex items-center p-3 bg-gray-50 rounded-lg">
+              <span class="w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3">
+                {index + 1}
+              </span>
+              <span class="text-sm font-medium">{section}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <div class="space-y-6">
+      <div class="bg-white rounded-xl shadow p-6">
+        <h3 class="text-lg font-semibold mb-4">⚙️ Specifications</h3>
+        <div class="space-y-3">
+          {Object.entries(currentManual.specs).map(([key, value]) => (
+            <div class="flex justify-between items-start">
+              <span class="text-sm font-medium text-slate-700 flex-shrink-0 mr-2">{key}:</span>
+              <span class="text-sm text-slate-900 text-right">{value}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl shadow p-6">
+        <h3 class="text-lg font-semibold mb-4">🔗 Quick Links</h3>
+        <div class="space-y-2">
+          <a href={`/parts/${id}`} class="block w-full px-3 py-2 bg-green-600 text-white rounded hover:bg-green-700 text-sm text-center">
+            🛠 View Parts
+          </a>
+          <a href={`/${id}#troubleshooting`} class="block w-full px-3 py-2 bg-red-600 text-white rounded hover:bg-red-700 text-sm text-center">
+            🚨 Troubleshooting
+          </a>
+          <a href={`/${id}`} class="block w-full px-3 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm text-center">
+            📊 Live Status
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-gradient-to-r from-orange-50 to-red-50 rounded-xl p-6 border border-orange-200">
+    <h3 class="text-lg font-semibold text-slate-900 mb-4">📞 Technical Support</h3>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+      <div>
+        <div class="text-2xl mb-2">🆘</div>
+        <div class="font-medium">Emergency Service</div>
+        <div class="text-sm text-slate-600">1-800-SERVICE</div>
+      </div>
+      <div>
+        <div class="text-2xl mb-2">💬</div>
+        <div class="font-medium">Technical Help</div>
+        <div class="text-sm text-slate-600">support@ltckitchen.com</div>
+      </div>
+      <div>
+        <div class="text-2xl mb-2">📖</div>
+        <div class="font-medium">Training Videos</div>
+        <div class="text-sm text-slate-600">training.ltckitchen.com</div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+

@@ -1,0 +1,56 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const sections = [
+  { id: 'perlick', icon: '🍺', title: 'Perlick Glycol Chiller' },
+  { id: 'turbochef', icon: '🔥', title: 'TurboChef Ovens' },
+  { id: 'frosty', icon: '🍦', title: 'Frosty Soft-Serve' },
+  { id: 'hoshizaki', icon: '🧊', title: 'Hoshizaki Ice Maker' },
+  { id: 'southbend', icon: '🍳', title: 'Southbend Range' },
+  { id: 'chicago-folders', icon: '📄', title: 'Chicago Folders' },
+  { id: 'ironers', icon: '🧵', title: 'Flatwork Ironers' },
+  { id: 'laundry', icon: '🧺', title: 'Laundry Equipment' },
+];
+---
+
+<BaseLayout>
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold">📚 Equipment Docs</h1>
+    <p class="text-slate-600">Searchable hub with links to each equipment page and manual placeholders.</p>
+  </div>
+
+  <div class="mb-6 flex gap-3 items-center">
+    <input id="docsSearch" type="text" placeholder="Search docs..." class="flex-1 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" />
+    <span class="text-sm text-slate-500">{sections.length} sections</span>
+  </div>
+
+  <div id="docsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {sections.map((s) => (
+      <div class="doc-card bg-white rounded-lg shadow p-5 border hover:shadow-md transition" data-title={s.title.toLowerCase()}>
+        <div class="text-3xl mb-2">{s.icon}</div>
+        <div class="text-xl font-semibold mb-1">{s.title}</div>
+        <div class="text-sm text-slate-500 mb-3">Open live page</div>
+        <div class="flex gap-2 text-sm">
+          <a href={`/${s.id}`} class="px-2 py-1 rounded bg-blue-600 text-white hover:bg-blue-700">Open</a>
+          <a href={`/manuals/${s.id}.pdf`} class="px-2 py-1 rounded bg-slate-100 hover:bg-slate-200">Manual (PDF)</a>
+          <a href={`/parts/${s.id}`} class="px-2 py-1 rounded bg-slate-100 hover:bg-slate-200">Parts</a>
+          <a href={`/${s.id}#troubleshooting`} class="px-2 py-1 rounded bg-slate-100 hover:bg-slate-200">Troubleshooting</a>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <script>
+    const input = document.getElementById('docsSearch');
+    const cards = document.querySelectorAll('.doc-card');
+    input.addEventListener('input', () => {
+      const q = input.value.toLowerCase();
+      cards.forEach(c => {
+        const t = c.dataset.title;
+        c.style.display = !q || t.includes(q) ? 'block' : 'none';
+      });
+    });
+  </script>
+</BaseLayout>
+
+

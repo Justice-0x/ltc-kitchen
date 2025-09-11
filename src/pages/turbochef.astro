@@ -1,0 +1,289 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import DocsButtons from "../components/DocsButtons.astro";
+import SectionCard from "../components/SectionCard.astro";
+import TroubleshootingDropdown from "../components/TroubleshootingDropdown.astro";
+
+const status = "operational";
+
+const troubleshootingIssues = [
+  {
+    problem: "Not heating properly",
+    solution: "Check heating elements and temperature sensors",
+    steps: [
+      "Test heating element continuity with multimeter",
+      "Verify temperature sensor resistance values",
+      "Check for loose connections at control board",
+      "Inspect door seal for heat loss"
+    ]
+  },
+  {
+    problem: "Uneven cooking",
+    solution: "Fan or airflow issue affecting circulation",
+    steps: [
+      "Clean air filters and check for blockages",
+      "Verify fan motor operation and speed",
+      "Check for obstructions in air circulation paths",
+      "Calibrate temperature sensors"
+    ]
+  },
+  {
+    problem: "Display shows error code",
+    solution: "Refer to error code chart and reset if needed",
+    steps: [
+      "Note the exact error code displayed",
+      "Check error code reference chart",
+      "Perform recommended troubleshooting steps",
+      "Reset control board if instructed"
+    ]
+  },
+  {
+    problem: "Door won't close properly",
+    solution: "Door alignment or latch mechanism issue",
+    steps: [
+      "Check door hinges for wear or damage",
+      "Adjust door latch mechanism",
+      "Inspect door gasket for deformation",
+      "Verify door switch operation"
+    ]
+  }
+];
+const currentTemp = 450;
+const setpoint = 450;
+const cookTime = "2:30";
+const lastError = null;
+const errorCodes = [
+  { code: "E05", description: "Temperature sensor issue", solution: "Check probe & fan", severity: "high" },
+  { code: "E18", description: "Restricted airflow", solution: "Clean filters", severity: "medium" },
+  { code: "E32", description: "Door switch problem", solution: "Adjust latch", severity: "medium" },
+  { code: "E40", description: "Heating element fault", solution: "Check element continuity", severity: "high" },
+  { code: "E55", description: "Control board error", solution: "Reset or replace board", severity: "critical" }
+];
+
+const getSeverityColor = (severity: string) => {
+  switch (severity) {
+    case 'critical': return 'text-red-600 bg-red-100 border-red-200';
+    case 'high': return 'text-orange-600 bg-orange-100 border-orange-200';
+    case 'medium': return 'text-yellow-600 bg-yellow-100 border-yellow-200';
+    case 'low': return 'text-blue-600 bg-blue-100 border-blue-200';
+    default: return 'text-gray-600 bg-gray-100 border-gray-200';
+  }
+};
+---
+
+<BaseLayout title="TurboChef Ovens - LTC Kitchen" description="Monitor and troubleshoot TurboChef high-speed cooking systems">
+  <!-- Header -->
+  <div class="mb-8">
+    <div class="flex items-center space-x-4 mb-4">
+      <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-600 rounded-xl flex items-center justify-center text-3xl">
+        🔥
+      </div>
+      <div>
+        <h1 class="text-4xl font-bold text-slate-900">TurboChef Ovens</h1>
+        <p class="text-lg text-slate-600">High-speed cooking systems for commercial kitchens</p>
+      </div>
+    </div>
+    
+    <!-- Status Badge -->
+    <div class="flex items-center space-x-4">
+      <span class="px-4 py-2 bg-green-100 text-green-800 rounded-full text-sm font-medium">
+        ✅ Operational
+      </span>
+      <span class="text-sm text-slate-600">Last updated: {new Date().toLocaleTimeString()}</span>
+    </div>
+  </div>
+
+  <DocsButtons id="turbochef" />
+
+  <!-- Main Dashboard Grid -->
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+    <!-- Temperature Status -->
+    <div class="lg:col-span-2">
+      <div class="bg-white rounded-xl shadow-lg p-6 border border-slate-200">
+        <h2 class="text-2xl font-bold text-slate-900 mb-6 flex items-center">
+          <span class="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center mr-3">🌡️</span>
+          Temperature Control
+        </h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="text-center">
+            <div class="text-4xl font-bold text-orange-600 mb-2">{currentTemp}°F</div>
+            <div class="text-sm text-slate-600">Current Temperature</div>
+            <div class="w-full bg-slate-200 rounded-full h-3 mt-3">
+              <div class="bg-gradient-to-r from-orange-500 to-red-500 h-3 rounded-full" style="width: 90%"></div>
+            </div>
+          </div>
+          
+          <div class="space-y-4">
+            <div class="flex justify-between items-center p-3 bg-slate-50 rounded-lg">
+              <span class="text-slate-600">Setpoint</span>
+              <span class="font-semibold text-slate-900">{setpoint}°F</span>
+            </div>
+            <div class="flex justify-between items-center p-3 bg-slate-50 rounded-lg">
+              <span class="text-slate-600">Cook Time</span>
+              <span class="font-semibold text-slate-900">{cookTime}</span>
+            </div>
+            <div class="flex justify-between items-center p-3 bg-slate-50 rounded-lg">
+              <span class="text-slate-600">Mode</span>
+              <span class="font-semibold text-slate-900">Convection</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- System Status -->
+    <div class="space-y-6">
+      <div class="bg-white rounded-xl shadow-lg p-6 border border-slate-200">
+        <h3 class="text-lg font-semibold text-slate-900 mb-4">System Status</h3>
+        <div class="space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-slate-600">Heating Element</span>
+            <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">Active</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-slate-600">Fan Speed</span>
+            <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">High</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-slate-600">Door Status</span>
+            <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">Closed</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-slate-600">Current Error</span>
+            <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">None</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl shadow-lg p-6 border border-slate-200">
+        <h3 class="text-lg font-semibold text-slate-900 mb-4">Quick Stats</h3>
+        <div class="space-y-3">
+          <div class="flex justify-between">
+            <span class="text-slate-600">Cycles Today</span>
+            <span class="font-semibold text-slate-900">47</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-slate-600">Avg Cook Time</span>
+            <span class="font-semibold text-slate-900">2:15</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-slate-600">Energy Usage</span>
+            <span class="font-semibold text-slate-900">12.3 kWh</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Error Codes Reference -->
+  <div class="bg-white rounded-xl shadow-lg p-6 border border-slate-200 mb-8">
+    <h3 class="text-2xl font-bold text-slate-900 mb-6 flex items-center">
+      <span class="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center mr-3">⚠️</span>
+      Error Codes Reference
+    </h3>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {errorCodes.map((error) => (
+        <div class={`p-4 rounded-lg border-2 ${getSeverityColor(error.severity)}`}>
+          <div class="flex items-center justify-between mb-2">
+            <span class="font-bold text-lg">{error.code}</span>
+            <span class="text-xs font-medium uppercase tracking-wide">
+              {error.severity}
+            </span>
+          </div>
+          <div class="text-sm font-medium mb-1">{error.description}</div>
+          <div class="text-xs opacity-75">{error.solution}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Troubleshooting Guide -->
+  <SectionCard title="Troubleshooting" id="troubleshooting">
+    <TroubleshootingDropdown issues={troubleshootingIssues} />
+    
+    <div class="mt-6">
+      <h4 class="font-bold mb-3">Common Issues Reference:</h4>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div class="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+          <div class="font-medium text-blue-900 mb-2">Temperature Not Reaching Setpoint</div>
+          <ul class="text-sm text-blue-800 space-y-1">
+            <li>• Check heating element continuity</li>
+            <li>• Verify door seal integrity</li>
+            <li>• Clean air filters</li>
+            <li>• Check temperature sensor</li>
+          </ul>
+        </div>
+        
+        <div class="p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+          <div class="font-medium text-yellow-900 mb-2">Uneven Cooking</div>
+          <ul class="text-sm text-yellow-800 space-y-1">
+            <li>• Verify fan operation</li>
+            <li>• Check for obstructions</li>
+            <li>• Calibrate temperature sensors</li>
+            <li>• Adjust cooking times</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </SectionCard>
+  
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+
+    <div class="bg-white rounded-xl shadow-lg p-6 border border-slate-200">
+      <h3 class="text-xl font-bold text-slate-900 mb-4 flex items-center">
+        <span class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center mr-3">📋</span>
+        Maintenance Schedule
+      </h3>
+      <div class="space-y-4">
+        <div class="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
+          <div>
+            <div class="font-medium text-slate-900">Daily</div>
+            <div class="text-sm text-slate-600">Clean interior & check door seal</div>
+          </div>
+          <span class="px-2 py-1 bg-green-100 text-green-800 rounded text-xs">✓ Done</span>
+        </div>
+        
+        <div class="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
+          <div>
+            <div class="font-medium text-slate-900">Weekly</div>
+            <div class="text-sm text-slate-600">Clean filters & check sensors</div>
+          </div>
+          <span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded text-xs">Due</span>
+        </div>
+        
+        <div class="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
+          <div>
+            <div class="font-medium text-slate-900">Monthly</div>
+            <div class="text-sm text-slate-600">Full calibration & inspection</div>
+          </div>
+          <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs">Scheduled</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <SectionCard title="Wiring Diagram">
+    <img src="/diagrams/turbochef.png" alt="TurboChef wiring diagram placeholder" class="w-full rounded border" />
+  </SectionCard>
+
+  <!-- Quick Actions -->
+  <div class="bg-gradient-to-r from-orange-50 to-red-50 rounded-xl p-6 border border-orange-200">
+    <h3 class="text-lg font-semibold text-slate-900 mb-4">Quick Actions</h3>
+    <div class="flex flex-wrap gap-3">
+      <button class="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors text-sm font-medium">
+        🔥 Start Preheat
+      </button>
+      <button class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors text-sm font-medium">
+        ⏹️ Emergency Stop
+      </button>
+      <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
+        📊 View Logs
+      </button>
+      <button class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm font-medium">
+        🔧 Schedule Service
+      </button>
+    </div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,77 @@
+---
+const { issues } = Astro.props;
+---
+
+<div class="troubleshooting-dropdown">
+  <h3 class="text-xl font-bold mb-4">🔧 Quick Troubleshooting</h3>
+  <p class="text-sm text-gray-600 mb-4">Select the issue you're experiencing:</p>
+  
+  <select id="issueSelect" class="w-full p-3 border border-gray-300 rounded-lg mb-4 bg-white text-gray-900">
+    <option value="">-- Select an issue --</option>
+    {issues.map((issue, index) => (
+      <option value={index}>{issue.problem}</option>
+    ))}
+  </select>
+
+  <div id="solutionDisplay" class="hidden p-4 bg-blue-50 border border-blue-200 rounded-lg">
+    <h4 class="font-bold text-blue-900 mb-2">Solution:</h4>
+    <div id="solutionContent" class="text-blue-800"></div>
+  </div>
+</div>
+
+<script define:vars={{ issues }}>
+  document.addEventListener('DOMContentLoaded', function() {
+    const issueSelect = document.getElementById('issueSelect');
+    const solutionDisplay = document.getElementById('solutionDisplay');
+    const solutionContent = document.getElementById('solutionContent');
+
+    issueSelect.addEventListener('change', function() {
+      const selectedIndex = this.value;
+      
+      if (selectedIndex === '') {
+        solutionDisplay.classList.add('hidden');
+        return;
+      }
+      
+      const selectedIssue = issues[selectedIndex];
+      let content = `<p class="mb-2">${selectedIssue.solution}</p>`;
+      
+      if (selectedIssue.steps && selectedIssue.steps.length > 0) {
+        content += '<ul class="list-disc pl-6 space-y-1">';
+        selectedIssue.steps.forEach(step => {
+          content += `<li>${step}</li>`;
+        });
+        content += '</ul>';
+      }
+      
+      solutionContent.innerHTML = content;
+      solutionDisplay.classList.remove('hidden');
+    });
+  });
+</script>
+
+<style>
+  .troubleshooting-dropdown select {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+  
+  /* Dark theme support */
+  body.dark .troubleshooting-dropdown select {
+    background-color: #2d2d2d !important;
+    color: #e5e5e5 !important;
+    border-color: #4a4a4a !important;
+  }
+  
+  body.dark .troubleshooting-dropdown #solutionDisplay {
+    background-color: #1e3a5f !important;
+    border-color: #3b82f6 !important;
+  }
+  
+  body.dark .troubleshooting-dropdown #solutionDisplay h4 {
+    color: #93c5fd !important;
+  }
+  
+  body.dark .troubleshooting-dropdown #solutionContent {
+    color: #bfdbfe !important;
+  }
+</style>
