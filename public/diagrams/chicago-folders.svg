@@ -1,0 +1,218 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto">
+  <!-- Background -->
+  <rect width="800" height="600" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2"/>
+  
+  <!-- Title -->
+  <text x="400" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#1e293b">
+    Chicago Folders - Document Processing System
+  </text>
+  
+  <!-- Main Control Board -->
+  <rect x="50" y="80" width="160" height="100" fill="#3b82f6" stroke="#1e40af" stroke-width="2" rx="8"/>
+  <text x="130" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">
+    Control Board
+  </text>
+  <text x="130" y="125" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    Main PCB
+  </text>
+  <text x="130" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    Speed Control
+  </text>
+  <text x="130" y="155" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    CF-4734-1
+  </text>
+
+  <!-- Feed Motor -->
+  <rect x="250" y="80" width="140" height="100" fill="#f59e0b" stroke="#d97706" stroke-width="2" rx="6"/>
+  <text x="320" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">
+    Feed Motor
+  </text>
+  <text x="320" y="125" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    Document Feed
+  </text>
+  <text x="320" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    Variable Speed
+  </text>
+  <text x="320" y="155" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    CF-4456-1
+  </text>
+
+  <!-- Power Supply -->
+  <rect x="430" y="80" width="120" height="100" fill="#10b981" stroke="#059669" stroke-width="2" rx="6"/>
+  <text x="490" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">
+    Power Supply
+  </text>
+  <text x="490" y="125" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    24V DC
+  </text>
+  <text x="490" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    115V AC Input
+  </text>
+  <text x="490" y="155" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    CF-4891-1
+  </text>
+
+  <!-- Air System -->
+  <rect x="590" y="80" width="140" height="100" fill="#06b6d4" stroke="#0891b2" stroke-width="2" rx="6"/>
+  <text x="660" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">
+    Air System
+  </text>
+  <text x="660" y="125" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    80-120 PSI
+  </text>
+  <text x="660" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    Pneumatic Control
+  </text>
+  <text x="660" y="155" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    3/8" NPT
+  </text>
+
+  <!-- Conveyor Belt System -->
+  <rect x="50" y="220" width="200" height="80" fill="#8b5cf6" stroke="#7c3aed" stroke-width="2" rx="8"/>
+  <text x="150" y="245" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">
+    Conveyor Belt
+  </text>
+  <text x="150" y="265" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    Rubber Belt Assembly
+  </text>
+  <text x="150" y="280" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    CF-4523-2
+  </text>
+
+  <!-- Folding Mechanism -->
+  <rect x="280" y="220" width="160" height="80" fill="#ef4444" stroke="#dc2626" stroke-width="2" rx="6"/>
+  <text x="360" y="245" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">
+    Folding Mechanism
+  </text>
+  <text x="360" y="265" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    Pneumatic Folders
+  </text>
+  <text x="360" y="280" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    Adjustable Stops
+  </text>
+
+  <!-- Guide Rails -->
+  <rect x="470" y="220" width="120" height="80" fill="#84cc16" stroke="#65a30d" stroke-width="2" rx="6"/>
+  <text x="530" y="245" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">
+    Guide Rails
+  </text>
+  <text x="530" y="265" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    Document Guides
+  </text>
+  <text x="530" y="280" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    CF-4923-1
+  </text>
+
+  <!-- Output Tray -->
+  <rect x="620" y="220" width="120" height="80" fill="#f97316" stroke="#ea580c" stroke-width="2" rx="6"/>
+  <text x="680" y="245" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">
+    Output Tray
+  </text>
+  <text x="680" y="265" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    Collection Bin
+  </text>
+  <text x="680" y="280" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">
+    Auto Stack
+  </text>
+
+  <!-- Sensors -->
+  <circle cx="100" cy="350" r="25" fill="#6366f1" stroke="#4f46e5" stroke-width="2"/>
+  <text x="100" y="355" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="white">
+    PAPER
+  </text>
+
+  <circle cx="180" cy="350" r="25" fill="#ec4899" stroke="#db2777" stroke-width="2"/>
+  <text x="180" y="355" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="white">
+    DETECT
+  </text>
+
+  <circle cx="260" cy="350" r="25" fill="#84cc16" stroke="#65a30d" stroke-width="2"/>
+  <text x="260" y="355" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="white">
+    SPEED
+  </text>
+
+  <circle cx="340" cy="350" r="25" fill="#f59e0b" stroke="#d97706" stroke-width="2"/>
+  <text x="340" y="355" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="white">
+    FOLD
+  </text>
+
+  <circle cx="420" cy="350" r="25" fill="#dc2626" stroke="#b91c1c" stroke-width="2"/>
+  <text x="420" y="355" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="white">
+    SAFETY
+  </text>
+
+  <!-- Sensor Assembly Box -->
+  <rect x="500" y="330" width="120" height="40" fill="#ec4899" stroke="#db2777" stroke-width="2" rx="4"/>
+  <text x="560" y="350" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="white">
+    Sensor Assembly
+  </text>
+  <text x="560" y="360" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">
+    CF-4678-1
+  </text>
+
+  <!-- Air Pressure Regulator -->
+  <rect x="650" y="330" width="100" height="60" fill="#06b6d4" stroke="#0891b2" stroke-width="2" rx="4"/>
+  <text x="700" y="355" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="white">
+    Air Regulator
+  </text>
+  <text x="700" y="370" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">
+    80 PSI Set
+  </text>
+
+  <!-- Connection Lines -->
+  <!-- Power Distribution -->
+  <line x1="490" y1="180" x2="130" y2="180" stroke="#10b981" stroke-width="3" marker-end="url(#arrowhead)"/>
+  <line x1="210" y1="130" x2="250" y2="130" stroke="#374151" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Air Lines (Blue) -->
+  <line x1="660" y1="180" x2="360" y2="220" stroke="#06b6d4" stroke-width="4" marker-end="url(#arrowhead)"/>
+  <line x1="650" y1="360" x2="660" y2="180" stroke="#06b6d4" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Document Flow (Green) -->
+  <line x1="250" y1="260" x2="280" y2="260" stroke="#84cc16" stroke-width="4" marker-end="url(#arrowhead)"/>
+  <line x1="440" y1="260" x2="470" y2="260" stroke="#84cc16" stroke-width="4" marker-end="url(#arrowhead)"/>
+  <line x1="590" y1="260" x2="620" y2="260" stroke="#84cc16" stroke-width="4" marker-end="url(#arrowhead)"/>
+  
+  <!-- Drive Connection (Yellow) -->
+  <line x1="320" y1="180" x2="150" y2="220" stroke="#f59e0b" stroke-width="3" marker-end="url(#arrowhead)"/>
+  
+  <!-- Sensor Connections -->
+  <line x1="100" y1="325" x2="130" y2="180" stroke="#6b7280" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="180" y1="325" x2="130" y2="180" stroke="#6b7280" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="260" y1="325" x2="130" y2="180" stroke="#6b7280" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="340" y1="325" x2="130" y2="180" stroke="#6b7280" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="420" y1="325" x2="130" y2="180" stroke="#6b7280" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="500" y1="350" x2="130" y2="180" stroke="#6b7280" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- Process Flow -->
+  <text x="50" y="430" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b">Document Processing:</text>
+  <text x="50" y="450" font-family="Arial, sans-serif" font-size="12" fill="#374151">1. Paper loaded → 2. Sensors detect → 3. Conveyor feeds → 4. Pneumatic folding → 5. Guide rails align → 6. Output collection</text>
+
+  <!-- Specifications -->
+  <text x="50" y="480" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b">Specifications:</text>
+  <text x="50" y="500" font-family="Arial, sans-serif" font-size="12" fill="#374151">• Speed: 12,000 sheets/hour • Paper: 16-28 lb bond • Folds: Letter, Half, Z-fold • Power: 115V/1Ph • Air: 80-120 PSI</text>
+
+  <!-- Legend -->
+  <rect x="450" y="420" width="300" height="120" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1" rx="4"/>
+  <text x="600" y="440" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e293b">
+    System Legend
+  </text>
+  <line x1="470" y1="455" x2="490" y2="455" stroke="#84cc16" stroke-width="4"/>
+  <text x="500" y="460" font-family="Arial, sans-serif" font-size="11" fill="#374151">Document Flow</text>
+  
+  <line x1="470" y1="475" x2="490" y2="475" stroke="#06b6d4" stroke-width="4"/>
+  <text x="500" y="480" font-family="Arial, sans-serif" font-size="11" fill="#374151">Pneumatic Air</text>
+  
+  <line x1="470" y1="495" x2="490" y2="495" stroke="#f59e0b" stroke-width="3"/>
+  <text x="500" y="500" font-family="Arial, sans-serif" font-size="11" fill="#374151">Mechanical Drive</text>
+  
+  <line x1="470" y1="515" x2="490" y2="515" stroke="#6b7280" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="500" y="520" font-family="Arial, sans-serif" font-size="11" fill="#374151">Control Signals</text>
+
+  <!-- Arrow marker definition -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#374151"/>
+    </marker>
+  </defs>
+</svg>

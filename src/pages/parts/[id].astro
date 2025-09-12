@@ -1,10 +1,13 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import PartsOrder from "../../components/PartsOrder.astro";
+import PartsServiceSection from "../../components/PartsServiceSection.jsx";
 
 export async function getStaticPaths() {
   const equipmentIds = [
-    'perlick', 'turbochef', 'frosty', 'hoshizaki', 
-    'southbend', 'chicago-folders', 'ironers', 'laundry', 'bills-bitch'
+    'perlick', 'perlick-lowboys', 'turbochef', 'frosty', 'hoshizaki', 'hoshizaki-refrigerators',
+    'southbend', 'chicago-folders', 'ironers', 'laundry', 'bills-bitch',
+    'walk-ins', 'low-boys', 'k2e-controllers', 'adt-systems', 'american-panel'
   ];
   
   return equipmentIds.map(id => ({
@@ -74,6 +77,138 @@ const partsData = {
       { name: 'Burner Head', sku: 'SB-1175334', price: '$125.00', description: 'Cast iron burner head assembly' },
       { name: 'Safety Valve', sku: 'SB-1175412', price: '$185.50', description: 'Gas safety shut-off valve' }
     ]
+  },
+  'chicago-folders': {
+    title: 'Chicago Folders Parts',
+    icon: '📄',
+    parts: [
+      { name: 'Feed Motor', sku: 'CF-4456-1', price: '$195.00', description: 'Document feed motor assembly' },
+      { name: 'Conveyor Belt', sku: 'CF-4523-2', price: '$85.50', description: 'Rubber conveyor belt replacement' },
+      { name: 'Sensor Assembly', sku: 'CF-4678-1', price: '$125.75', description: 'Document detection sensor' },
+      { name: 'Control Board', sku: 'CF-4734-1', price: '$275.00', description: 'Main control PCB' },
+      { name: 'Power Supply', sku: 'CF-4891-1', price: '$95.25', description: '24V power supply unit' },
+      { name: 'Guide Rails', sku: 'CF-4923-1', price: '$45.00', description: 'Document guide rail set' }
+    ]
+  },
+  'ironers': {
+    title: 'Ironers Parts',
+    icon: '🧺',
+    parts: [
+      { name: 'Heating Element', sku: 'IRN-5567-1', price: '$185.00', description: 'Main heating element assembly' },
+      { name: 'Motor Assembly', sku: 'IRN-5634-2', price: '$225.50', description: 'Drive motor with gearbox' },
+      { name: 'Thermostat', sku: 'IRN-5789-1', price: '$65.75', description: 'Temperature control thermostat' },
+      { name: 'Belt Assembly', sku: 'IRN-5845-1', price: '$95.00', description: 'Conveyor belt replacement' },
+      { name: 'Control Panel', sku: 'IRN-5923-1', price: '$155.25', description: 'Control panel assembly' },
+      { name: 'Safety Switch', sku: 'IRN-5987-1', price: '$35.50', description: 'Door safety interlock switch' }
+    ]
+  },
+  'laundry': {
+    title: 'Laundry Equipment Parts',
+    icon: '🌀',
+    parts: [
+      { name: 'Wash Motor', sku: 'LND-6678-1', price: '$325.00', description: 'Main wash motor assembly' },
+      { name: 'Drain Pump', sku: 'LND-6734-2', price: '$125.50', description: 'Water drain pump' },
+      { name: 'Control Board', sku: 'LND-6845-1', price: '$275.75', description: 'Electronic control board' },
+      { name: 'Door Seal', sku: 'LND-6923-1', price: '$85.00', description: 'Door gasket seal' },
+      { name: 'Water Valve', sku: 'LND-6987-1', price: '$95.25', description: 'Water inlet valve assembly' },
+      { name: 'Solenoid', sku: 'LND-6045-1', price: '$45.50', description: 'Water control solenoid' }
+    ]
+  },
+  'bills-bitch': {
+    title: 'Bill\'s Bitch Parts',
+    icon: '✨',
+    parts: [
+      { name: 'Magic Component', sku: 'BB-7777-1', price: '$999.99', description: 'The most important part ever' },
+      { name: 'Special Sauce', sku: 'BB-8888-2', price: '$777.77', description: 'Secret ingredient for success' },
+      { name: 'Unicorn Dust', sku: 'BB-9999-3', price: '$555.55', description: 'Rare and magical component' },
+      { name: 'Rainbow Wire', sku: 'BB-0000-4', price: '$333.33', description: 'Colorful electrical connection' },
+      { name: 'Stardust Filter', sku: 'BB-1111-5', price: '$222.22', description: 'Cosmic filtration system' },
+      { name: 'Dream Catcher', sku: 'BB-2222-6', price: '$111.11', description: 'Catches bad vibes and errors' }
+    ]
+  },
+  'walk-ins': {
+    title: 'Walk-In Cooler & Freezer Parts',
+    icon: '🚪',
+    parts: [
+      { name: 'Door Gasket Set', sku: 'WIC-2001', price: '$125.00', description: 'Complete door seal gasket replacement' },
+      { name: 'Evaporator Fan Motor', sku: 'WIC-2002', price: '$185.50', description: '1/4 HP evaporator fan motor' },
+      { name: 'Defrost Heater', sku: 'WIC-2003', price: '$95.75', description: 'Electric defrost heater element' },
+      { name: 'Temperature Controller', sku: 'WIC-2004', price: '$245.00', description: 'Digital temperature controller' },
+      { name: 'Door Handle Assembly', sku: 'WIC-2005', price: '$65.25', description: 'Heavy-duty door handle with latch' },
+      { name: 'Pressure Relief Port', sku: 'WIC-2006', price: '$35.50', description: 'Automatic pressure relief valve' }
+    ]
+  },
+  'low-boys': {
+    title: 'Low Boy Refrigerator Parts',
+    icon: '📦',
+    parts: [
+      { name: 'Compressor', sku: 'LB-3001', price: '$285.00', description: '1/4 HP hermetic compressor R-134a' },
+      { name: 'Evaporator Coil', sku: 'LB-3002', price: '$155.50', description: 'Evaporator coil assembly with fan' },
+      { name: 'Thermostat', sku: 'LB-3003', price: '$75.25', description: 'Digital temperature thermostat' },
+      { name: 'Door Gasket', sku: 'LB-3004', price: '$45.00', description: 'Magnetic door gasket seal' },
+      { name: 'Condenser Fan Motor', sku: 'LB-3005', price: '$95.75', description: 'Condenser fan motor assembly' },
+      { name: 'Start Capacitor', sku: 'LB-3006', price: '$25.50', description: 'Compressor start capacitor' }
+    ]
+  },
+  'k2e-controllers': {
+    title: 'K2E Controller Parts',
+    icon: '🎛️',
+    parts: [
+      { name: 'Temperature Probe', sku: 'K2E-4001', price: '$65.00', description: 'RTD temperature sensor probe' },
+      { name: 'Display Module', sku: 'K2E-4002', price: '$195.50', description: '4.3" color touchscreen display' },
+      { name: 'Power Supply', sku: 'K2E-4003', price: '$85.25', description: '12-24V DC power supply module' },
+      { name: 'Communication Module', sku: 'K2E-4004', price: '$125.00', description: 'WiFi/Ethernet communication board' },
+      { name: 'Relay Output Card', sku: 'K2E-4005', price: '$95.75', description: '4-channel relay output module' },
+      { name: 'Backup Battery', sku: 'K2E-4006', price: '$35.50', description: 'Lithium backup battery' }
+    ]
+  },
+  'adt-systems': {
+    title: 'ADT System Parts',
+    icon: '📊',
+    parts: [
+      { name: 'Data Logger Unit', sku: 'ADT-5001', price: '$485.00', description: 'ADT-DL500 data logger with display' },
+      { name: 'Sensor Interface', sku: 'ADT-5002', price: '$155.50', description: '16-channel sensor interface module' },
+      { name: 'Cellular Modem', sku: 'ADT-5003', price: '$225.00', description: '4G LTE cellular communication module' },
+      { name: 'UPS Battery Pack', sku: 'ADT-5004', price: '$125.75', description: 'Uninterruptible power supply battery' },
+      { name: 'Alarm Beacon', sku: 'ADT-5005', price: '$85.25', description: 'Visual/audible alarm beacon' },
+      { name: 'MicroSD Card', sku: 'ADT-5006', price: '$25.50', description: '32GB industrial MicroSD card' }
+    ]
+  },
+  'american-panel': {
+    title: 'American Panel Parts',
+    icon: '🏢',
+    parts: [
+      { name: 'Panel Gasket', sku: 'AP-6001', price: '$45.00', description: 'Dual durometer EPDM panel gasket' },
+      { name: 'Cam Lock Assembly', sku: 'AP-6002', price: '$25.50', description: 'Panel connection cam lock hardware' },
+      { name: 'Door Hinge Set', sku: 'AP-6003', price: '$85.75', description: 'Heavy-duty stainless steel hinges' },
+      { name: 'Threshold Plate', sku: 'AP-6004', price: '$65.25', description: 'Aluminum threshold with gasket' },
+      { name: 'Insulation Plug', sku: 'AP-6005', price: '$15.50', description: 'Polyurethane insulation repair plug' },
+      { name: 'Panel Sealant', sku: 'AP-6006', price: '$35.75', description: 'Professional grade panel sealant' }
+    ]
+  },
+  'perlick-lowboys': {
+    title: 'Perlick Low Boy Parts',
+    icon: '🍺',
+    parts: [
+      { name: 'Glycol Pump', sku: 'PLB-1001', price: '$185.00', description: '1/20 HP glycol circulation pump' },
+      { name: 'Temperature Probe', sku: 'PLB-1002', price: '$65.50', description: 'RTD temperature sensor probe' },
+      { name: 'Glycol Solenoid', sku: 'PLB-1003', price: '$125.25', description: 'Glycol flow control solenoid' },
+      { name: 'Level Sensor', sku: 'PLB-1004', price: '$85.75', description: 'Glycol reservoir level sensor' },
+      { name: 'Pump Motor', sku: 'PLB-1005', price: '$245.00', description: 'Replacement circulation pump motor' },
+      { name: 'Glycol Filter', sku: 'PLB-1006', price: '$35.50', description: 'Inline glycol filtration system' }
+    ]
+  },
+  'hoshizaki-refrigerators': {
+    title: 'Hoshizaki Refrigerator Parts',
+    icon: '🧊',
+    parts: [
+      { name: 'Evaporator Coil', sku: 'HR-2001', price: '$285.00', description: 'Refrigerator evaporator coil assembly' },
+      { name: 'Fan Motor', sku: 'HR-2002', price: '$125.50', description: '25W evaporator fan motor' },
+      { name: 'Defrost Heater', sku: 'HR-2003', price: '$95.25', description: '300W electric defrost heater' },
+      { name: 'Temperature Control', sku: 'HR-2004', price: '$165.00', description: 'Digital temperature controller' },
+      { name: 'Door Gasket', sku: 'HR-2005', price: '$75.75', description: 'Magnetic door seal gasket' },
+      { name: 'Compressor', sku: 'HR-2006', price: '$485.50', description: '1/2 HP scroll compressor R-134a' }
+    ]
   }
 };
 
@@ -86,14 +221,14 @@ const currentParts = partsData[id] || {
 };
 ---
 
-<BaseLayout>
+<BaseLayout title={`${currentParts.title} - LTC Kitchen`} description="Genuine replacement parts and components for commercial kitchen equipment">
   <div class="mb-8">
     <div class="flex items-center space-x-4 mb-4">
       <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center text-3xl">
         {currentParts.icon}
       </div>
       <div>
-        <h1 class="text-3xl font-bold">{currentParts.title}</h1>
+        <h1 class="text-3xl font-bold text-slate-900">{currentParts.title}</h1>
         <p class="text-slate-600">Genuine replacement parts and components</p>
       </div>
     </div>
@@ -116,38 +251,11 @@ const currentParts = partsData[id] || {
           </div>
         </div>
         
-        <div class="flex gap-2">
-          <button class="flex-1 px-3 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm">
-            Order Part
-          </button>
-          <button class="px-3 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 text-sm">
-            Spec Sheet
-          </button>
-        </div>
+        <PartsOrder part={part} equipment={currentParts.title} />
       </div>
     ))}
   </div>
 
-  <div class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-6 border border-blue-200">
-    <h3 class="text-lg font-semibold text-slate-900 mb-4">🛠 Parts & Service</h3>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-      <div class="text-center">
-        <div class="text-2xl mb-2">📞</div>
-        <div class="font-medium">24/7 Support</div>
-        <div class="text-sm text-slate-600">1-800-PARTS-24</div>
-      </div>
-      <div class="text-center">
-        <div class="text-2xl mb-2">🚚</div>
-        <div class="font-medium">Fast Shipping</div>
-        <div class="text-sm text-slate-600">Same-day available</div>
-      </div>
-      <div class="text-center">
-        <div class="text-2xl mb-2">✅</div>
-        <div class="font-medium">Warranty</div>
-        <div class="text-sm text-slate-600">1-year parts warranty</div>
-      </div>
-    </div>
-  </div>
+  <!-- Enhanced Parts & Service Section with React -->
+  <PartsServiceSection client:load />
 </BaseLayout>
-
-

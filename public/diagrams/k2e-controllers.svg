@@ -1,0 +1,135 @@
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="600" fill="#f8fafc"/>
+  
+  <!-- Title -->
+  <text x="400" y="30" text-anchor="middle" font-size="24" font-weight="bold" fill="#1e293b">K2E Controller System Diagram</text>
+  
+  <!-- Power Input -->
+  <rect x="50" y="80" width="120" height="60" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="110" y="100" text-anchor="middle" font-size="12" font-weight="bold" fill="#92400e">POWER INPUT</text>
+  <text x="110" y="115" text-anchor="middle" font-size="10" fill="#92400e">12-24V DC</text>
+  <text x="110" y="128" text-anchor="middle" font-size="10" fill="#92400e">500mA</text>
+  
+  <!-- Main Controller -->
+  <rect x="250" y="60" width="160" height="100" fill="#ddd6fe" stroke="#7c3aed" stroke-width="2"/>
+  <text x="330" y="85" text-anchor="middle" font-size="14" font-weight="bold" fill="#5b21b6">K2E CONTROLLER</text>
+  <text x="330" y="105" text-anchor="middle" font-size="10" fill="#5b21b6">4.3" Touchscreen</text>
+  <text x="330" y="120" text-anchor="middle" font-size="10" fill="#5b21b6">ARM Processor</text>
+  <text x="330" y="135" text-anchor="middle" font-size="10" fill="#5b21b6">MicroSD Storage</text>
+  <text x="330" y="150" text-anchor="middle" font-size="10" fill="#5b21b6">Data Logging</text>
+  
+  <!-- Network Module -->
+  <rect x="500" y="80" width="120" height="60" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="560" y="100" text-anchor="middle" font-size="12" font-weight="bold" fill="#15803d">NETWORK</text>
+  <text x="560" y="115" text-anchor="middle" font-size="10" fill="#15803d">Ethernet</text>
+  <text x="560" y="128" text-anchor="middle" font-size="10" fill="#15803d">WiFi/Cellular</text>
+  
+  <!-- Temperature Sensors -->
+  <rect x="100" y="220" width="120" height="80" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="160" y="245" text-anchor="middle" font-size="12" font-weight="bold" fill="#92400e">TEMP SENSORS</text>
+  <text x="160" y="260" text-anchor="middle" font-size="10" fill="#92400e">Zone 1: RTD</text>
+  <text x="160" y="275" text-anchor="middle" font-size="10" fill="#92400e">Zone 2: RTD</text>
+  <text x="160" y="290" text-anchor="middle" font-size="10" fill="#92400e">-40°F to 185°F</text>
+  
+  <!-- Analog Inputs -->
+  <rect x="280" y="220" width="120" height="80" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="340" y="245" text-anchor="middle" font-size="12" font-weight="bold" fill="#1d4ed8">ANALOG IN</text>
+  <text x="340" y="260" text-anchor="middle" font-size="10" fill="#1d4ed8">4-20mA Inputs</text>
+  <text x="340" y="275" text-anchor="middle" font-size="10" fill="#1d4ed8">8 Universal</text>
+  <text x="340" y="290" text-anchor="middle" font-size="10" fill="#1d4ed8">Channels</text>
+  
+  <!-- Relay Outputs -->
+  <rect x="460" y="220" width="120" height="80" fill="#f3e8ff" stroke="#9333ea" stroke-width="2"/>
+  <text x="520" y="245" text-anchor="middle" font-size="12" font-weight="bold" fill="#7c3aed">RELAY OUT</text>
+  <text x="520" y="260" text-anchor="middle" font-size="10" fill="#7c3aed">4 Outputs</text>
+  <text x="520" y="275" text-anchor="middle" font-size="10" fill="#7c3aed">250V/10A</text>
+  <text x="520" y="290" text-anchor="middle" font-size="10" fill="#7c3aed">NO/NC Contacts</text>
+  
+  <!-- Alarm System -->
+  <rect x="640" y="220" width="120" height="80" fill="#fecaca" stroke="#dc2626" stroke-width="2"/>
+  <text x="700" y="245" text-anchor="middle" font-size="12" font-weight="bold" fill="#b91c1c">ALARMS</text>
+  <text x="700" y="260" text-anchor="middle" font-size="10" fill="#b91c1c">Horn/Strobe</text>
+  <text x="700" y="275" text-anchor="middle" font-size="10" fill="#b91c1c">Email/SMS</text>
+  <text x="700" y="290" text-anchor="middle" font-size="10" fill="#b91c1c">Remote Notify</text>
+  
+  <!-- Equipment Connections -->
+  <rect x="100" y="360" width="140" height="60" fill="#fed7aa" stroke="#ea580c" stroke-width="2"/>
+  <text x="170" y="380" text-anchor="middle" font-size="12" font-weight="bold" fill="#c2410c">WALK-IN COOLER</text>
+  <text x="170" y="395" text-anchor="middle" font-size="10" fill="#c2410c">Temperature: 36°F</text>
+  <text x="170" y="410" text-anchor="middle" font-size="10" fill="#c2410c">Compressor Control</text>
+  
+  <rect x="280" y="360" width="140" height="60" fill="#fed7aa" stroke="#ea580c" stroke-width="2"/>
+  <text x="350" y="380" text-anchor="middle" font-size="12" font-weight="bold" fill="#c2410c">FREEZER</text>
+  <text x="350" y="395" text-anchor="middle" font-size="10" fill="#c2410c">Temperature: -2°F</text>
+  <text x="350" y="410" text-anchor="middle" font-size="10" fill="#c2410c">Defrost Control</text>
+  
+  <rect x="460" y="360" width="140" height="60" fill="#fed7aa" stroke="#ea580c" stroke-width="2"/>
+  <text x="530" y="380" text-anchor="middle" font-size="12" font-weight="bold" fill="#c2410c">PREP AREA</text>
+  <text x="530" y="395" text-anchor="middle" font-size="10" fill="#c2410c">Temperature: 42°F</text>
+  <text x="530" y="410" text-anchor="middle" font-size="10" fill="#c2410c">Fan Control</text>
+  
+  <rect x="640" y="360" width="120" height="60" fill="#fed7aa" stroke="#ea580c" stroke-width="2"/>
+  <text x="700" y="380" text-anchor="middle" font-size="12" font-weight="bold" fill="#c2410c">AMBIENT</text>
+  <text x="700" y="395" text-anchor="middle" font-size="10" fill="#c2410c">Temperature: 72°F</text>
+  <text x="700" y="410" text-anchor="middle" font-size="10" fill="#c2410c">Monitoring</text>
+  
+  <!-- Wiring Connections -->
+  <!-- Power -->
+  <line x1="170" y1="110" x2="250" y2="110" stroke="#000" stroke-width="3"/>
+  <text x="210" y="105" text-anchor="middle" font-size="8" fill="#000">12-24V DC</text>
+  
+  <!-- Network -->
+  <line x1="410" y1="110" x2="500" y2="110" stroke="#16a34a" stroke-width="2"/>
+  <text x="455" y="105" text-anchor="middle" font-size="8" fill="#16a34a">Network</text>
+  
+  <!-- Sensor Inputs -->
+  <line x1="160" y1="220" x2="160" y2="190" stroke="#f59e0b" stroke-width="2"/>
+  <line x1="160" y1="190" x2="330" y2="190" stroke="#f59e0b" stroke-width="2"/>
+  <line x1="330" y1="190" x2="330" y2="160" stroke="#f59e0b" stroke-width="2"/>
+  <text x="245" y="185" text-anchor="middle" font-size="8" fill="#f59e0b">Temp Inputs</text>
+  
+  <line x1="340" y1="220" x2="340" y2="200" stroke="#2563eb" stroke-width="2"/>
+  <line x1="340" y1="200" x2="330" y2="200" stroke="#2563eb" stroke-width="2"/>
+  <line x1="330" y1="200" x2="330" y2="160" stroke="#2563eb" stroke-width="2"/>
+  <text x="335" y="195" text-anchor="middle" font-size="8" fill="#2563eb">Analog</text>
+  
+  <!-- Relay Outputs -->
+  <line x1="520" y1="220" x2="520" y2="200" stroke="#9333ea" stroke-width="2"/>
+  <line x1="410" y1="200" x2="520" y2="200" stroke="#9333ea" stroke-width="2"/>
+  <line x1="410" y1="200" x2="410" y2="160" stroke="#9333ea" stroke-width="2"/>
+  <text x="465" y="195" text-anchor="middle" font-size="8" fill="#9333ea">Control Out</text>
+  
+  <!-- Alarm Connections -->
+  <line x1="700" y1="220" x2="700" y2="180" stroke="#dc2626" stroke-width="2"/>
+  <line x1="620" y1="180" x2="700" y2="180" stroke="#dc2626" stroke-width="2"/>
+  <line x1="620" y1="180" x2="620" y2="110" stroke="#dc2626" stroke-width="2"/>
+  <text x="660" y="175" text-anchor="middle" font-size="8" fill="#dc2626">Alarms</text>
+  
+  <!-- Equipment Connections -->
+  <line x1="170" y1="360" x2="170" y2="330" stroke="#ea580c" stroke-width="2"/>
+  <line x1="170" y1="330" x2="160" y2="330" stroke="#ea580c" stroke-width="2"/>
+  <line x1="160" y1="330" x2="160" y2="300" stroke="#ea580c" stroke-width="2"/>
+  
+  <line x1="350" y1="360" x2="350" y2="330" stroke="#ea580c" stroke-width="2"/>
+  <line x1="350" y1="330" x2="340" y2="330" stroke="#ea580c" stroke-width="2"/>
+  <line x1="340" y1="330" x2="340" y2="300" stroke="#ea580c" stroke-width="2"/>
+  
+  <line x1="530" y1="360" x2="530" y2="330" stroke="#ea580c" stroke-width="2"/>
+  <line x1="530" y1="330" x2="520" y2="330" stroke="#ea580c" stroke-width="2"/>
+  <line x1="520" y1="330" x2="520" y2="300" stroke="#ea580c" stroke-width="2"/>
+  
+  <!-- Legend -->
+  <rect x="50" y="480" width="700" height="100" fill="#f1f5f9" stroke="#64748b" stroke-width="1"/>
+  <text x="400" y="500" text-anchor="middle" font-size="14" font-weight="bold" fill="#1e293b">K2E Controller Specifications</text>
+  
+  <text x="70" y="520" font-size="10" fill="#1e293b">• Power: 12-24V DC, 500mA consumption</text>
+  <text x="70" y="535" font-size="10" fill="#1e293b">• Display: 4.3" color touchscreen, 480x272</text>
+  <text x="70" y="550" font-size="10" fill="#1e293b">• Inputs: 8 universal (RTD, 4-20mA, digital)</text>
+  <text x="70" y="565" font-size="10" fill="#1e293b">• Data Logging: 5-second intervals, MicroSD</text>
+  
+  <text x="420" y="520" font-size="10" fill="#1e293b">• Outputs: 4 relay outputs, 250V/10A rating</text>
+  <text x="420" y="535" font-size="10" fill="#1e293b">• Communication: Ethernet, WiFi, Cellular</text>
+  <text x="420" y="550" font-size="10" fill="#1e293b">• Alarms: Email, SMS, local horn/strobe</text>
+  <text x="420" y="565" font-size="10" fill="#1e293b">• Compliance: HACCP, FDA 21 CFR Part 11</text>
+</svg>

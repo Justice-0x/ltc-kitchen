@@ -1,23 +1,47 @@
-<nav class="w-64 h-screen bg-white shadow-md p-4 flex flex-col">
-  <h2 class="text-xl font-bold mb-6">📘 LTC Kitchen</h2>
+<nav class="w-64 h-screen bg-gradient-to-b from-slate-900 to-slate-800 shadow-xl p-4 flex flex-col text-white">
+  <!-- Logo Header -->
+  <div class="flex items-center space-x-3 mb-6 p-2">
+    <img src="/logo.png" alt="LTC Kitchen Logo" class="w-8 h-8 rounded-lg shadow-sm" />
+    <div>
+      <h1 class="text-xl font-bold text-white">LTC Kitchen</h1>
+      <p class="text-sm text-slate-300">Equipment Portal</p>
+    </div>
+  </div>
 
-  <a href="/" class="mb-2 block hover:text-blue-500">🏠 Dashboard</a>
-  <a href="/docs" class="mb-2 block hover:text-blue-500">📚 Docs</a>
-  <a href="/equipment" class="mb-2 block hover:text-blue-500">📋 Equipment Directory</a>
-  <a href="/perlick" class="mb-2 block hover:text-blue-500">🍺 Perlick</a>
-  <a href="/turbochef" class="mb-2 block hover:text-blue-500">🔥 TurboChef</a>
-  <a href="/frosty" class="mb-2 block hover:text-blue-500">🍦 Frosty</a>
-  <a href="/hoshizaki" class="mb-2 block hover:text-blue-500">🧊 Hoshizaki</a>
-  <a href="/southbend" class="mb-2 block hover:text-blue-500">🍳 Southbend</a>
-  <a href="/chicago-folders" class="mb-2 block hover:text-blue-500">📄 Chicago Folders</a>
-  <a href="/ironers" class="mb-2 block hover:text-blue-500">🧺 Ironers</a>
-  <a href="/laundry" class="mb-2 block hover:text-blue-500">🌀 Laundry</a>
-  <a href="/bills-bitch" class="mb-2 block hover:text-blue-500">✨ Bill’s Bitch</a>
+  <!-- Navigation Links -->
+  <div class="space-y-1">
+    <a href="/" class="nav-link mb-1 block p-2 rounded-lg transition-colors hover:bg-blue-600 hover:text-white">🏠 Dashboard</a>
+    <a href="/docs" class="nav-link mb-1 block p-2 rounded-lg transition-colors hover:bg-blue-600 hover:text-white">📚 Docs</a>
+    <a href="/equipment" class="nav-link mb-1 block p-2 rounded-lg transition-colors hover:bg-blue-600 hover:text-white">📋 Equipment Directory</a>
+    
+    <h3 class="font-bold mt-4 mb-2 text-slate-300 text-sm uppercase tracking-wide">Refrigeration</h3>
+    <a href="/perlick" class="nav-link mb-1 block p-2 rounded-lg transition-colors hover:bg-blue-600 hover:text-white">🍺 Perlick Chillers</a>
+    <a href="/perlick-lowboys" class="nav-link mb-1 block p-2 rounded-lg transition-colors hover:bg-blue-600 hover:text-white">🍺 Perlick Low Boys</a>
+    <a href="/hoshizaki" class="nav-link mb-1 block p-2 rounded-lg transition-colors hover:bg-blue-600 hover:text-white">🧊 Hoshizaki Ice</a>
+    <a href="/hoshizaki-refrigerators" class="nav-link mb-1 block p-2 rounded-lg transition-colors hover:bg-blue-600 hover:text-white">🧊 Hoshizaki Refrigerators</a>
+    <a href="/walk-ins" class="nav-link mb-1 block p-2 rounded-lg transition-colors hover:bg-blue-600 hover:text-white">🚪 Walk-In Coolers</a>
+    <a href="/low-boys" class="nav-link mb-1 block p-2 rounded-lg transition-colors hover:bg-blue-600 hover:text-white">📦 Low Boys</a>
+    <a href="/american-panel" class="nav-link mb-1 block p-2 rounded-lg transition-colors hover:bg-blue-600 hover:text-white">🏢 American Panel</a>
+    
+    <h3 class="font-bold mt-4 mb-2 text-slate-300 text-sm uppercase tracking-wide">Cooking</h3>
+    <a href="/turbochef" class="nav-link mb-1 block p-2 rounded-lg transition-colors hover:bg-blue-600 hover:text-white">🔥 TurboChef</a>
+    <a href="/southbend" class="nav-link mb-1 block p-2 rounded-lg transition-colors hover:bg-blue-600 hover:text-white">🍳 Southbend</a>
+    <a href="/frosty" class="nav-link mb-1 block p-2 rounded-lg transition-colors hover:bg-blue-600 hover:text-white">🍦 Frosty</a>
+    
+    <h3 class="font-bold mt-4 mb-2 text-slate-300 text-sm uppercase tracking-wide">Controls</h3>
+    <a href="/k2e-controllers" class="nav-link mb-1 block p-2 rounded-lg transition-colors hover:bg-blue-600 hover:text-white">🎛️ K2E Controllers</a>
+    <a href="/adt-systems" class="nav-link mb-1 block p-2 rounded-lg transition-colors hover:bg-blue-600 hover:text-white">📊 ADT Systems</a>
+    
+    <h3 class="font-bold mt-4 mb-2 text-slate-300 text-sm uppercase tracking-wide">Other Equipment</h3>
+    <a href="/chicago-folders" class="nav-link mb-1 block p-2 rounded-lg transition-colors hover:bg-blue-600 hover:text-white">📄 Chicago Folders</a>
+    <a href="/ironers" class="nav-link mb-1 block p-2 rounded-lg transition-colors hover:bg-blue-600 hover:text-white">🧺 Ironers</a>
+    <a href="/laundry" class="nav-link mb-1 block p-2 rounded-lg transition-colors hover:bg-blue-600 hover:text-white">🌀 Laundry</a>
+    <a href="/bills-bitch" class="nav-link mb-1 block p-2 rounded-lg transition-colors hover:bg-blue-600 hover:text-white">✨ Bill's Bitch</a>
+  </div>
 
-  <hr class="my-4" />
+  <hr class="my-4 border-slate-600" />
+  
+  <h3 class="font-bold mb-2 text-slate-300 text-sm uppercase tracking-wide">🛠 Parts & Service</h3>
+  <a href="/quote" class="mb-2 block p-2 rounded-lg transition-colors hover:bg-blue-600 hover:text-white">📋 My Quotes</a>
 
-  <h3 class="font-bold mb-2">🎨 Themes</h3>
-  <button data-theme="light" class="theme-btn mb-2 w-full p-2 rounded bg-gray-200">☀️ Light</button>
-  <button data-theme="dark" class="theme-btn mb-2 w-full p-2 rounded bg-gray-800 text-white">🌙 Dark</button>
-  <button data-theme="spooky" class="theme-btn mb-2 w-full p-2 rounded bg-purple-700 text-white">🎃 Spooky</button>
 </nav>

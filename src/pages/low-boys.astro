@@ -1,0 +1,211 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SectionCard from "../components/SectionCard.astro";
+import TroubleshootingDropdown from "../components/TroubleshootingDropdown.astro";
+
+const troubleshootingIssues = [
+  {
+    problem: "Not Cooling Properly",
+    solutions: [
+      "Check door seals and gaskets",
+      "Clean condenser coils",
+      "Verify thermostat settings", 
+      "Check refrigerant charge",
+      "Inspect evaporator for frost buildup"
+    ]
+  },
+  {
+    problem: "Compressor Short Cycling",
+    solutions: [
+      "Check thermostat differential",
+      "Test start capacitor",
+      "Verify refrigerant levels",
+      "Check for overheating",
+      "Inspect electrical connections"
+    ]
+  },
+  {
+    problem: "Excessive Noise",
+    solutions: [
+      "Check compressor mounts",
+      "Inspect fan blade alignment",
+      "Verify unit is level",
+      "Check for loose panels",
+      "Inspect condenser fan motor"
+    ]
+  }
+];
+---
+
+<BaseLayout title="Low Boys - LTC Kitchen" description="Low boy refrigerator and freezer units monitoring">
+  <div class="mb-8">
+    <div class="flex items-center space-x-4 mb-4">
+      <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-blue-600 rounded-xl flex items-center justify-center text-3xl">
+        📦
+      </div>
+      <div>
+        <h1 class="text-3xl font-bold text-slate-900">Low Boy Refrigeration</h1>
+        <p class="text-slate-600">Under-counter refrigerators and freezers</p>
+      </div>
+    </div>
+    
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">✓ Operational</span>
+      <span class="text-sm text-slate-500">Last updated: {new Date().toLocaleTimeString()}</span>
+    </div>
+
+    <div class="flex space-x-3 mb-8">
+      <a href="/manuals/low-boys" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
+        📄 Manual
+      </a>
+      <a href="/parts/low-boys" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm font-medium">
+        🔧 Parts
+      </a>
+      <a href="#troubleshooting" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors text-sm font-medium">
+        🚨 Troubleshooting
+      </a>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+    <!-- Temperature Control -->
+    <div class="bg-white rounded-xl shadow-lg p-6 border border-slate-200">
+      <h3 class="text-lg font-semibold text-slate-900 mb-4 flex items-center">
+        <span class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center mr-3">🌡️</span>
+        Temperature Monitoring
+      </h3>
+      
+      <div class="space-y-4">
+        <div>
+          <div class="flex justify-between items-center mb-2">
+            <span class="text-2xl font-bold text-green-600">36°F</span>
+            <span class="text-sm text-slate-600">Current Temperature</span>
+            <span class="text-lg font-semibold">38°F</span>
+          </div>
+          <div class="w-full bg-slate-200 rounded-full h-2 mb-2">
+            <div class="bg-green-600 h-2 rounded-full" style="width: 80%"></div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-4 mt-4">
+          <div class="text-center p-3 bg-slate-50 rounded-lg">
+            <div class="text-sm text-slate-600">Setpoint</div>
+            <div class="font-semibold">38°F</div>
+          </div>
+          <div class="text-center p-3 bg-slate-50 rounded-lg">
+            <div class="text-sm text-slate-600">Differential</div>
+            <div class="font-semibold">2°F</div>
+          </div>
+          <div class="text-center p-3 bg-slate-50 rounded-lg">
+            <div class="text-sm text-slate-600">Humidity</div>
+            <div class="font-semibold">78%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- System Status -->
+    <div class="bg-white rounded-xl shadow-lg p-6 border border-slate-200">
+      <h3 class="text-lg font-semibold text-slate-900 mb-4">System Status</h3>
+      <div class="space-y-4">
+        <div class="flex justify-between items-center">
+          <span class="text-slate-700">Compressor</span>
+          <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Running</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="text-slate-700">Evaporator Fan</span>
+          <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Auto</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="text-slate-700">Door Switch</span>
+          <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Closed</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="text-slate-700">Defrost</span>
+          <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Off-Cycle</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="text-slate-700">Alarms</span>
+          <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">None</span>
+        </div>
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-slate-200">
+        <h4 class="font-semibold text-slate-900 mb-3">Performance</h4>
+        <div class="space-y-2">
+          <div class="flex justify-between items-center">
+            <span class="text-sm text-slate-600">Runtime Today</span>
+            <span class="text-sm font-medium">6.2 hours</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-sm text-slate-600">Energy Usage</span>
+            <span class="text-sm font-medium">12.4 kWh</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-sm text-slate-600">Efficiency</span>
+            <span class="text-sm font-medium text-green-600">92%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <SectionCard title="Troubleshooting" id="troubleshooting">
+    <TroubleshootingDropdown issues={troubleshootingIssues} />
+    
+    <div class="mt-6">
+      <h4 class="font-bold mb-3">Maintenance Reminders:</h4>
+      <div class="p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+        <div class="flex items-start space-x-3">
+          <div class="text-yellow-600 text-lg">⚠️</div>
+          <div>
+            <div class="font-medium text-yellow-900">Condenser Cleaning Due</div>
+            <div class="text-sm text-yellow-700 mt-1">Clean condenser coils every 3 months for optimal efficiency</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </SectionCard>
+
+  <SectionCard title="Wiring Diagram">
+    <div class="bg-white p-4 rounded-lg border border-slate-200 overflow-hidden">
+      <div class="w-full max-w-4xl mx-auto">
+        <img src="/diagrams/low-boys.svg" alt="Low boy refrigerator wiring diagram showing compressor, evaporator fan, thermostat, and control systems" class="w-full h-auto rounded" style="max-height: 500px; object-fit: contain;" />
+      </div>
+      <div class="mt-4 text-sm text-slate-600">
+        <p class="font-medium mb-2">Electrical Specifications:</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <p>• <span class="font-medium">Power:</span> 115V AC, 60Hz, 1Ph</p>
+            <p>• <span class="font-medium">Compressor:</span> 1/4 HP hermetic</p>
+            <p>• <span class="font-medium">Fan Motor:</span> 25W evaporator fan</p>
+          </div>
+          <div>
+            <p>• <span class="font-medium">Thermostat:</span> Digital temperature control</p>
+            <p>• <span class="font-medium">Defrost:</span> Off-cycle defrost</p>
+            <p>• <span class="font-medium">Refrigerant:</span> R-134a</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </SectionCard>
+
+  <!-- Quick Actions -->
+  <div class="bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-6 border border-green-200">
+    <h3 class="text-lg font-semibold text-slate-900 mb-4">Quick Actions</h3>
+    <div class="flex flex-wrap gap-3">
+      <button class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm font-medium">
+        📊 View Performance
+      </button>
+      <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
+        🔧 Schedule Maintenance
+      </button>
+      <button class="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors text-sm font-medium">
+        ⚙️ Adjust Settings
+      </button>
+      <button class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors text-sm font-medium">
+        📈 Energy Report
+      </button>
+    </div>
+  </div>
+</BaseLayout>

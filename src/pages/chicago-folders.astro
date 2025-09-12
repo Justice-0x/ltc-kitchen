@@ -75,6 +75,25 @@ import SectionCard from "../components/SectionCard.astro";
     </div>
   </div>
   <SectionCard title="Wiring Diagram">
-    <img src="/diagrams/chicago-folders.png" alt="Chicago Folders wiring diagram placeholder" class="w-full rounded border" />
+    <div class="bg-white p-4 rounded-lg border border-slate-200 overflow-hidden">
+      <div class="w-full max-w-4xl mx-auto">
+        <img src="/diagrams/chicago-folders.svg" alt="Chicago Folders document system detailed wiring diagram showing motors, conveyor, feed system, and control panel" class="w-full h-auto rounded" style="max-height: 500px; object-fit: contain;" />
+      </div>
+      <div class="mt-4 text-sm text-slate-600">
+        <p class="font-medium mb-2">System Specifications:</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <p>• <span class="font-medium">Power:</span> 115V AC, 60Hz, 3.2A</p>
+            <p>• <span class="font-medium">Motor:</span> 1/2 HP drive system</p>
+            <p>• <span class="font-medium">Speed:</span> 1000 sheets/hour</p>
+          </div>
+          <div>
+            <p>• <span class="font-medium">Paper Size:</span> 8.5" x 11"</p>
+            <p>• <span class="font-medium">Conveyor:</span> 115V AC belt drive</p>
+            <p>• <span class="font-medium">Control:</span> Speed control & feed rate</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </SectionCard>
 </BaseLayout>

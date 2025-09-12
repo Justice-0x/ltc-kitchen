@@ -61,6 +61,25 @@ import SectionCard from "../components/SectionCard.astro";
   </div>
 
   <SectionCard title="Wiring Diagram">
-    <img src="/diagrams/laundry.png" alt="Laundry wiring diagram placeholder" class="w-full rounded border" />
+    <div class="bg-white p-4 rounded-lg border border-slate-200 overflow-hidden">
+      <div class="w-full max-w-4xl mx-auto">
+        <img src="/diagrams/laundry.svg" alt="Commercial laundry detailed wiring diagram showing heating elements, motors, pumps, and control systems" class="w-full h-auto rounded" style="max-height: 500px; object-fit: contain;" />
+      </div>
+      <div class="mt-4 text-sm text-slate-600">
+        <p class="font-medium mb-2">System Specifications:</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <p>• <span class="font-medium">Power:</span> 240V AC, 40A circuit</p>
+            <p>• <span class="font-medium">Heating:</span> 4500W element</p>
+            <p>• <span class="font-medium">Capacity:</span> 50 lbs dry weight</p>
+          </div>
+          <div>
+            <p>• <span class="font-medium">Motor:</span> 115V AC drive system</p>
+            <p>• <span class="font-medium">Water Pump:</span> 115V AC circulation</p>
+            <p>• <span class="font-medium">Control:</span> Wash cycles & temperature</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </SectionCard>
 </BaseLayout>

@@ -1,0 +1,313 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SectionCard from "../components/SectionCard.astro";
+import TroubleshootingDropdown from "../components/TroubleshootingDropdown.astro";
+
+const troubleshootingIssues = [
+  {
+    problem: "Panel Not Sealing Properly",
+    solutions: [
+      "Check gasket condition and alignment",
+      "Inspect panel mounting hardware",
+      "Verify door closure mechanism",
+      "Adjust panel tension",
+      "Replace worn gaskets"
+    ]
+  },
+  {
+    problem: "Insulation Performance Issues",
+    solutions: [
+      "Check for thermal bridging",
+      "Inspect insulation integrity",
+      "Verify vapor barrier condition",
+      "Test panel R-value",
+      "Check for air infiltration"
+    ]
+  },
+  {
+    problem: "Structural Problems",
+    solutions: [
+      "Inspect panel connections",
+      "Check fastener torque",
+      "Verify structural support",
+      "Test panel deflection",
+      "Inspect for damage or wear"
+    ]
+  }
+];
+---
+
+<BaseLayout title="American Panel - LTC Kitchen" description="American Panel insulated wall and door systems">
+  <div class="mb-8">
+    <div class="flex items-center space-x-4 mb-4">
+      <div class="w-16 h-16 bg-gradient-to-br from-red-500 to-blue-600 rounded-xl flex items-center justify-center text-3xl">
+        🏢
+      </div>
+      <div>
+        <h1 class="text-3xl font-bold text-slate-900">American Panel Systems</h1>
+        <p class="text-slate-600">Insulated wall panels and door systems</p>
+      </div>
+    </div>
+    
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">✓ Installed</span>
+      <span class="text-sm text-slate-500">Last inspected: {new Date().toLocaleDateString()}</span>
+    </div>
+
+    <div class="flex space-x-3 mb-8">
+      <a href="/manuals/american-panel" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
+        📄 Manual
+      </a>
+      <a href="/parts/american-panel" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm font-medium">
+        🔧 Parts
+      </a>
+      <a href="#troubleshooting" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors text-sm font-medium">
+        🚨 Troubleshooting
+      </a>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+    <!-- Panel Specifications -->
+    <div class="bg-white rounded-xl shadow-lg p-6 border border-slate-200">
+      <h3 class="text-lg font-semibold text-slate-900 mb-4 flex items-center">
+        <span class="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center mr-3">📐</span>
+        Panel Specifications
+      </h3>
+      
+      <div class="space-y-4">
+        <div class="grid grid-cols-2 gap-4">
+          <div class="text-center p-3 bg-slate-50 rounded-lg">
+            <div class="text-2xl font-bold text-red-600">4"</div>
+            <div class="text-sm text-slate-600">Panel Thickness</div>
+          </div>
+          <div class="text-center p-3 bg-slate-50 rounded-lg">
+            <div class="text-2xl font-bold text-blue-600">R-25</div>
+            <div class="text-sm text-slate-600">Insulation Value</div>
+          </div>
+        </div>
+
+        <div class="space-y-3">
+          <div class="flex justify-between items-center">
+            <span class="text-slate-700">Core Material</span>
+            <span class="font-medium">Polyurethane Foam</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-slate-700">Exterior Finish</span>
+            <span class="font-medium">Stucco Embossed</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-slate-700">Interior Finish</span>
+            <span class="font-medium">Smooth White</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-slate-700">Gasket Type</span>
+            <span class="font-medium">Dual Durometer</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-slate-700">Fire Rating</span>
+            <span class="font-medium">Class A</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Installation Status -->
+    <div class="bg-white rounded-xl shadow-lg p-6 border border-slate-200">
+      <h3 class="text-lg font-semibold text-slate-900 mb-4">Installation Status</h3>
+      
+      <div class="space-y-4">
+        <div class="flex justify-between items-center">
+          <span class="text-slate-700">Walk-in Cooler</span>
+          <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Installed</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="text-slate-700">Walk-in Freezer</span>
+          <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Installed</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="text-slate-700">Prep Room</span>
+          <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Installed</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="text-slate-700">Door Systems</span>
+          <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Operational</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="text-slate-700">Gasket Condition</span>
+          <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Good</span>
+        </div>
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-slate-200">
+        <h4 class="font-semibold text-slate-900 mb-3">Dimensions</h4>
+        <div class="space-y-2 text-sm">
+          <div class="flex justify-between">
+            <span class="text-slate-600">Cooler:</span>
+            <span class="font-medium">10' x 12' x 8'</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-slate-600">Freezer:</span>
+            <span class="font-medium">8' x 10' x 8'</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-slate-600">Total Panels:</span>
+            <span class="font-medium">24 pieces</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+    <!-- Performance Metrics -->
+    <div class="bg-white rounded-xl shadow-lg p-6 border border-slate-200">
+      <h3 class="text-lg font-semibold text-slate-900 mb-4">Performance</h3>
+      
+      <div class="space-y-4">
+        <div class="text-center p-4 bg-green-50 rounded-lg">
+          <div class="text-2xl font-bold text-green-600">98.5%</div>
+          <div class="text-sm text-slate-600">Thermal Efficiency</div>
+        </div>
+        
+        <div class="space-y-2">
+          <div class="flex justify-between text-sm">
+            <span class="text-slate-600">Air Infiltration:</span>
+            <span class="font-medium">< 0.1 CFM</span>
+          </div>
+          <div class="flex justify-between text-sm">
+            <span class="text-slate-600">U-Value:</span>
+            <span class="font-medium">0.040</span>
+          </div>
+          <div class="flex justify-between text-sm">
+            <span class="text-slate-600">Vapor Permeance:</span>
+            <span class="font-medium">0.02 perms</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Maintenance Schedule -->
+    <div class="bg-white rounded-xl shadow-lg p-6 border border-slate-200">
+      <h3 class="text-lg font-semibold text-slate-900 mb-4">Maintenance</h3>
+      
+      <div class="space-y-4">
+        <div class="p-3 bg-blue-50 rounded-lg">
+          <div class="flex justify-between items-center mb-1">
+            <span class="text-sm font-medium text-slate-700">Gasket Inspection</span>
+            <span class="text-xs text-slate-500">Monthly</span>
+          </div>
+          <div class="text-xs text-blue-600">Next: 2024-02-15</div>
+        </div>
+
+        <div class="p-3 bg-green-50 rounded-lg">
+          <div class="flex justify-between items-center mb-1">
+            <span class="text-sm font-medium text-slate-700">Panel Cleaning</span>
+            <span class="text-xs text-slate-500">Weekly</span>
+          </div>
+          <div class="text-xs text-green-600">Completed</div>
+        </div>
+
+        <div class="p-3 bg-orange-50 rounded-lg">
+          <div class="flex justify-between items-center mb-1">
+            <span class="text-sm font-medium text-slate-700">Hardware Check</span>
+            <span class="text-xs text-slate-500">Quarterly</span>
+          </div>
+          <div class="text-xs text-orange-600">Due: 2024-03-01</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Warranty Info -->
+    <div class="bg-white rounded-xl shadow-lg p-6 border border-slate-200">
+      <h3 class="text-lg font-semibold text-slate-900 mb-4">Warranty</h3>
+      
+      <div class="space-y-4">
+        <div class="text-center p-3 bg-blue-50 rounded-lg">
+          <div class="text-lg font-bold text-blue-600">5 Years</div>
+          <div class="text-sm text-slate-600">Panel Warranty</div>
+        </div>
+        
+        <div class="space-y-2 text-sm">
+          <div class="flex justify-between">
+            <span class="text-slate-600">Install Date:</span>
+            <span class="font-medium">2023-01-15</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-slate-600">Expires:</span>
+            <span class="font-medium">2028-01-15</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-slate-600">Coverage:</span>
+            <span class="font-medium">Full</span>
+          </div>
+        </div>
+
+        <div class="pt-3 border-t border-slate-200">
+          <div class="text-xs text-slate-500">
+            Includes materials, workmanship, and thermal performance guarantee
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <SectionCard title="Troubleshooting" id="troubleshooting">
+    <TroubleshootingDropdown issues={troubleshootingIssues} />
+    
+    <div class="mt-6">
+      <h4 class="font-bold mb-3">Installation Notes:</h4>
+      <div class="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+        <div class="text-sm text-blue-800 space-y-2">
+          <p>• Panels installed per American Panel specifications</p>
+          <p>• All joints sealed with approved sealant</p>
+          <p>• Gaskets properly aligned and compressed</p>
+          <p>• Structural support verified and documented</p>
+          <p>• Final inspection completed and approved</p>
+        </div>
+      </div>
+    </div>
+  </SectionCard>
+
+  <SectionCard title="Panel Configuration">
+    <div class="bg-white p-4 rounded-lg border border-slate-200 overflow-hidden">
+      <div class="w-full max-w-4xl mx-auto">
+        <img src="/diagrams/american-panel.svg" alt="American Panel installation diagram showing panel connections, gasket systems, and structural details" class="w-full h-auto rounded" style="max-height: 500px; object-fit: contain;" />
+      </div>
+      <div class="mt-4 text-sm text-slate-600">
+        <p class="font-medium mb-2">Technical Specifications:</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <p>• <span class="font-medium">Core:</span> CFC-free polyurethane foam</p>
+            <p>• <span class="font-medium">Density:</span> 2.5 lb/ft³ nominal</p>
+            <p>• <span class="font-medium">Skin:</span> 26 gauge galvanized steel</p>
+          </div>
+          <div>
+            <p>• <span class="font-medium">Finish:</span> Baked-on polyester coating</p>
+            <p>• <span class="font-medium">Gasket:</span> EPDM rubber, dual durometer</p>
+            <p>• <span class="font-medium">Hardware:</span> Stainless steel fasteners</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </SectionCard>
+
+  <!-- Quick Actions -->
+  <div class="bg-gradient-to-r from-red-50 to-blue-50 rounded-xl p-6 border border-red-200">
+    <h3 class="text-lg font-semibold text-slate-900 mb-4">Quick Actions</h3>
+    <div class="flex flex-wrap gap-3">
+      <button class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors text-sm font-medium">
+        📋 Inspection Report
+      </button>
+      <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
+        🔧 Schedule Service
+      </button>
+      <button class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm font-medium">
+        📄 Warranty Claim
+      </button>
+      <button class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors text-sm font-medium">
+        📞 Technical Support
+      </button>
+    </div>
+  </div>
+</BaseLayout>

@@ -265,7 +265,26 @@ const getSeverityColor = (severity: string) => {
   </div>
 
   <SectionCard title="Wiring Diagram">
-    <img src="/diagrams/turbochef.png" alt="TurboChef wiring diagram placeholder" class="w-full rounded border" />
+    <div class="bg-white p-4 rounded-lg border border-slate-200 overflow-hidden">
+      <div class="w-full max-w-4xl mx-auto">
+        <img src="/diagrams/turbochef.svg" alt="TurboChef oven detailed wiring diagram showing power connections, heating elements, fan motor, temperature sensors, and control panel" class="w-full h-auto rounded" style="max-height: 500px; object-fit: contain;" />
+      </div>
+      <div class="mt-4 text-sm text-slate-600">
+        <p class="font-medium mb-2">Wiring Details:</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <p>• <span class="font-medium">Power:</span> 208V AC, 3-wire + ground</p>
+            <p>• <span class="font-medium">Elements:</span> 2400W each (top/bottom)</p>
+            <p>• <span class="font-medium">Fan Motor:</span> 120V AC</p>
+          </div>
+          <div>
+            <p>• <span class="font-medium">Control:</span> 24V DC logic</p>
+            <p>• <span class="font-medium">Sensors:</span> RTD temperature probes</p>
+            <p>• <span class="font-medium">Safety:</span> Door interlock switch</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </SectionCard>
 
   <!-- Quick Actions -->

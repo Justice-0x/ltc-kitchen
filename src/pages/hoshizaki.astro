@@ -117,6 +117,25 @@ const troubleshootingIssues = [
   </SectionCard>
 
   <SectionCard title="Wiring Diagram">
-    <img src="/diagrams/hoshizaki.png" alt="Hoshizaki wiring diagram placeholder" class="w-full rounded border" />
+    <div class="bg-white p-4 rounded-lg border border-slate-200 overflow-hidden">
+      <div class="w-full max-w-4xl mx-auto">
+        <img src="/diagrams/hoshizaki.svg" alt="Hoshizaki ice machine detailed wiring diagram showing compressor, fan motor, water pump, and control systems" class="w-full h-auto rounded" style="max-height: 500px; object-fit: contain;" />
+      </div>
+      <div class="mt-4 text-sm text-slate-600">
+        <p class="font-medium mb-2">System Specifications:</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <p>• <span class="font-medium">Power:</span> 115V AC, 60Hz, 4.2A</p>
+            <p>• <span class="font-medium">Compressor:</span> 1/4 HP, R-404A refrigerant</p>
+            <p>• <span class="font-medium">Production:</span> 255 lbs/day</p>
+          </div>
+          <div>
+            <p>• <span class="font-medium">Water Pump:</span> 115V AC circulation</p>
+            <p>• <span class="font-medium">Control:</span> Digital display & sensors</p>
+            <p>• <span class="font-medium">Safety:</span> Level switches & pressure controls</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </SectionCard>
 </BaseLayout>

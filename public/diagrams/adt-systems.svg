@@ -1,0 +1,130 @@
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="600" fill="#f8fafc"/>
+  
+  <!-- Title -->
+  <text x="400" y="30" text-anchor="middle" font-size="24" font-weight="bold" fill="#1e293b">ADT Data Acquisition System</text>
+  
+  <!-- Central Data Logger -->
+  <rect x="320" y="80" width="160" height="100" fill="#ddd6fe" stroke="#7c3aed" stroke-width="3"/>
+  <text x="400" y="105" text-anchor="middle" font-size="14" font-weight="bold" fill="#5b21b6">ADT-DL500</text>
+  <text x="400" y="125" text-anchor="middle" font-size="10" fill="#5b21b6">Data Logger</text>
+  <text x="400" y="140" text-anchor="middle" font-size="10" fill="#5b21b6">16 Channel Input</text>
+  <text x="400" y="155" text-anchor="middle" font-size="10" fill="#5b21b6">Cloud Connectivity</text>
+  <text x="400" y="170" text-anchor="middle" font-size="10" fill="#5b21b6">Digital Signatures</text>
+  
+  <!-- Power & UPS -->
+  <rect x="50" y="80" width="120" height="60" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="110" y="100" text-anchor="middle" font-size="12" font-weight="bold" fill="#92400e">POWER & UPS</text>
+  <text x="110" y="115" text-anchor="middle" font-size="10" fill="#92400e">12-24V DC</text>
+  <text x="110" y="128" text-anchor="middle" font-size="10" fill="#92400e">Battery Backup</text>
+  
+  <!-- Network Hub -->
+  <rect x="630" y="80" width="120" height="60" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="690" y="100" text-anchor="middle" font-size="12" font-weight="bold" fill="#15803d">NETWORK HUB</text>
+  <text x="690" y="115" text-anchor="middle" font-size="10" fill="#15803d">Ethernet Switch</text>
+  <text x="690" y="128" text-anchor="middle" font-size="10" fill="#15803d">WiFi Gateway</text>
+  
+  <!-- Temperature Sensors -->
+  <rect x="50" y="220" width="120" height="80" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="110" y="245" text-anchor="middle" font-size="12" font-weight="bold" fill="#92400e">TEMP SENSORS</text>
+  <text x="110" y="260" text-anchor="middle" font-size="10" fill="#92400e">RTD Probes</text>
+  <text x="110" y="275" text-anchor="middle" font-size="10" fill="#92400e">4-20mA Output</text>
+  <text x="110" y="290" text-anchor="middle" font-size="10" fill="#92400e">-40°F to 200°F</text>
+  
+  <!-- Humidity Sensors -->
+  <rect x="200" y="220" width="120" height="80" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="260" y="245" text-anchor="middle" font-size="12" font-weight="bold" fill="#1d4ed8">HUMIDITY</text>
+  <text x="260" y="260" text-anchor="middle" font-size="10" fill="#1d4ed8">RH Sensors</text>
+  <text x="260" y="275" text-anchor="middle" font-size="10" fill="#1d4ed8">0-100% RH</text>
+  <text x="260" y="290" text-anchor="middle" font-size="10" fill="#1d4ed8">±2% Accuracy</text>
+  
+  <!-- Pressure Sensors -->
+  <rect x="480" y="220" width="120" height="80" fill="#f3e8ff" stroke="#9333ea" stroke-width="2"/>
+  <text x="540" y="245" text-anchor="middle" font-size="12" font-weight="bold" fill="#7c3aed">PRESSURE</text>
+  <text x="540" y="260" text-anchor="middle" font-size="10" fill="#7c3aed">Transducers</text>
+  <text x="540" y="275" text-anchor="middle" font-size="10" fill="#7c3aed">0-500 PSI</text>
+  <text x="540" y="290" text-anchor="middle" font-size="10" fill="#7c3aed">±0.25% FS</text>
+  
+  <!-- Digital I/O -->
+  <rect x="630" y="220" width="120" height="80" fill="#fed7aa" stroke="#ea580c" stroke-width="2"/>
+  <text x="690" y="245" text-anchor="middle" font-size="12" font-weight="bold" fill="#c2410c">DIGITAL I/O</text>
+  <text x="690" y="260" text-anchor="middle" font-size="10" fill="#c2410c">Door Switches</text>
+  <text x="690" y="275" text-anchor="middle" font-size="10" fill="#c2410c">Alarm Contacts</text>
+  <text x="690" y="290" text-anchor="middle" font-size="10" fill="#c2410c">Status Inputs</text>
+  
+  <!-- Cloud Services -->
+  <rect x="150" y="360" width="140" height="80" fill="#e0e7ff" stroke="#6366f1" stroke-width="2"/>
+  <text x="220" y="385" text-anchor="middle" font-size="12" font-weight="bold" fill="#4338ca">CLOUD SERVICES</text>
+  <text x="220" y="400" text-anchor="middle" font-size="10" fill="#4338ca">Data Storage</text>
+  <text x="220" y="415" text-anchor="middle" font-size="10" fill="#4338ca">Analytics</text>
+  <text x="220" y="430" text-anchor="middle" font-size="10" fill="#4338ca">Reporting</text>
+  
+  <!-- Compliance Module -->
+  <rect x="320" y="360" width="160" height="80" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="400" y="385" text-anchor="middle" font-size="12" font-weight="bold" fill="#92400e">COMPLIANCE</text>
+  <text x="400" y="400" text-anchor="middle" font-size="10" fill="#92400e">HACCP Logging</text>
+  <text x="400" y="415" text-anchor="middle" font-size="10" fill="#92400e">FDA 21 CFR Part 11</text>
+  <text x="400" y="430" text-anchor="middle" font-size="10" fill="#92400e">Audit Trail</text>
+  
+  <!-- Alert System -->
+  <rect x="510" y="360" width="140" height="80" fill="#fecaca" stroke="#dc2626" stroke-width="2"/>
+  <text x="580" y="385" text-anchor="middle" font-size="12" font-weight="bold" fill="#b91c1c">ALERT SYSTEM</text>
+  <text x="580" y="400" text-anchor="middle" font-size="10" fill="#b91c1c">Email/SMS</text>
+  <text x="580" y="415" text-anchor="middle" font-size="10" fill="#b91c1c">Push Notifications</text>
+  <text x="580" y="430" text-anchor="middle" font-size="10" fill="#b91c1c">Escalation Rules</text>
+  
+  <!-- Wiring Connections -->
+  <!-- Power -->
+  <line x1="170" y1="110" x2="320" y2="110" stroke="#000" stroke-width="3"/>
+  <text x="245" y="105" text-anchor="middle" font-size="8" fill="#000">Power</text>
+  
+  <!-- Network -->
+  <line x1="480" y1="110" x2="630" y2="110" stroke="#16a34a" stroke-width="2"/>
+  <text x="555" y="105" text-anchor="middle" font-size="8" fill="#16a34a">Network</text>
+  
+  <!-- Sensor Inputs -->
+  <line x1="110" y1="220" x2="110" y2="200" stroke="#f59e0b" stroke-width="2"/>
+  <line x1="110" y1="200" x2="350" y2="200" stroke="#f59e0b" stroke-width="2"/>
+  <line x1="350" y1="200" x2="350" y2="180" stroke="#f59e0b" stroke-width="2"/>
+  
+  <line x1="260" y1="220" x2="260" y2="210" stroke="#2563eb" stroke-width="2"/>
+  <line x1="260" y1="210" x2="370" y2="210" stroke="#2563eb" stroke-width="2"/>
+  <line x1="370" y1="210" x2="370" y2="180" stroke="#2563eb" stroke-width="2"/>
+  
+  <line x1="540" y1="220" x2="540" y2="210" stroke="#9333ea" stroke-width="2"/>
+  <line x1="430" y1="210" x2="540" y2="210" stroke="#9333ea" stroke-width="2"/>
+  <line x1="430" y1="210" x2="430" y2="180" stroke="#9333ea" stroke-width="2"/>
+  
+  <line x1="690" y1="220" x2="690" y2="200" stroke="#ea580c" stroke-width="2"/>
+  <line x1="450" y1="200" x2="690" y2="200" stroke="#ea580c" stroke-width="2"/>
+  <line x1="450" y1="200" x2="450" y2="180" stroke="#ea580c" stroke-width="2"/>
+  
+  <text x="230" y="195" text-anchor="middle" font-size="8" fill="#f59e0b">Sensor Inputs</text>
+  
+  <!-- Data Flow -->
+  <line x1="400" y1="180" x2="400" y2="220" stroke="#7c3aed" stroke-width="3" stroke-dasharray="5,5"/>
+  <line x1="400" y1="220" x2="220" y2="220" stroke="#6366f1" stroke-width="2" stroke-dasharray="5,5"/>
+  <line x1="220" y1="220" x2="220" y2="360" stroke="#6366f1" stroke-width="2" stroke-dasharray="5,5"/>
+  
+  <line x1="400" y1="220" x2="400" y2="360" stroke="#f59e0b" stroke-width="2" stroke-dasharray="5,5"/>
+  
+  <line x1="400" y1="220" x2="580" y2="220" stroke="#dc2626" stroke-width="2" stroke-dasharray="5,5"/>
+  <line x1="580" y1="220" x2="580" y2="360" stroke="#dc2626" stroke-width="2" stroke-dasharray="5,5"/>
+  
+  <text x="310" y="195" text-anchor="middle" font-size="8" fill="#7c3aed">Data Flow</text>
+  
+  <!-- Legend -->
+  <rect x="50" y="480" width="700" height="100" fill="#f1f5f9" stroke="#64748b" stroke-width="1"/>
+  <text x="400" y="500" text-anchor="middle" font-size="14" font-weight="bold" fill="#1e293b">ADT System Architecture</text>
+  
+  <text x="70" y="520" font-size="10" fill="#1e293b">• Data Logger: ADT-DL500 with 16 universal inputs</text>
+  <text x="70" y="535" font-size="10" fill="#1e293b">• Sensors: RTD temperature, RH humidity, pressure</text>
+  <text x="70" y="550" font-size="10" fill="#1e293b">• Communication: Ethernet, WiFi, cellular backup</text>
+  <text x="70" y="565" font-size="10" fill="#1e293b">• Power: 12-24V DC with UPS battery backup</text>
+  
+  <text x="420" y="520" font-size="10" fill="#1e293b">• Cloud: Secure data storage and analytics</text>
+  <text x="420" y="535" font-size="10" fill="#1e293b">• Compliance: HACCP, FDA 21 CFR Part 11</text>
+  <text x="420" y="550" font-size="10" fill="#1e293b">• Alerts: Email, SMS, push notifications</text>
+  <text x="420" y="565" font-size="10" fill="#1e293b">• Storage: Local + cloud with digital signatures</text>
+</svg>

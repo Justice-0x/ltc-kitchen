@@ -2,14 +2,29 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 const sections = [
-  { id: 'perlick', icon: '🍺', title: 'Perlick Glycol Chiller' },
-  { id: 'turbochef', icon: '🔥', title: 'TurboChef Ovens' },
-  { id: 'frosty', icon: '🍦', title: 'Frosty Soft-Serve' },
-  { id: 'hoshizaki', icon: '🧊', title: 'Hoshizaki Ice Maker' },
-  { id: 'southbend', icon: '🍳', title: 'Southbend Range' },
-  { id: 'chicago-folders', icon: '📄', title: 'Chicago Folders' },
-  { id: 'ironers', icon: '🧵', title: 'Flatwork Ironers' },
-  { id: 'laundry', icon: '🧺', title: 'Laundry Equipment' },
+  // Refrigeration
+  { id: 'perlick', icon: '🍺', title: 'Perlick Glycol Chiller', category: 'Refrigeration' },
+  { id: 'perlick-lowboys', icon: '🍺', title: 'Perlick Low Boys', category: 'Refrigeration' },
+  { id: 'hoshizaki', icon: '🧊', title: 'Hoshizaki Ice Maker', category: 'Refrigeration' },
+  { id: 'hoshizaki-refrigerators', icon: '🧊', title: 'Hoshizaki Refrigerators', category: 'Refrigeration' },
+  { id: 'walk-ins', icon: '🚪', title: 'Walk-In Coolers', category: 'Refrigeration' },
+  { id: 'low-boys', icon: '📦', title: 'Low Boys', category: 'Refrigeration' },
+  { id: 'american-panel', icon: '🏢', title: 'American Panel', category: 'Refrigeration' },
+  
+  // Cooking
+  { id: 'turbochef', icon: '🔥', title: 'TurboChef Ovens', category: 'Cooking' },
+  { id: 'southbend', icon: '🍳', title: 'Southbend Range', category: 'Cooking' },
+  { id: 'frosty', icon: '🍦', title: 'Frosty Soft-Serve', category: 'Cooking' },
+  
+  // Controls
+  { id: 'k2e-controllers', icon: '🎛️', title: 'K2E Controllers', category: 'Controls' },
+  { id: 'adt-systems', icon: '📊', title: 'ADT Systems', category: 'Controls' },
+  
+  // Other Equipment
+  { id: 'chicago-folders', icon: '📄', title: 'Chicago Folders', category: 'Other' },
+  { id: 'ironers', icon: '🧺', title: 'Flatwork Ironers', category: 'Other' },
+  { id: 'laundry', icon: '🌀', title: 'Laundry Equipment', category: 'Other' },
+  { id: 'bills-bitch', icon: '✨', title: 'Bill\'s Bitch', category: 'Other' },
 ];
 ---
 
@@ -24,21 +39,26 @@ const sections = [
     <span class="text-sm text-slate-500">{sections.length} sections</span>
   </div>
 
-  <div id="docsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-    {sections.map((s) => (
-      <div class="doc-card bg-white rounded-lg shadow p-5 border hover:shadow-md transition" data-title={s.title.toLowerCase()}>
-        <div class="text-3xl mb-2">{s.icon}</div>
-        <div class="text-xl font-semibold mb-1">{s.title}</div>
-        <div class="text-sm text-slate-500 mb-3">Open live page</div>
-        <div class="flex gap-2 text-sm">
-          <a href={`/${s.id}`} class="px-2 py-1 rounded bg-blue-600 text-white hover:bg-blue-700">Open</a>
-          <a href={`/manuals/${s.id}.pdf`} class="px-2 py-1 rounded bg-slate-100 hover:bg-slate-200">Manual (PDF)</a>
-          <a href={`/parts/${s.id}`} class="px-2 py-1 rounded bg-slate-100 hover:bg-slate-200">Parts</a>
-          <a href={`/${s.id}#troubleshooting`} class="px-2 py-1 rounded bg-slate-100 hover:bg-slate-200">Troubleshooting</a>
-        </div>
+  <!-- Equipment by Category -->
+  {['Refrigeration', 'Cooking', 'Controls', 'Other'].map(category => (
+    <div class="mb-8">
+      <h2 class="text-2xl font-bold mb-4 text-slate-800">{category}</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {sections.filter(s => s.category === category).map((s) => (
+          <div class="doc-card bg-white rounded-lg shadow p-5 border hover:shadow-md transition" data-title={s.title.toLowerCase()}>
+            <div class="text-3xl mb-2">{s.icon}</div>
+            <div class="text-xl font-semibold mb-1">{s.title}</div>
+            <div class="text-sm text-slate-500 mb-3">Complete equipment documentation</div>
+            <div class="flex flex-wrap gap-2 text-sm">
+              <a href={`/${s.id}`} class="px-3 py-1 rounded bg-blue-600 text-white hover:bg-blue-700 transition-colors">📊 Dashboard</a>
+              <a href={`/manuals/${s.id}`} class="px-3 py-1 rounded bg-green-600 text-white hover:bg-green-700 transition-colors">📄 Manual</a>
+              <a href={`/parts/${s.id}`} class="px-3 py-1 rounded bg-purple-600 text-white hover:bg-purple-700 transition-colors">🔧 Parts</a>
+            </div>
+          </div>
+        ))}
       </div>
-    ))}
-  </div>
+    </div>
+  ))}
 
   <script>
     const input = document.getElementById('docsSearch');

@@ -1,0 +1,199 @@
+---
+export interface Props {
+  part: {
+    name: string;
+    sku: string;
+    price: string;
+    description: string;
+  };
+}
+
+const { part } = Astro.props;
+---
+
+<!-- Spec Sheet Modal -->
+<div id={`spec-modal-${part.sku}`} class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
+  <div class="bg-white rounded-xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+    <!-- Header -->
+    <div class="flex justify-between items-center p-6 border-b border-slate-200">
+      <div>
+        <h3 class="text-xl font-bold text-slate-900">{part.name}</h3>
+        <p class="text-sm text-slate-600">SKU: {part.sku}</p>
+      </div>
+      <button 
+        id={`close-spec-${part.sku}`}
+        class="text-slate-400 hover:text-slate-600 text-2xl font-bold"
+      >
+        ×
+      </button>
+    </div>
+
+    <!-- Content -->
+    <div class="p-6">
+      <!-- Basic Info -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div>
+          <h4 class="font-semibold text-slate-900 mb-2">Part Information</h4>
+          <div class="space-y-2">
+            <div class="flex justify-between">
+              <span class="text-slate-600">Name:</span>
+              <span class="font-medium">{part.name}</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-slate-600">SKU:</span>
+              <span class="font-mono text-sm">{part.sku}</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-slate-600">Price:</span>
+              <span class="font-bold text-green-600">{part.price}</span>
+            </div>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="font-semibold text-slate-900 mb-2">Description</h4>
+          <p class="text-slate-600 text-sm">{part.description}</p>
+        </div>
+      </div>
+
+      <!-- Technical Specifications -->
+      <div class="mb-6">
+        <h4 class="font-semibold text-slate-900 mb-3">Technical Specifications</h4>
+        <div class="bg-slate-50 rounded-lg p-4">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+            <div class="space-y-2">
+              <div class="flex justify-between">
+                <span class="text-slate-600">Voltage:</span>
+                <span class="font-medium">120V AC</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-slate-600">Current:</span>
+                <span class="font-medium">2.5A</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-slate-600">Power:</span>
+                <span class="font-medium">300W</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-slate-600">Temperature Range:</span>
+                <span class="font-medium">-40°F to 200°F</span>
+              </div>
+            </div>
+            <div class="space-y-2">
+              <div class="flex justify-between">
+                <span class="text-slate-600">Material:</span>
+                <span class="font-medium">Stainless Steel</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-slate-600">Connection:</span>
+                <span class="font-medium">1/2" NPT</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-slate-600">Warranty:</span>
+                <span class="font-medium">1 Year</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-slate-600">Weight:</span>
+                <span class="font-medium">2.5 lbs</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Installation Notes -->
+      <div class="mb-6">
+        <h4 class="font-semibold text-slate-900 mb-3">Installation Notes</h4>
+        <div class="bg-blue-50 rounded-lg p-4">
+          <ul class="text-sm text-slate-700 space-y-1">
+            <li>• Ensure power is disconnected before installation</li>
+            <li>• Check voltage compatibility with existing system</li>
+            <li>• Use appropriate tools and safety equipment</li>
+            <li>• Test operation before final installation</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Compatibility -->
+      <div class="mb-6">
+        <h4 class="font-semibold text-slate-900 mb-3">Compatible Equipment</h4>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs">Perlick Chillers</span>
+          <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs">TurboChef Ovens</span>
+          <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs">Hoshizaki Ice Makers</span>
+          <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs">Frosty Machines</span>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="flex gap-3 pt-4 border-t border-slate-200">
+        <button 
+          id={`order-spec-${part.sku}`}
+          class="flex-1 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+        >
+          🛒 Order This Part
+        </button>
+        <button 
+          id={`quote-spec-${part.sku}`}
+          class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+        >
+          📋 Get Quote
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Spec sheet modal functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById(`spec-modal-${part.sku}`);
+    const closeBtn = document.getElementById(`close-spec-${part.sku}`);
+    const orderBtn = document.getElementById(`order-spec-${part.sku}`);
+    const quoteBtn = document.getElementById(`quote-spec-${part.sku}`);
+
+    // Close modal
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => {
+        modal?.classList.add('hidden');
+      });
+    }
+
+    // Close on backdrop click
+    if (modal) {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.classList.add('hidden');
+        }
+      });
+    }
+
+    // Order button
+    if (orderBtn) {
+      orderBtn.addEventListener('click', () => {
+        window.open(`https://www.partstown.com/search?q=${encodeURIComponent(part.sku)}`, '_blank');
+        modal?.classList.add('hidden');
+      });
+    }
+
+    // Quote button
+    if (quoteBtn) {
+      quoteBtn.addEventListener('click', () => {
+        const quoteData = {
+          part: part.name,
+          sku: part.sku,
+          quantity: 1,
+          equipment: 'Spec Sheet',
+          timestamp: new Date().toISOString()
+        };
+        
+        const existingQuotes = JSON.parse(localStorage.getItem('partsQuotes') || '[]');
+        existingQuotes.push(quoteData);
+        localStorage.setItem('partsQuotes', JSON.stringify(existingQuotes));
+        
+        alert('Quote added! Check your quotes page for details.');
+        modal?.classList.add('hidden');
+      });
+    }
+  });
+</script>

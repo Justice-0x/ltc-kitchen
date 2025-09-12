@@ -1,0 +1,305 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SectionCard from "../components/SectionCard.astro";
+import TroubleshootingDropdown from "../components/TroubleshootingDropdown.astro";
+
+const troubleshootingIssues = [
+  {
+    problem: "Temperature Too High",
+    solutions: [
+      "Check door seals and gaskets",
+      "Clean condenser coils",
+      "Verify thermostat settings",
+      "Check evaporator fan operation",
+      "Inspect refrigerant charge"
+    ]
+  },
+  {
+    problem: "Compressor Short Cycling",
+    solutions: [
+      "Check thermostat differential",
+      "Verify start capacitor",
+      "Test overload protection",
+      "Check refrigerant levels",
+      "Inspect electrical connections"
+    ]
+  },
+  {
+    problem: "Excessive Frost in Freezer",
+    solutions: [
+      "Check door seals for leaks",
+      "Verify defrost timer operation",
+      "Test defrost heater elements",
+      "Check defrost termination switch",
+      "Inspect humidity levels"
+    ]
+  }
+];
+---
+
+<BaseLayout title="Hoshizaki Refrigerators - LTC Kitchen" description="Hoshizaki commercial refrigerators and freezers">
+  <div class="mb-8">
+    <div class="flex items-center space-x-4 mb-4">
+      <div class="w-16 h-16 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center text-3xl">
+        🧊
+      </div>
+      <div>
+        <h1 class="text-3xl font-bold text-slate-900">Hoshizaki Refrigerators</h1>
+        <p class="text-slate-600">Commercial refrigerators and freezer systems</p>
+      </div>
+    </div>
+    
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">✓ Operational</span>
+      <span class="text-sm text-slate-500">Last updated: {new Date().toLocaleTimeString()}</span>
+    </div>
+
+    <div class="flex space-x-3 mb-8">
+      <a href="/manuals/hoshizaki-refrigerators" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
+        📄 Manual
+      </a>
+      <a href="/parts/hoshizaki-refrigerators" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm font-medium">
+        🔧 Parts
+      </a>
+      <a href="#troubleshooting" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors text-sm font-medium">
+        🚨 Troubleshooting
+      </a>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+    <!-- Temperature Monitoring -->
+    <div class="bg-white rounded-xl shadow-lg p-6 border border-slate-200">
+      <h3 class="text-lg font-semibold text-slate-900 mb-4 flex items-center">
+        <span class="w-8 h-8 bg-cyan-100 rounded-lg flex items-center justify-center mr-3">🌡️</span>
+        Temperature Monitoring
+      </h3>
+      
+      <div class="space-y-4">
+        <div>
+          <div class="flex justify-between items-center mb-2">
+            <span class="text-2xl font-bold text-cyan-600">37°F</span>
+            <span class="text-sm text-slate-600">Refrigerator Temp</span>
+            <span class="text-lg font-semibold">38°F</span>
+          </div>
+          <div class="w-full bg-slate-200 rounded-full h-2 mb-2">
+            <div class="bg-cyan-600 h-2 rounded-full" style="width: 80%"></div>
+          </div>
+        </div>
+
+        <div>
+          <div class="flex justify-between items-center mb-2">
+            <span class="text-2xl font-bold text-blue-600">-3°F</span>
+            <span class="text-sm text-slate-600">Freezer Temp</span>
+            <span class="text-lg font-semibold">0°F</span>
+          </div>
+          <div class="w-full bg-slate-200 rounded-full h-2 mb-2">
+            <div class="bg-blue-600 h-2 rounded-full" style="width: 90%"></div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4 mt-4">
+          <div class="text-center p-3 bg-slate-50 rounded-lg">
+            <div class="text-sm text-slate-600">Differential</div>
+            <div class="font-semibold">2°F</div>
+          </div>
+          <div class="text-center p-3 bg-slate-50 rounded-lg">
+            <div class="text-sm text-slate-600">Humidity</div>
+            <div class="font-semibold">82%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- System Status -->
+    <div class="bg-white rounded-xl shadow-lg p-6 border border-slate-200">
+      <h3 class="text-lg font-semibold text-slate-900 mb-4">System Status</h3>
+      <div class="space-y-4">
+        <div class="flex justify-between items-center">
+          <span class="text-slate-700">Compressor</span>
+          <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Running</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="text-slate-700">Evaporator Fans</span>
+          <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Auto</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="text-slate-700">Defrost Status</span>
+          <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Standby</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="text-slate-700">Door Switches</span>
+          <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Closed</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="text-slate-700">Alarms</span>
+          <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">None</span>
+        </div>
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-slate-200">
+        <h4 class="font-semibold text-slate-900 mb-3">Unit Information</h4>
+        <div class="space-y-2 text-sm">
+          <div class="flex justify-between">
+            <span class="text-slate-600">Model:</span>
+            <span class="font-medium">HRT72A</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-slate-600">Capacity:</span>
+            <span class="font-medium">72 cu ft</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-slate-600">Refrigerant:</span>
+            <span class="font-medium">R-134a</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+    <!-- Energy Efficiency -->
+    <div class="bg-white rounded-xl shadow-lg p-6 border border-slate-200">
+      <h3 class="text-lg font-semibold text-slate-900 mb-4">Energy Efficiency</h3>
+      
+      <div class="space-y-4">
+        <div class="text-center p-4 bg-green-50 rounded-lg">
+          <div class="text-2xl font-bold text-green-600">91%</div>
+          <div class="text-sm text-slate-600">Efficiency Rating</div>
+        </div>
+        
+        <div class="space-y-2">
+          <div class="flex justify-between text-sm">
+            <span class="text-slate-600">Daily kWh:</span>
+            <span class="font-medium">18.5</span>
+          </div>
+          <div class="flex justify-between text-sm">
+            <span class="text-slate-600">Monthly Cost:</span>
+            <span class="font-medium">$67.50</span>
+          </div>
+          <div class="flex justify-between text-sm">
+            <span class="text-slate-600">Runtime:</span>
+            <span class="font-medium">65%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Maintenance Status -->
+    <div class="bg-white rounded-xl shadow-lg p-6 border border-slate-200">
+      <h3 class="text-lg font-semibold text-slate-900 mb-4">Maintenance</h3>
+      
+      <div class="space-y-4">
+        <div class="p-3 bg-green-50 rounded-lg">
+          <div class="flex justify-between items-center mb-1">
+            <span class="text-sm font-medium text-slate-700">Coil Cleaning</span>
+            <span class="text-xs text-slate-500">Monthly</span>
+          </div>
+          <div class="text-xs text-green-600">Completed</div>
+        </div>
+
+        <div class="p-3 bg-blue-50 rounded-lg">
+          <div class="flex justify-between items-center mb-1">
+            <span class="text-sm font-medium text-slate-700">Filter Change</span>
+            <span class="text-xs text-slate-500">Quarterly</span>
+          </div>
+          <div class="text-xs text-blue-600">Due: 2024-03-15</div>
+        </div>
+
+        <div class="p-3 bg-orange-50 rounded-lg">
+          <div class="flex justify-between items-center mb-1">
+            <span class="text-sm font-medium text-slate-700">Full Service</span>
+            <span class="text-xs text-slate-500">Annually</span>
+          </div>
+          <div class="text-xs text-orange-600">Due: 2024-06-01</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Temperature Logs -->
+    <div class="bg-white rounded-xl shadow-lg p-6 border border-slate-200">
+      <h3 class="text-lg font-semibold text-slate-900 mb-4">Temperature Logs</h3>
+      
+      <div class="space-y-4">
+        <div class="text-center p-3 bg-cyan-50 rounded-lg">
+          <div class="text-lg font-bold text-cyan-600">24/7</div>
+          <div class="text-sm text-slate-600">Monitoring</div>
+        </div>
+        
+        <div class="space-y-2 text-sm">
+          <div class="flex justify-between">
+            <span class="text-slate-600">Last 24h Min:</span>
+            <span class="font-medium">36°F</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-slate-600">Last 24h Max:</span>
+            <span class="font-medium">39°F</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-slate-600">Excursions:</span>
+            <span class="font-medium text-green-600">0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <SectionCard title="Troubleshooting" id="troubleshooting">
+    <TroubleshootingDropdown issues={troubleshootingIssues} />
+    
+    <div class="mt-6">
+      <h4 class="font-bold mb-3">System Health:</h4>
+      <div class="p-4 bg-green-50 border border-green-200 rounded-lg">
+        <div class="flex items-start space-x-3">
+          <div class="text-green-600 text-lg">✅</div>
+          <div>
+            <div class="font-medium text-green-900">All Systems Operating Normally</div>
+            <div class="text-sm text-green-700 mt-1">Temperature stable, no alarms active</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </SectionCard>
+
+  <SectionCard title="Wiring Diagram">
+    <div class="bg-white p-4 rounded-lg border border-slate-200 overflow-hidden">
+      <div class="w-full max-w-4xl mx-auto">
+        <img src="/diagrams/hoshizaki-refrigerators.svg" alt="Hoshizaki refrigerator wiring diagram showing compressor, evaporator fans, defrost system, and temperature controls" class="w-full h-auto rounded" style="max-height: 500px; object-fit: contain;" />
+      </div>
+      <div class="mt-4 text-sm text-slate-600">
+        <p class="font-medium mb-2">Electrical Specifications:</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <p>• <span class="font-medium">Power:</span> 208-230V/60Hz/1Ph</p>
+            <p>• <span class="font-medium">Compressor:</span> 1/2 HP hermetic scroll</p>
+            <p>• <span class="font-medium">Defrost:</span> Electric defrost system</p>
+          </div>
+          <div>
+            <p>• <span class="font-medium">Controls:</span> Digital temperature controller</p>
+            <p>• <span class="font-medium">Refrigerant:</span> R-134a</p>
+            <p>• <span class="font-medium">Capacity:</span> 72 cu ft total</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </SectionCard>
+
+  <!-- Quick Actions -->
+  <div class="bg-gradient-to-r from-cyan-50 to-blue-50 rounded-xl p-6 border border-cyan-200">
+    <h3 class="text-lg font-semibold text-slate-900 mb-4">Quick Actions</h3>
+    <div class="flex flex-wrap gap-3">
+      <button class="px-4 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700 transition-colors text-sm font-medium">
+        📊 Temperature History
+      </button>
+      <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
+        🔧 Schedule Maintenance
+      </button>
+      <button class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm font-medium">
+        ⚙️ System Settings
+      </button>
+      <button class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors text-sm font-medium">
+        📈 Energy Report
+      </button>
+    </div>
+  </div>
+</BaseLayout>

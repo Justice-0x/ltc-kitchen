@@ -1,0 +1,320 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SectionCard from "../components/SectionCard.astro";
+import TroubleshootingDropdown from "../components/TroubleshootingDropdown.astro";
+
+const troubleshootingIssues = [
+  {
+    problem: "Communication Failure",
+    solutions: [
+      "Check network cable connections",
+      "Verify IP address settings",
+      "Test network switch/router",
+      "Reset communication module",
+      "Check firewall settings"
+    ]
+  },
+  {
+    problem: "Data Not Recording",
+    solutions: [
+      "Verify sensor connections",
+      "Check data logger settings",
+      "Test storage device",
+      "Calibrate input channels",
+      "Reset data acquisition system"
+    ]
+  },
+  {
+    problem: "Alarm Notifications Failed",
+    solutions: [
+      "Check email/SMS settings",
+      "Verify contact information",
+      "Test notification services",
+      "Check alarm thresholds",
+      "Reset notification module"
+    ]
+  }
+];
+---
+
+<BaseLayout title="ADT Systems - LTC Kitchen" description="ADT monitoring and data acquisition systems">
+  <div class="mb-8">
+    <div class="flex items-center space-x-4 mb-4">
+      <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center text-3xl">
+        📊
+      </div>
+      <div>
+        <h1 class="text-3xl font-bold text-slate-900">ADT Systems</h1>
+        <p class="text-slate-600">Advanced Data & Temperature monitoring systems</p>
+      </div>
+    </div>
+    
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">✓ Active</span>
+      <span class="text-sm text-slate-500">Last updated: {new Date().toLocaleTimeString()}</span>
+    </div>
+
+    <div class="flex space-x-3 mb-8">
+      <a href="/manuals/adt-systems" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
+        📄 Manual
+      </a>
+      <a href="/parts/adt-systems" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm font-medium">
+        🔧 Parts
+      </a>
+      <a href="#troubleshooting" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors text-sm font-medium">
+        🚨 Troubleshooting
+      </a>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+    <!-- System Overview -->
+    <div class="bg-white rounded-xl shadow-lg p-6 border border-slate-200">
+      <h3 class="text-lg font-semibold text-slate-900 mb-4 flex items-center">
+        <span class="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center mr-3">🖥️</span>
+        System Overview
+      </h3>
+      
+      <div class="space-y-4">
+        <div class="flex justify-between items-center">
+          <span class="text-slate-700">Data Logger Status</span>
+          <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Recording</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="text-slate-700">Network Connection</span>
+          <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Online</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="text-slate-700">Cloud Sync</span>
+          <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Active</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="text-slate-700">Storage</span>
+          <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">78% Used</span>
+        </div>
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-slate-200">
+        <div class="grid grid-cols-2 gap-4">
+          <div class="text-center">
+            <div class="text-2xl font-bold text-indigo-600">12</div>
+            <div class="text-sm text-slate-600">Active Sensors</div>
+          </div>
+          <div class="text-center">
+            <div class="text-2xl font-bold text-purple-600">24/7</div>
+            <div class="text-sm text-slate-600">Monitoring</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Real-time Data -->
+    <div class="bg-white rounded-xl shadow-lg p-6 border border-slate-200">
+      <h3 class="text-lg font-semibold text-slate-900 mb-4">Real-time Data</h3>
+      
+      <div class="space-y-4">
+        <div class="p-3 bg-blue-50 rounded-lg">
+          <div class="flex justify-between items-center mb-2">
+            <span class="text-sm font-medium text-slate-700">Temperature Sensors</span>
+            <span class="text-xs text-slate-500">8 active</span>
+          </div>
+          <div class="grid grid-cols-2 gap-2 text-xs">
+            <div>Zone 1: 36°F</div>
+            <div>Zone 2: -2°F</div>
+            <div>Zone 3: 42°F</div>
+            <div>Zone 4: 38°F</div>
+          </div>
+        </div>
+
+        <div class="p-3 bg-green-50 rounded-lg">
+          <div class="flex justify-between items-center mb-2">
+            <span class="text-sm font-medium text-slate-700">Humidity Sensors</span>
+            <span class="text-xs text-slate-500">4 active</span>
+          </div>
+          <div class="grid grid-cols-2 gap-2 text-xs">
+            <div>Cooler: 85%</div>
+            <div>Freezer: 78%</div>
+            <div>Prep: 82%</div>
+            <div>Ambient: 65%</div>
+          </div>
+        </div>
+
+        <div class="p-3 bg-purple-50 rounded-lg">
+          <div class="flex justify-between items-center mb-2">
+            <span class="text-sm font-medium text-slate-700">Pressure Sensors</span>
+            <span class="text-xs text-slate-500">2 active</span>
+          </div>
+          <div class="grid grid-cols-2 gap-2 text-xs">
+            <div>High Side: 245 PSI</div>
+            <div>Low Side: 28 PSI</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+    <!-- Data Analytics -->
+    <div class="bg-white rounded-xl shadow-lg p-6 border border-slate-200">
+      <h3 class="text-lg font-semibold text-slate-900 mb-4">Data Analytics</h3>
+      
+      <div class="space-y-4">
+        <div class="text-center p-4 bg-indigo-50 rounded-lg">
+          <div class="text-2xl font-bold text-indigo-600">99.7%</div>
+          <div class="text-sm text-slate-600">System Uptime</div>
+        </div>
+        
+        <div class="space-y-2">
+          <div class="flex justify-between text-sm">
+            <span class="text-slate-600">Data Points Today:</span>
+            <span class="font-medium">2,847</span>
+          </div>
+          <div class="flex justify-between text-sm">
+            <span class="text-slate-600">Alerts Generated:</span>
+            <span class="font-medium">0</span>
+          </div>
+          <div class="flex justify-between text-sm">
+            <span class="text-slate-600">Reports Created:</span>
+            <span class="font-medium">3</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Compliance Status -->
+    <div class="bg-white rounded-xl shadow-lg p-6 border border-slate-200">
+      <h3 class="text-lg font-semibold text-slate-900 mb-4">Compliance Status</h3>
+      
+      <div class="space-y-4">
+        <div class="flex items-center justify-between">
+          <span class="text-sm text-slate-700">HACCP Compliance</span>
+          <span class="px-2 py-1 bg-green-100 text-green-800 rounded text-xs">✓ Active</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-sm text-slate-700">FDA 21 CFR Part 11</span>
+          <span class="px-2 py-1 bg-green-100 text-green-800 rounded text-xs">✓ Compliant</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-sm text-slate-700">Data Integrity</span>
+          <span class="px-2 py-1 bg-green-100 text-green-800 rounded text-xs">✓ Verified</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-sm text-slate-700">Audit Trail</span>
+          <span class="px-2 py-1 bg-green-100 text-green-800 rounded text-xs">✓ Complete</span>
+        </div>
+      </div>
+
+      <div class="mt-4 pt-4 border-t border-slate-200">
+        <div class="text-center">
+          <div class="text-sm text-slate-600">Last Audit</div>
+          <div class="font-medium">2024-01-15</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Alert Management -->
+    <div class="bg-white rounded-xl shadow-lg p-6 border border-slate-200">
+      <h3 class="text-lg font-semibold text-slate-900 mb-4">Alert Management</h3>
+      
+      <div class="space-y-4">
+        <div class="p-3 bg-green-50 border border-green-200 rounded-lg">
+          <div class="flex items-center space-x-2">
+            <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+            <span class="text-sm font-medium text-green-800">All Clear</span>
+          </div>
+          <div class="text-xs text-green-600 mt-1">No active alerts</div>
+        </div>
+
+        <div class="space-y-2">
+          <h4 class="text-sm font-semibold text-slate-700">Alert Types</h4>
+          <div class="space-y-1 text-xs">
+            <div class="flex justify-between">
+              <span>Temperature Excursions:</span>
+              <span class="font-medium">0</span>
+            </div>
+            <div class="flex justify-between">
+              <span>Sensor Failures:</span>
+              <span class="font-medium">0</span>
+            </div>
+            <div class="flex justify-between">
+              <span>Communication Loss:</span>
+              <span class="font-medium">0</span>
+            </div>
+            <div class="flex justify-between">
+              <span>Power Events:</span>
+              <span class="font-medium">0</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <SectionCard title="Troubleshooting" id="troubleshooting">
+    <TroubleshootingDropdown issues={troubleshootingIssues} />
+    
+    <div class="mt-6">
+      <h4 class="font-bold mb-3">System Diagnostics:</h4>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+          <div class="font-medium text-blue-900 mb-2">Network Status</div>
+          <div class="text-sm text-blue-800 space-y-1">
+            <div>Connection: Ethernet</div>
+            <div>Speed: 100 Mbps</div>
+            <div>Latency: 2ms</div>
+          </div>
+        </div>
+        <div class="p-4 bg-indigo-50 border border-indigo-200 rounded-lg">
+          <div class="font-medium text-indigo-900 mb-2">System Health</div>
+          <div class="text-sm text-indigo-800 space-y-1">
+            <div>CPU Usage: 15%</div>
+            <div>Memory: 45%</div>
+            <div>Storage: 78%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </SectionCard>
+
+  <SectionCard title="System Architecture">
+    <div class="bg-white p-4 rounded-lg border border-slate-200 overflow-hidden">
+      <div class="w-full max-w-4xl mx-auto">
+        <img src="/diagrams/adt-systems.svg" alt="ADT system architecture diagram showing data loggers, sensors, network infrastructure, and cloud connectivity" class="w-full h-auto rounded" style="max-height: 500px; object-fit: contain;" />
+      </div>
+      <div class="mt-4 text-sm text-slate-600">
+        <p class="font-medium mb-2">System Specifications:</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <p>• <span class="font-medium">Data Logger:</span> ADT-DL500 series</p>
+            <p>• <span class="font-medium">Sensors:</span> RTD, 4-20mA, Digital I/O</p>
+            <p>• <span class="font-medium">Communication:</span> Ethernet, WiFi, Cellular</p>
+          </div>
+          <div>
+            <p>• <span class="font-medium">Storage:</span> Local + Cloud backup</p>
+            <p>• <span class="font-medium">Compliance:</span> HACCP, FDA 21 CFR Part 11</p>
+            <p>• <span class="font-medium">Power:</span> 12-24V DC with UPS backup</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </SectionCard>
+
+  <!-- Quick Actions -->
+  <div class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-6 border border-indigo-200">
+    <h3 class="text-lg font-semibold text-slate-900 mb-4">Quick Actions</h3>
+    <div class="flex flex-wrap gap-3">
+      <button class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors text-sm font-medium">
+        📊 View Dashboard
+      </button>
+      <button class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors text-sm font-medium">
+        📈 Generate Report
+      </button>
+      <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
+        ⚙️ System Settings
+      </button>
+      <button class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm font-medium">
+        📥 Export Data
+      </button>
+    </div>
+  </div>
+</BaseLayout>

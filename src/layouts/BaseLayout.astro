@@ -1,5 +1,6 @@
 ---
 import Sidebar from "../components/Sidebar.astro";
+import EnhancedSidebar from "../components/EnhancedSidebar.jsx";
 import "../styles/global.css";
 ---
 
@@ -7,7 +8,18 @@ import "../styles/global.css";
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LTC Kitchen Guide</title>
+    <title>🍹 Margaritaville Kitchen & Equipment</title>
+    <meta name="description" content="Professional commercial kitchen equipment management portal" />
+    <meta name="cache-bust" content="{new Date().getTime()}" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script>
       // Apply theme immediately to prevent flash (set only on <html> here)
       (function() {
@@ -16,14 +28,93 @@ import "../styles/global.css";
       })();
     </script>
   </head>
-  <body class="flex bg-gray-100">
-    <!-- Sidebar -->
-    <Sidebar />
+  <body class="bg-gray-100 min-h-screen">
+    <!-- Watermark -->
+    <div class="fixed inset-0 pointer-events-none z-0 opacity-5">
+      <div class="absolute inset-0 flex items-center justify-center">
+        <div class="text-9xl font-bold text-slate-900 transform rotate-45 select-none">
+          MARGARITAVILLE
+        </div>
+      </div>
+    </div>
 
-    <!-- Main Content -->
-    <main class="flex-1 p-6">
-      <slot />
-    </main>
+    <!-- Header with Theme Switcher -->
+    <header class="relative z-20 bg-white shadow-sm border-b border-slate-200 px-6 py-3">
+      <div class="flex justify-between items-center max-w-7xl mx-auto">
+        <div class="flex items-center space-x-3">
+          <img src="/logo.png" alt="LTC Kitchen Logo" class="w-8 h-8 rounded-lg shadow-sm" />
+          <h1 class="text-xl font-bold text-slate-900">🍹 Margaritaville Kitchen Portal</h1>
+        </div>
+        
+        <!-- Theme Switcher & QR Scanner -->
+        <div class="flex items-center space-x-4">
+          <button id="qr-scanner-btn" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-medium transition-colors">
+            📱 QR Scanner
+          </button>
+          
+          <div class="flex items-center space-x-2">
+            <span class="text-sm text-slate-600 mr-2">Theme:</span>
+            <button data-theme="light" class="theme-btn px-3 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm transition-colors">
+              ☀️ Light
+            </button>
+            <button data-theme="dark" class="theme-btn px-3 py-1 rounded-lg bg-slate-700 hover:bg-slate-600 text-white text-sm transition-colors">
+              🌙 Dark
+            </button>
+            <button data-theme="spooky" class="theme-btn px-3 py-1 rounded-lg bg-purple-600 hover:bg-purple-700 text-white text-sm transition-colors">
+              🎃 Spooky
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Layout Container -->
+    <div class="flex min-h-[calc(100vh-140px)]">
+      <!-- Enhanced React Sidebar -->
+      <EnhancedSidebar client:load />
+
+      <!-- Main Content -->
+      <main class="flex-1 p-6 relative z-10">
+        <div class="max-w-7xl mx-auto">
+          <slot />
+        </div>
+      </main>
+    </div>
+
+    <!-- QR Scanner Modal -->
+    <div id="qr-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
+      <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-6">
+        <div class="flex justify-between items-center mb-4">
+          <h3 class="text-xl font-bold text-slate-900">QR Code Scanner</h3>
+          <button id="close-qr" class="text-slate-400 hover:text-slate-600 text-2xl font-bold">×</button>
+        </div>
+        <div id="qr-reader" class="mb-4"></div>
+        <p class="text-sm text-slate-600 text-center">Scan QR code to access AI assistant</p>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-slate-900 to-slate-800 text-white py-4 relative z-10">
+      <div class="max-w-7xl mx-auto px-6">
+        <!-- Copyright & Credits -->
+        <div class="flex flex-col md:flex-row justify-between items-center text-sm text-slate-400">
+          <div class="flex items-center space-x-3">
+            <img src="/logo.png" alt="LTC Kitchen Logo" class="w-6 h-6 rounded shadow-sm" />
+            <p>&copy; 2025 Margaritaville Kitchen & Equipment Portal. All rights reserved.</p>
+          </div>
+          <div class="mt-2 md:mt-0">
+            <p class="flex items-center space-x-2">
+              <span>Powered by</span>
+              <a href="https://myguy.dev" target="_blank" class="text-blue-400 hover:text-blue-300 font-semibold transition-colors">
+                myguy.dev
+              </a>
+              <span class="text-slate-500">|</span>
+              <span class="italic">"Your digital solutions, perfected"</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
 
     <!-- Theme Management Script -->
     <script>
@@ -59,6 +150,186 @@ import "../styles/global.css";
             switchTheme(btn.dataset.theme);
           });
         });
+
+        // Parts ordering functionality
+        initializePartsOrdering();
+      });
+
+      function initializePartsOrdering() {
+        // Get all parts order components
+        const partsOrders = document.querySelectorAll('.parts-order');
+        
+        partsOrders.forEach(order => {
+          const sku = order.dataset.sku;
+          const equipment = order.dataset.equipment;
+          
+          // Quote button
+          const quoteBtn = order.querySelector(`#quote-btn-${sku}`);
+          const quoteConfirm = order.querySelector(`#quote-confirm-${sku}`);
+          
+          if (quoteBtn) {
+            quoteBtn.addEventListener('click', function(e) {
+              e.preventDefault();
+              const quantity = order.querySelector(`#quantity-${sku}`).value;
+              
+              // Create quote data
+              const quoteData = {
+                part: order.closest('.bg-white').querySelector('h3')?.textContent || 'Unknown Part',
+                sku: sku,
+                quantity: parseInt(quantity),
+                equipment: equipment,
+                timestamp: new Date().toISOString()
+              };
+              
+              // Store in localStorage
+              const existingQuotes = JSON.parse(localStorage.getItem('partsQuotes') || '[]');
+              existingQuotes.push(quoteData);
+              localStorage.setItem('partsQuotes', JSON.stringify(existingQuotes));
+              
+              // Show confirmation
+              if (quoteConfirm) {
+                quoteConfirm.classList.remove('hidden');
+                quoteBtn.textContent = '✅ Added to Quote';
+                quoteBtn.classList.add('bg-green-600');
+                
+                // Hide confirmation after 3 seconds
+                setTimeout(() => {
+                  quoteConfirm.classList.add('hidden');
+                }, 3000);
+              }
+            });
+          }
+          
+          // Supplier buttons with improved search functionality
+          const suppliers = [
+            { class: 'partstown-btn', url: 'https://www.partstown.com/search?searchterm=' },
+            { class: 'general-parts-btn', url: 'https://www.generalparts.com/search/?q=' },
+            { class: 'partsfps-btn', url: 'https://www.partsfps.com/search?query=' },
+            { class: 'emrco-btn', url: 'https://www.emrco.com/search?q=' }
+          ];
+          
+          suppliers.forEach(supplier => {
+            const btn = order.querySelector(`.${supplier.class}`);
+            if (btn) {
+              btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                // Get the part name from the closest part card for better search
+                const partCard = order.closest('.bg-white');
+                const partName = partCard ? partCard.querySelector('h3')?.textContent?.trim() : '';
+                const searchTerm = partName || sku;
+                
+                // Add visual feedback
+                btn.style.transform = 'scale(0.95)';
+                btn.style.opacity = '0.7';
+                setTimeout(() => {
+                  btn.style.transform = 'scale(1)';
+                  btn.style.opacity = '1';
+                }, 150);
+                
+                // Open supplier website with search term
+                window.open(supplier.url + encodeURIComponent(searchTerm), '_blank');
+              });
+            }
+          });
+
+          // Spec sheet button
+          const specBtn = order.querySelector('.spec-sheet-btn');
+          if (specBtn) {
+            specBtn.addEventListener('click', function(e) {
+              e.preventDefault();
+              const modal = document.getElementById(`spec-modal-${sku}`);
+              if (modal) {
+                modal.classList.remove('hidden');
+              }
+            });
+          }
+        });
+      }
+    </script>
+
+    <!-- QR Scanner Library -->
+    <script src="https://unpkg.com/qr-scanner@1.4.2/qr-scanner.umd.min.js"></script>
+    
+    <!-- QR Scanner Functionality -->
+    <script>
+      // QR Scanner functionality
+      let qrScanner = null;
+      
+      function initQRScanner() {
+        const qrModal = document.getElementById('qr-modal');
+        const qrReader = document.getElementById('qr-reader');
+        const qrBtn = document.getElementById('qr-scanner-btn');
+        const closeBtn = document.getElementById('close-qr');
+        
+        if (!qrBtn) return;
+        
+        qrBtn.addEventListener('click', async function() {
+          qrModal.classList.remove('hidden');
+          
+          try {
+            // Create video element for camera
+            const videoElement = document.createElement('video');
+            videoElement.style.width = '100%';
+            videoElement.style.maxWidth = '400px';
+            videoElement.style.borderRadius = '8px';
+            qrReader.innerHTML = '';
+            qrReader.appendChild(videoElement);
+            
+            // Initialize QR Scanner
+            qrScanner = new QrScanner(videoElement, result => {
+              console.log('QR Code detected:', result);
+              
+              // Handle QR code result - redirect to AI assistant
+              if (result.data.includes('ltc-kitchen') || result.data.includes('ai-assistant')) {
+                window.open('https://chat.openai.com', '_blank');
+                alert('🤖 Opening AI Assistant for LTC Kitchen support!');
+              } else {
+                alert(`📱 QR Code detected: ${result.data}`);
+              }
+              
+              // Close modal
+              closeQRModal();
+            }, {
+              highlightScanRegion: true,
+              highlightCodeOutline: true,
+            });
+            
+            await qrScanner.start();
+            
+          } catch (error) {
+            console.error('QR Scanner error:', error);
+            qrReader.innerHTML = `
+              <div class="text-center p-8">
+                <div class="text-6xl mb-4">📱</div>
+                <p class="text-red-600 mb-2 font-semibold">Camera access required</p>
+                <p class="text-sm text-slate-600">Please allow camera access to scan QR codes for AI assistant</p>
+              </div>
+            `;
+          }
+        });
+        
+        closeBtn.addEventListener('click', closeQRModal);
+        
+        function closeQRModal() {
+          qrModal.classList.add('hidden');
+          if (qrScanner) {
+            qrScanner.stop();
+            qrScanner = null;
+          }
+          qrReader.innerHTML = '';
+        }
+        
+        // Close modal when clicking outside
+        qrModal.addEventListener('click', function(e) {
+          if (e.target === qrModal) {
+            closeQRModal();
+          }
+        });
+      }
+
+      // Initialize QR Scanner when DOM is ready
+      document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(initQRScanner, 100);
       });
     </script>
   </body>

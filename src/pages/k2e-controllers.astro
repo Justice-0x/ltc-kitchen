@@ -1,0 +1,276 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SectionCard from "../components/SectionCard.astro";
+import TroubleshootingDropdown from "../components/TroubleshootingDropdown.astro";
+
+const troubleshootingIssues = [
+  {
+    problem: "Display Not Working",
+    solutions: [
+      "Check power supply connections",
+      "Verify fuse integrity",
+      "Test display cable connections",
+      "Reset controller to factory defaults",
+      "Check for firmware corruption"
+    ]
+  },
+  {
+    problem: "Temperature Reading Incorrect",
+    solutions: [
+      "Calibrate temperature sensors",
+      "Check sensor wiring connections",
+      "Verify sensor placement",
+      "Test sensor resistance values",
+      "Replace faulty temperature probes"
+    ]
+  },
+  {
+    problem: "Alarms Not Functioning",
+    solutions: [
+      "Check alarm relay outputs",
+      "Verify alarm setpoints",
+      "Test notification settings",
+      "Check network connectivity",
+      "Inspect alarm horn/strobe"
+    ]
+  }
+];
+---
+
+<BaseLayout title="K2E Controllers - LTC Kitchen" description="K2E temperature and monitoring controllers">
+  <div class="mb-8">
+    <div class="flex items-center space-x-4 mb-4">
+      <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-blue-600 rounded-xl flex items-center justify-center text-3xl">
+        🎛️
+      </div>
+      <div>
+        <h1 class="text-3xl font-bold text-slate-900">K2E Controllers</h1>
+        <p class="text-slate-600">Advanced temperature monitoring and control systems</p>
+      </div>
+    </div>
+    
+    <div class="flex items-center space-x-4 mb-6">
+      <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">✓ Online</span>
+      <span class="text-sm text-slate-500">Last updated: {new Date().toLocaleTimeString()}</span>
+    </div>
+
+    <div class="flex space-x-3 mb-8">
+      <a href="/manuals/k2e-controllers" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
+        📄 Manual
+      </a>
+      <a href="/parts/k2e-controllers" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm font-medium">
+        🔧 Parts
+      </a>
+      <a href="#troubleshooting" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors text-sm font-medium">
+        🚨 Troubleshooting
+      </a>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+    <!-- Controller Status -->
+    <div class="bg-white rounded-xl shadow-lg p-6 border border-slate-200">
+      <h3 class="text-lg font-semibold text-slate-900 mb-4 flex items-center">
+        <span class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center mr-3">📊</span>
+        Controller Status
+      </h3>
+      
+      <div class="space-y-4">
+        <div class="flex justify-between items-center">
+          <span class="text-slate-700">System Status</span>
+          <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Online</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="text-slate-700">Network</span>
+          <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Connected</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="text-slate-700">Data Logging</span>
+          <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Active</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="text-slate-700">Alarms</span>
+          <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">None</span>
+        </div>
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-slate-200">
+        <div class="text-center">
+          <div class="text-2xl font-bold text-purple-600">K2E-PRO</div>
+          <div class="text-sm text-slate-600">Model Version</div>
+          <div class="text-xs text-slate-500 mt-1">Firmware v2.4.1</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Temperature Zones -->
+    <div class="bg-white rounded-xl shadow-lg p-6 border border-slate-200">
+      <h3 class="text-lg font-semibold text-slate-900 mb-4">Temperature Zones</h3>
+      
+      <div class="space-y-4">
+        <div class="p-3 bg-blue-50 rounded-lg">
+          <div class="flex justify-between items-center mb-1">
+            <span class="text-sm font-medium text-slate-700">Zone 1 - Walk-in Cooler</span>
+            <span class="text-lg font-bold text-blue-600">36°F</span>
+          </div>
+          <div class="w-full bg-slate-200 rounded-full h-1">
+            <div class="bg-blue-600 h-1 rounded-full" style="width: 75%"></div>
+          </div>
+        </div>
+
+        <div class="p-3 bg-cyan-50 rounded-lg">
+          <div class="flex justify-between items-center mb-1">
+            <span class="text-sm font-medium text-slate-700">Zone 2 - Freezer</span>
+            <span class="text-lg font-bold text-cyan-600">-2°F</span>
+          </div>
+          <div class="w-full bg-slate-200 rounded-full h-1">
+            <div class="bg-cyan-600 h-1 rounded-full" style="width: 85%"></div>
+          </div>
+        </div>
+
+        <div class="p-3 bg-green-50 rounded-lg">
+          <div class="flex justify-between items-center mb-1">
+            <span class="text-sm font-medium text-slate-700">Zone 3 - Prep Area</span>
+            <span class="text-lg font-bold text-green-600">42°F</span>
+          </div>
+          <div class="w-full bg-slate-200 rounded-full h-1">
+            <div class="bg-green-600 h-1 rounded-full" style="width: 80%"></div>
+          </div>
+        </div>
+
+        <div class="p-3 bg-orange-50 rounded-lg">
+          <div class="flex justify-between items-center mb-1">
+            <span class="text-sm font-medium text-slate-700">Zone 4 - Ambient</span>
+            <span class="text-lg font-bold text-orange-600">72°F</span>
+          </div>
+          <div class="w-full bg-slate-200 rounded-full h-1">
+            <div class="bg-orange-600 h-1 rounded-full" style="width: 60%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Alarm Management -->
+    <div class="bg-white rounded-xl shadow-lg p-6 border border-slate-200">
+      <h3 class="text-lg font-semibold text-slate-900 mb-4">Alarm Management</h3>
+      
+      <div class="space-y-4">
+        <div class="p-3 bg-green-50 rounded-lg border border-green-200">
+          <div class="flex items-center space-x-2">
+            <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+            <span class="text-sm font-medium text-green-800">All Systems Normal</span>
+          </div>
+          <div class="text-xs text-green-600 mt-1">No active alarms</div>
+        </div>
+
+        <div class="space-y-2">
+          <h4 class="text-sm font-semibold text-slate-700">Alarm Thresholds</h4>
+          <div class="text-xs text-slate-600 space-y-1">
+            <div class="flex justify-between">
+              <span>High Temperature:</span>
+              <span class="font-medium">45°F</span>
+            </div>
+            <div class="flex justify-between">
+              <span>Low Temperature:</span>
+              <span class="font-medium">32°F</span>
+            </div>
+            <div class="flex justify-between">
+              <span>Sensor Failure:</span>
+              <span class="font-medium">Enabled</span>
+            </div>
+            <div class="flex justify-between">
+              <span>Power Loss:</span>
+              <span class="font-medium">Enabled</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-3 border-t border-slate-200">
+          <h4 class="text-sm font-semibold text-slate-700 mb-2">Notification Methods</h4>
+          <div class="space-y-1 text-xs">
+            <div class="flex items-center space-x-2">
+              <span class="w-2 h-2 bg-green-500 rounded-full"></span>
+              <span>Email Alerts</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <span class="w-2 h-2 bg-green-500 rounded-full"></span>
+              <span>SMS Notifications</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <span class="w-2 h-2 bg-green-500 rounded-full"></span>
+              <span>Audible Alarm</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <SectionCard title="Troubleshooting" id="troubleshooting">
+    <TroubleshootingDropdown issues={troubleshootingIssues} />
+    
+    <div class="mt-6">
+      <h4 class="font-bold mb-3">System Information:</h4>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+          <div class="font-medium text-blue-900 mb-2">Network Status</div>
+          <div class="text-sm text-blue-800 space-y-1">
+            <div>IP Address: 192.168.1.100</div>
+            <div>MAC: 00:1B:44:11:3A:B7</div>
+            <div>Signal Strength: -45 dBm</div>
+          </div>
+        </div>
+        <div class="p-4 bg-purple-50 border border-purple-200 rounded-lg">
+          <div class="font-medium text-purple-900 mb-2">Data Logging</div>
+          <div class="text-sm text-purple-800 space-y-1">
+            <div>Log Interval: 5 minutes</div>
+            <div>Storage: 90 days</div>
+            <div>Export: CSV, PDF</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </SectionCard>
+
+  <SectionCard title="Wiring Diagram">
+    <div class="bg-white p-4 rounded-lg border border-slate-200 overflow-hidden">
+      <div class="w-full max-w-4xl mx-auto">
+        <img src="/diagrams/k2e-controllers.svg" alt="K2E controller wiring diagram showing sensor connections, power supply, network interface, and alarm outputs" class="w-full h-auto rounded" style="max-height: 500px; object-fit: contain;" />
+      </div>
+      <div class="mt-4 text-sm text-slate-600">
+        <p class="font-medium mb-2">Connection Specifications:</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <p>• <span class="font-medium">Power:</span> 12-24V DC, 500mA</p>
+            <p>• <span class="font-medium">Sensors:</span> 4-20mA or RTD inputs</p>
+            <p>• <span class="font-medium">Network:</span> Ethernet, WiFi, Cellular</p>
+          </div>
+          <div>
+            <p>• <span class="font-medium">Outputs:</span> 4 relay outputs, 250V/10A</p>
+            <p>• <span class="font-medium">Display:</span> 4.3" color touchscreen</p>
+            <p>• <span class="font-medium">Storage:</span> MicroSD card slot</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </SectionCard>
+
+  <!-- Quick Actions -->
+  <div class="bg-gradient-to-r from-purple-50 to-blue-50 rounded-xl p-6 border border-purple-200">
+    <h3 class="text-lg font-semibold text-slate-900 mb-4">Quick Actions</h3>
+    <div class="flex flex-wrap gap-3">
+      <button class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors text-sm font-medium">
+        📊 View Data Logs
+      </button>
+      <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
+        ⚙️ Configure Alarms
+      </button>
+      <button class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm font-medium">
+        📈 Generate Report
+      </button>
+      <button class="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors text-sm font-medium">
+        🔄 Firmware Update
+      </button>
+    </div>
+  </div>
+</BaseLayout>
