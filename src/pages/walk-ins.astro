@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import SectionCard from "../components/SectionCard.astro";
 import TroubleshootingDropdown from "../components/TroubleshootingDropdown.astro";
+import QuickActions from "../components/QuickActions.jsx";
 
 const troubleshootingIssues = [
   {
@@ -198,21 +199,5 @@ const troubleshootingIssues = [
   </SectionCard>
 
   <!-- Quick Actions -->
-  <div class="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl p-6 border border-blue-200">
-    <h3 class="text-lg font-semibold text-slate-900 mb-4">Quick Actions</h3>
-    <div class="flex flex-wrap gap-3">
-      <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
-        📊 View History
-      </button>
-      <button class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm font-medium">
-        🔧 Schedule Service
-      </button>
-      <button class="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors text-sm font-medium">
-        🚨 Force Defrost
-      </button>
-      <button class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors text-sm font-medium">
-        📈 Temperature Logs
-      </button>
-    </div>
-  </div>
+  <QuickActions equipmentType="Walk-In Cooler" equipmentId="WALK-INS-001" client:load />
 </BaseLayout>

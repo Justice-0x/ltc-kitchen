@@ -22,76 +22,203 @@ const manualData = {
     icon: '🧊',
     model: 'KM-500MAH',
     specs: {
-      'Ice Production': '500 lbs/24hr',
+      'Ice Production': '500 lbs/24hr @ 70°F air, 50°F water',
       'Storage Capacity': '250 lbs',
-      'Water Usage': '6.8 gal/100 lbs',
-      'Power': '115V/60Hz/1Ph',
-      'Refrigerant': 'R-404A',
-      'Dimensions': '30"W x 24"D x 39"H'
+      'Water Usage': '6.8 gal/100 lbs ice',
+      'Power': '115V/60Hz/1Ph - 8.5 Amps',
+      'Refrigerant': 'R-404A - 2.2 lbs',
+      'Dimensions': '30"W x 24"D x 39"H',
+      'Net Weight': '185 lbs',
+      'Shipping Weight': '210 lbs',
+      'Water Pressure': '10-113 PSIG',
+      'Water Temperature': '45-90°F',
+      'Ambient Temperature': '45-100°F',
+      'Condenser': 'Air-cooled',
+      'Ice Type': 'Crescent cube',
+      'Bin Thermostat': 'Adjustable 15-25°F',
+      'Safety': 'UL Listed, NSF Approved'
     },
     sections: [
-      'Installation Requirements',
-      'Startup Procedures',
-      'Operation & Controls',
-      'Cleaning & Sanitizing',
-      'Troubleshooting Guide',
-      'Wiring Diagrams',
-      'Parts Breakdown',
-      'Warranty Information'
-    ]
+      'Safety Information & Warnings',
+      'Installation Requirements & Location',
+      'Electrical Connection & Wiring',
+      'Water & Drain Connections', 
+      'Initial Startup Procedures',
+      'Operation & Control Functions',
+      'Ice Thickness Adjustment',
+      'Daily Cleaning Procedures',
+      'Weekly Sanitizing Process',
+      'Preventive Maintenance Schedule',
+      'Troubleshooting Guide & Error Codes',
+      'Component Testing Procedures',
+      'Refrigerant System Diagnostics',
+      'Water System Maintenance',
+      'Electrical Schematics & Wiring Diagrams',
+      'Parts Breakdown & Identification',
+      'Service Tools & Equipment Required',
+      'Warranty Information & Registration'
+    ],
+    troubleshooting: {
+      'No Ice Production': {
+        causes: ['Power failure', 'Water supply issue', 'Dirty condenser', 'Low refrigerant'],
+        solutions: ['Check circuit breaker and electrical connections', 'Verify water valve operation and supply pressure', 'Clean condenser coil and check fan motor', 'Check for refrigerant leaks and subcooling levels']
+      },
+      'Ice Won\'t Harvest': {
+        causes: ['Hot gas valve failure', 'Harvest timer malfunction', 'Cube thickness control', 'Water temperature too low'],
+        solutions: ['Test hot gas valve coil (380-450 ohms)', 'Verify harvest timer sequence (8-45 minutes)', 'Adjust cube thickness control clockwise', 'Check inlet water temperature (45-90°F)']
+      },
+      'Thin or Hollow Ice': {
+        causes: ['Scale buildup', 'Expansion valve hunting', 'Low refrigerant charge', 'Water distribution issues'],
+        solutions: ['Descale with Hoshizaki Scale Away', 'Check TXV superheat (8-12°F)', 'Verify subcooling (10-15°F)', 'Clean water distribution tube and pump']
+      },
+      'Machine Runs Continuously': {
+        causes: ['Dirty condenser', 'Ambient temperature too high', 'Refrigerant overcharge', 'Bin thermostat failure'],
+        solutions: ['Clean condenser coil thoroughly', 'Improve ventilation, max 100°F ambient', 'Check subcooling (should be 10-15°F)', 'Test bin thermostat continuity']
+      }
+    },
+    maintenance: {
+      'Daily': ['Check ice production and quality', 'Inspect water supply and drainage', 'Clean exterior surfaces'],
+      'Weekly': ['Sanitize ice storage bin', 'Check and clean air filter', 'Inspect electrical connections'],
+      'Monthly': ['Deep clean condenser coil', 'Descale evaporator if needed', 'Check refrigerant levels'],
+      'Quarterly': ['Replace water filter', 'Lubricate fan motor bearings', 'Calibrate controls'],
+      'Annually': ['Complete system inspection', 'Refrigerant leak test', 'Electrical safety check']
+    }
   },
   'perlick': {
     title: 'Perlick Glycol Chiller Manual',
     icon: '🍺',
-    model: '4420-2',
+    model: '4420-2 Glycol Power Pack',
     specs: {
-      'Cooling Capacity': '2 HP',
-      'Glycol Flow Rate': '15 GPM',
-      'Temperature Range': '28-40°F',
-      'Power': '208-230V/60Hz/1Ph',
-      'Refrigerant': 'R-404A',
-      'Dimensions': '24"W x 30"D x 36"H'
+      'Cooling Capacity': '2 HP Copeland Compressor',
+      'Glycol Flow Rate': '15 GPM @ 40 PSI',
+      'Temperature Range': '28-40°F (adjustable)',
+      'Power': '208-230V/60Hz/1Ph - 12.5 FLA',
+      'Refrigerant': 'R-404A - 3.5 lbs charge',
+      'Dimensions': '24"W x 30"D x 36"H',
+      'Net Weight': '165 lbs',
+      'Glycol Reservoir': '5 gallon capacity',
+      'Pump': '1/2 HP Bronze Impeller',
+      'Heat Exchanger': 'Brazed plate type',
+      'Insulation': 'Polyurethane foam',
+      'Thermostat': 'Digital with 0.1°F accuracy',
+      'Safety Features': 'High/Low pressure switches, pump protection',
+      'Glycol Type': 'Propylene Glycol (food grade)',
+      'Concentration': '25-30% by volume'
     },
     sections: [
-      'System Overview',
-      'Installation Guide',
-      'Glycol Concentration',
-      'Temperature Controls',
-      'Preventive Maintenance',
-      'Troubleshooting',
-      'Electrical Schematics',
-      'Service Parts List'
-    ]
+      'Safety Warnings & Precautions',
+      'System Overview & Components',
+      'Installation Requirements',
+      'Electrical Connection & Wiring',
+      'Glycol System Setup',
+      'Piping & Insulation Guidelines',
+      'Initial Startup Procedures',
+      'Temperature Control Calibration',
+      'Glycol Concentration Testing',
+      'System Operation & Monitoring',
+      'Preventive Maintenance Schedule',
+      'Troubleshooting Guide',
+      'Component Testing Procedures',
+      'Refrigerant System Service',
+      'Electrical Schematics & Wiring',
+      'Parts Breakdown & Ordering',
+      'Service Tools Required',
+      'Warranty & Technical Support'
+    ],
+    troubleshooting: {
+      'System Won\'t Cool': {
+        causes: ['Low refrigerant charge', 'Dirty condenser coil', 'Compressor failure', 'Thermostat malfunction'],
+        solutions: ['Check subcooling (8-12°F) and superheat', 'Clean condenser coil and check fan operation', 'Test compressor windings and amp draw', 'Calibrate or replace digital thermostat']
+      },
+      'Glycol Pump Not Running': {
+        causes: ['Electrical failure', 'Pump cavitation', 'Impeller blockage', 'Motor overload'],
+        solutions: ['Check power supply and motor starter', 'Prime pump and check suction line', 'Disassemble and clean impeller housing', 'Reset overload and check amp draw']
+      },
+      'Temperature Differential Too High': {
+        causes: ['Low glycol flow', 'Air in system', 'Heat exchanger fouling', 'Improper concentration'],
+        solutions: ['Check pump operation and flow rate', 'Bleed air from high points in system', 'Backflush heat exchanger', 'Test and adjust glycol concentration']
+      },
+      'Compressor Short Cycling': {
+        causes: ['Low refrigerant', 'High head pressure', 'Thermostat differential too narrow', 'Electrical issues'],
+        solutions: ['Check for leaks and recharge system', 'Clean condenser and check ambient temperature', 'Adjust thermostat differential to 3-5°F', 'Check voltage and phase balance']
+      }
+    },
+    maintenance: {
+      'Daily': ['Check glycol temperature and flow', 'Monitor system pressures', 'Inspect for leaks'],
+      'Weekly': ['Test glycol concentration with refractometer', 'Clean condenser coil if needed', 'Check electrical connections'],
+      'Monthly': ['Inspect pump coupling and alignment', 'Check refrigerant levels and pressures', 'Clean and calibrate thermostat'],
+      'Quarterly': ['Replace glycol filter', 'Service pump seals if needed', 'Test all safety switches'],
+      'Annually': ['Complete system flush and recharge', 'Pressure test all connections', 'Electrical safety inspection']
+    }
   },
   'turbochef': {
     title: 'TurboChef Oven Manual',
     icon: '🔥',
-    model: 'Tornado 2',
+    model: 'Tornado 2 High-Speed Convection Oven',
     specs: {
-      'Cooking Power': '3000W Microwave + Convection',
-      'Cavity Size': '1.2 cu ft',
-      'Temperature Range': '200-500°F',
-      'Power': '208-240V/60Hz/1Ph',
-      'Ventilation': 'Type I Hood Required',
-      'Dimensions': '24"W x 26"D x 26"H',
-      'Weight': '165 lbs',
+      'Cooking Power': '3000W Microwave + 2800W Convection',
+      'Cavity Size': '1.2 cu ft (34L)',
+      'Temperature Range': '200-500°F (93-260°C)',
+      'Power': '208-240V/60Hz/1Ph - 24 Amps',
+      'Ventilation': 'Type I Hood Required - 400 CFM minimum',
+      'Dimensions': '24"W x 26"D x 26"H (61 x 66 x 66 cm)',
+      'Weight': '165 lbs (75 kg)',
+      'Cooking Time Reduction': 'Up to 80% vs conventional',
+      'Microwave Frequency': '2450 MHz',
+      'Convection Fan': 'Variable speed, 1500-3000 RPM',
+      'Control System': 'Digital touchscreen with 100 recipes',
+      'Safety Features': 'Door interlock, thermal cutout, ground fault',
       'Warranty': '2 Years Parts & Labor',
-      'Certifications': 'NSF, UL, Energy Star'
+      'Certifications': 'NSF, UL, Energy Star, CE'
     },
     sections: [
       'Safety Information & Warnings',
       'Installation Requirements & Setup',
+      'Electrical Connection & Wiring',
+      'Ventilation Requirements',
       'Programming Guide & Menu Creation',
       'Daily Cooking Procedures',
+      'Temperature Calibration',
+      'Fan Speed Adjustment',
       'Cleaning & Sanitization Protocols',
       'Error Code Reference & Diagnostics',
       'Component Testing & Calibration',
+      'Magnetron Testing & Replacement',
       'Preventive Maintenance Schedule',
       'Wiring Diagrams & Schematics',
       'Parts Identification & Ordering',
       'Technical Support & Service',
       'Training Resources & Videos'
-    ]
+    ],
+    troubleshooting: {
+      'No Power / Display Dark': {
+        causes: ['Power supply failure', 'Door interlock switch', 'Control board fault', 'Thermal cutout activated'],
+        solutions: ['Check 208-240V power supply and circuit breaker', 'Test door interlock switches (normally open)', 'Replace control board if no 5V/12V output', 'Reset thermal cutout and check for overheating']
+      },
+      'Microwave Not Heating': {
+        causes: ['Magnetron failure', 'High voltage transformer', 'Door switch misalignment', 'Waveguide arcing'],
+        solutions: ['Test magnetron continuity (should be <1 ohm)', 'Check HV transformer output (2000V AC)', 'Adjust door switch alignment and gap', 'Clean waveguide and check for moisture']
+      },
+      'Convection Not Working': {
+        causes: ['Convection fan motor failure', 'Heating element open', 'Temperature sensor fault', 'Control board relay'],
+        solutions: ['Test fan motor windings (should be 8-12 ohms)', 'Check heating element continuity (15-25 ohms)', 'Calibrate temperature sensor (10K ohm @ 77°F)', 'Test control board relay operation']
+      },
+      'Uneven Cooking / Cold Spots': {
+        causes: ['Fan speed too low', 'Waveguide contamination', 'Temperature sensor drift', 'Air filter blockage'],
+        solutions: ['Increase convection fan speed to maximum', 'Clean magnetron waveguide with alcohol', 'Recalibrate temperature sensor', 'Replace or clean air filters']
+      },
+      'Error Codes E1-E9': {
+        causes: ['Sensor faults', 'Door switch issues', 'Communication errors', 'Component failures'],
+        solutions: ['E1: Replace temperature sensor', 'E2: Check door switch alignment', 'E3: Reset control board', 'E4-E9: Contact technical support']
+      }
+    },
+    maintenance: {
+      'Daily': ['Clean interior with approved sanitizer', 'Check door seal integrity', 'Verify temperature calibration', 'Test all cooking functions'],
+      'Weekly': ['Deep clean magnetron waveguide', 'Lubricate fan motor bearings', 'Check electrical connections', 'Clean air filters'],
+      'Monthly': ['Calibrate temperature sensors', 'Test safety switches', 'Inspect heating elements', 'Check fan belt tension'],
+      'Quarterly': ['Replace air filters', 'Service door hinges and latches', 'Clean ventilation ductwork', 'Test microwave power output'],
+      'Annually': ['Complete electrical safety check', 'Replace door gaskets if needed', 'Inspect and clean HV components', 'Professional service call']
+    }
   },
   'frosty': {
     title: 'Frosty Soft-Serve Manual',

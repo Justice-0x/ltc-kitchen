@@ -77,7 +77,7 @@ const EnhancedSidebar = () => {
   };
 
   return (
-    <nav className={`h-screen bg-gradient-to-b from-green-900 via-teal-800 to-blue-900 shadow-xl p-4 flex flex-col text-white transition-all duration-300 ${isCollapsed ? 'w-16' : 'w-64'} relative overflow-y-auto`}>
+    <nav className={`h-screen bg-gradient-to-b from-green-900 via-teal-800 to-blue-900 shadow-xl p-4 flex flex-col text-white transition-all duration-300 ${isCollapsed ? 'w-16' : 'w-64'} relative overflow-y-auto lg:relative lg:h-screen`}>
       
       {/* Collapse Toggle */}
       <button 

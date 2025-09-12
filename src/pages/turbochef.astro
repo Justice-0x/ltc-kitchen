@@ -3,6 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import DocsButtons from "../components/DocsButtons.astro";
 import SectionCard from "../components/SectionCard.astro";
 import TroubleshootingDropdown from "../components/TroubleshootingDropdown.astro";
+import QuickActions from "../components/QuickActions.jsx";
 
 const status = "operational";
 
@@ -288,21 +289,5 @@ const getSeverityColor = (severity: string) => {
   </SectionCard>
 
   <!-- Quick Actions -->
-  <div class="bg-gradient-to-r from-orange-50 to-red-50 rounded-xl p-6 border border-orange-200">
-    <h3 class="text-lg font-semibold text-slate-900 mb-4">Quick Actions</h3>
-    <div class="flex flex-wrap gap-3">
-      <button class="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors text-sm font-medium">
-        🔥 Start Preheat
-      </button>
-      <button class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors text-sm font-medium">
-        ⏹️ Emergency Stop
-      </button>
-      <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
-        📊 View Logs
-      </button>
-      <button class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm font-medium">
-        🔧 Schedule Service
-      </button>
-    </div>
-  </div>
+  <QuickActions equipmentType="TurboChef Oven" equipmentId="TURBOCHEF-001" client:load />
 </BaseLayout>
