@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import QrScanner from 'qr-scanner';
 
 const QRUnlock = () => {
   const [isUnlocked, setIsUnlocked] = useState(false);
@@ -7,6 +8,8 @@ const QRUnlock = () => {
   const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [showAccessCode, setShowAccessCode] = useState(false);
+  const [accessCode, setAccessCode] = useState('');
 
   // Check if already unlocked from localStorage
   useEffect(() => {
@@ -102,28 +105,67 @@ Rules:
     setError('');
 
     try {
-      // Check if QR scanner is available
-      if (typeof window !== 'undefined' && window.QRScanner) {
-        const result = await window.QRScanner.scan();
-        if (result === 'BILLS_BITCH_2024') {
-          setIsUnlocked(true);
-          localStorage.setItem('bills-bitch-unlocked', 'true');
-        } else {
-          setError('Invalid QR code. Please scan the correct code.');
-        }
-      } else {
-        // Fallback for development/testing
-        const testCode = prompt('Enter QR code (use: BILLS_BITCH_2024 for testing):');
-        if (testCode === 'BILLS_BITCH_2024') {
-          setIsUnlocked(true);
-          localStorage.setItem('bills-bitch-unlocked', 'true');
-        } else {
-          setError('Invalid code. Use: BILLS_BITCH_2024');
-        }
+      // Check if camera is available
+      if (!QrScanner.hasCamera()) {
+        setError('No camera found. Please use a device with a camera or try the access code option below.');
+        setIsScanning(false);
+        return;
       }
+
+      // Create a video element for scanning
+      const video = document.createElement('video');
+      video.style.width = '100%';
+      video.style.height = '200px';
+      video.style.border = '2px solid #8b5cf6';
+      video.style.borderRadius = '8px';
+
+      // Replace the scanner area with the video
+      const scannerArea = document.querySelector('.qr-scanner-area');
+      if (scannerArea) {
+        scannerArea.innerHTML = '';
+        scannerArea.appendChild(video);
+      }
+
+      const qrScanner = new QrScanner(video, result => {
+        console.log('QR Code detected:', result);
+        qrScanner.stop();
+        setIsScanning(false);
+
+        // Extract the actual text content from the result
+        const qrText = result.data || result.text || result.toString() || JSON.stringify(result);
+        console.log('QR Text extracted:', qrText);
+
+        // More flexible validation - check for any of these patterns
+        const isValid = qrText && (qrText.includes('myguy.dev') || 
+                      qrText.includes('bills-bitch') || 
+                      qrText.includes('BILLS_BITCH') ||
+                      qrText.includes('myguy') ||
+                      qrText.includes('bill') ||
+                      qrText.toLowerCase().includes('bills') ||
+                      qrText.toLowerCase().includes('bitch') ||
+                      qrText.includes('qrco.de') ||
+                      qrText.includes('bglkX3'));
+        
+        if (isValid) {
+          setIsUnlocked(true);
+          localStorage.setItem('bills-bitch-unlocked', 'true');
+          setError('');
+        } else {
+          setError('Invalid QR code. Please scan the QR code from myguy.dev. Detected: ' + qrText);
+        }
+      }, {
+        highlightScanRegion: true,
+        highlightCodeOutline: true,
+      });
+
+      qrScanner.start().catch(err => {
+        console.error('QR Scanner error:', err);
+        setError('QR Scanner error: ' + err.message);
+        setIsScanning(false);
+      });
+
     } catch (err) {
       setError('QR scanning failed. Please try again.');
-    } finally {
       setIsScanning(false);
     }
   };
@@ -131,6 +173,21 @@ Rules:
   const lockAgain = () => {
     setIsUnlocked(false);
     localStorage.removeItem('bills-bitch-unlocked');
+  };
+
+  const handleAccessCode = () => {
+    // Your secret access code - change this to something only you know
+    const validCodes = ['BILLS_BITCH_2025', 'MYGUY_ACCESS', 'KITCHEN_MASTER'];
+    
+    if (validCodes.includes(accessCode.toUpperCase())) {
+      setIsUnlocked(true);
+      localStorage.setItem('bills-bitch-unlocked', 'true');
+      setError('');
+      setAccessCode('');
+      setShowAccessCode(false);
+    } else {
+      setError('Invalid access code. Please try again or scan QR code.');
+    }
   };
 
   if (isUnlocked) {
@@ -281,11 +338,11 @@ Rules:
         <div className="text-6xl mb-4">🔒</div>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">Access Restricted</h2>
         <p className="text-gray-600 mb-6">
-          This is Bill's private AI assistant. Scan the QR code to unlock access.
+          This is Bill's private AI assistant. Scan the QR code from myguy.dev to unlock access.
         </p>
         
         <div className="mb-6">
-          <div className="bg-gray-100 p-8 rounded-lg border-2 border-dashed border-gray-300">
+          <div className="qr-scanner-area bg-gray-100 p-8 rounded-lg border-2 border-dashed border-gray-300">
             <div className="text-4xl mb-2">📱</div>
             <p className="text-sm text-gray-500">QR Code Scanner Area</p>
           </div>
@@ -300,13 +357,51 @@ Rules:
         <button
           onClick={startScanning}
           disabled={isScanning}
-          className="w-full px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          className="w-full px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors mb-4"
         >
           {isScanning ? '🔄 Scanning...' : '📸 Scan QR Code'}
         </button>
 
+        {/* Access Code Option */}
+        <div className="border-t border-gray-200 pt-4">
+          <button
+            onClick={() => setShowAccessCode(!showAccessCode)}
+            className="text-sm text-gray-600 hover:text-gray-800 transition-colors"
+          >
+            {showAccessCode ? 'Hide' : 'Show'} Access Code Option
+          </button>
+          
+          {showAccessCode && (
+            <div className="mt-4 space-y-3">
+              <div className="text-xs text-gray-500 text-center">
+                <p>If you don't have a phone, use one of these access codes:</p>
+                <p className="mt-1 font-mono bg-gray-100 px-2 py-1 rounded">BILLS_BITCH_2025</p>
+                <p className="mt-1 font-mono bg-gray-100 px-2 py-1 rounded">MYGUY_ACCESS</p>
+                <p className="mt-1 font-mono bg-gray-100 px-2 py-1 rounded">KITCHEN_MASTER</p>
+              </div>
+              
+              <div className="flex space-x-2">
+                <input
+                  type="text"
+                  value={accessCode}
+                  onChange={(e) => setAccessCode(e.target.value)}
+                  placeholder="Enter access code"
+                  className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  onKeyPress={(e) => e.key === 'Enter' && handleAccessCode()}
+                />
+                <button
+                  onClick={handleAccessCode}
+                  className="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors text-sm"
+                >
+                  Unlock
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+
         <div className="mt-4 text-xs text-gray-500">
-          <p>For testing: Use code <code className="bg-gray-100 px-1 rounded">BILLS_BITCH_2024</code></p>
+          <p>Scan the QR code from myguy.dev to access</p>
         </div>
       </div>
     </div>

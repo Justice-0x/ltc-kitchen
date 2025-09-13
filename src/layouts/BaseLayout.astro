@@ -1,6 +1,5 @@
 ---
-import Sidebar from "../components/Sidebar.astro";
-import EnhancedSidebar from "../components/EnhancedSidebar.jsx";
+import SimpleSidebar from "../components/SimpleSidebar.jsx";
 import "../styles/global.css";
 ---
 
@@ -14,7 +13,7 @@ import "../styles/global.css";
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="icon" type="image/png" href="/logo.png" />
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -39,64 +38,40 @@ import "../styles/global.css";
     </div>
 
     <!-- Mobile Menu Overlay -->
-    <div id="mobile-menu-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden lg:hidden"></div>
+    <div id="mobile-menu-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden lg:hidden" onclick="closeMobileMenu()"></div>
 
-    <!-- Header with Theme Switcher -->
-    <header class="relative z-30 bg-white shadow-sm border-b border-slate-200 px-4 md:px-6 py-3">
-      <div class="flex justify-between items-center max-w-7xl mx-auto">
+    <!-- Mobile Header -->
+    <header class="lg:hidden bg-slate-900 border-b border-slate-700 px-4 py-3">
+      <div class="flex justify-between items-center">
         <div class="flex items-center space-x-3">
-          <!-- Mobile Menu Button -->
-          <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-lg bg-slate-100 hover:bg-slate-200 transition-colors">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <button id="mobile-menu-btn" class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 transition-colors">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
             </svg>
           </button>
-          
-          <img src="/logo.png" alt="LTC Kitchen Logo" class="w-6 h-6 md:w-8 md:h-8 rounded-lg shadow-sm" />
-          <h1 class="text-lg md:text-xl font-bold text-slate-900 hidden sm:block">🍹 Margaritaville Kitchen</h1>
-          <h1 class="text-lg font-bold text-slate-900 sm:hidden">🍹 LTC</h1>
+          <h1 class="text-lg font-bold text-white">🍹 Margaritaville Kitchen</h1>
         </div>
-        
-        <!-- Theme Switcher & QR Scanner -->
-        <div class="flex items-center space-x-2 md:space-x-4">
-          <button id="qr-scanner-btn" class="px-2 md:px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs md:text-sm font-medium transition-colors">
-            <span class="hidden sm:inline">📱 QR Scanner</span>
-            <span class="sm:hidden">📱</span>
-          </button>
-          
-          <div class="hidden md:flex items-center space-x-2">
-            <span class="text-sm text-slate-600 mr-2">Theme:</span>
-            <button data-theme="light" class="theme-btn px-3 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm transition-colors">
-              ☀️ Light
-            </button>
-            <button data-theme="dark" class="theme-btn px-3 py-1 rounded-lg bg-slate-700 hover:bg-slate-600 text-white text-sm transition-colors">
-              🌙 Dark
-            </button>
-            <button data-theme="spooky" class="theme-btn px-3 py-1 rounded-lg bg-purple-600 hover:bg-purple-700 text-white text-sm transition-colors">
-              🎃 Spooky
-            </button>
-          </div>
-        </div>
+        <button id="qr-scanner-btn" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-medium transition-colors">
+          📱 QR
+        </button>
       </div>
     </header>
 
     <!-- Main Layout Container -->
-    <div class="flex min-h-[calc(100vh-140px)]">
-      <!-- Enhanced React Sidebar -->
-      <div id="sidebar-container" class="hidden lg:block">
-        <EnhancedSidebar client:load />
+    <div class="flex min-h-screen">
+      <!-- Simple Sidebar -->
+      <div class="hidden lg:block flex-shrink-0">
+        <SimpleSidebar client:load />
       </div>
       
       <!-- Mobile Sidebar -->
       <div id="mobile-sidebar" class="fixed inset-y-0 left-0 z-50 transform -translate-x-full transition-transform duration-300 ease-in-out lg:hidden">
-        <EnhancedSidebar client:load />
+        <SimpleSidebar client:load />
       </div>
 
       <!-- Main Content -->
-      <main class="flex-1 p-4 md:p-6 relative z-10 w-full lg:w-auto">
-        <div class="max-w-7xl mx-auto">
-          <slot />
-        </div>
+      <main class="flex-1 relative z-10 min-w-0 overflow-x-auto">
+        <slot />
       </main>
     </div>
 
@@ -118,7 +93,7 @@ import "../styles/global.css";
         <!-- Copyright & Credits -->
         <div class="flex flex-col md:flex-row justify-between items-center text-sm text-slate-400">
           <div class="flex items-center space-x-3">
-            <img src="/logo.png" alt="LTC Kitchen Logo" class="w-6 h-6 rounded shadow-sm" />
+            <img src="/favicon.svg" alt="Margaritaville Kitchen Logo" class="w-6 h-6 rounded shadow-sm" />
             <p>&copy; 2025 Margaritaville Kitchen & Equipment Portal. All rights reserved.</p>
           </div>
           <div class="mt-2 md:mt-0">
@@ -367,26 +342,23 @@ import "../styles/global.css";
           });
 
           // Close mobile menu
-          function closeMobileMenu() {
+          window.closeMobileMenu = function() {
             mobileSidebar.classList.add('-translate-x-full');
             mobileMenuOverlay.classList.add('hidden');
             document.body.style.overflow = '';
           }
 
-          // Close when clicking overlay
-          mobileMenuOverlay.addEventListener('click', closeMobileMenu);
-
           // Close when pressing escape key
           document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape' && !mobileMenuOverlay.classList.contains('hidden')) {
-              closeMobileMenu();
+              window.closeMobileMenu();
             }
           });
 
           // Close mobile menu when clicking a link (for better UX)
           mobileSidebar.addEventListener('click', function(e) {
             if (e.target.tagName === 'A') {
-              setTimeout(closeMobileMenu, 150);
+              setTimeout(window.closeMobileMenu, 150);
             }
           });
         }

@@ -1,0 +1,142 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ContactForm7 from "../components/ContactForm7.jsx";
+import EquipmentStatusCard from "../components/EquipmentStatusCard.jsx";
+
+// Server-side data for contact page
+const contactInfo = {
+  email: "support@myguy.dev",
+  message: "For all equipment support and questions, contact us at support@myguy.dev"
+};
+
+const getSupportStats = async () => {
+  // Simulate server-side data fetching
+  return {
+    responseTime: "< 2 hours",
+    satisfaction: "98%",
+    ticketsResolved: "1,247",
+    averageResolution: "4.2 hours"
+  };
+};
+
+const supportStats = await getSupportStats();
+---
+
+<BaseLayout>
+  <div class="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900">
+    
+    <!-- Animated Background -->
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="absolute -top-40 -right-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+      <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+      <div class="absolute top-40 left-40 w-80 h-80 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+    </div>
+
+    <!-- Header -->
+    <div class="relative z-10 container mx-auto px-6 py-12">
+      <div class="text-center mb-16">
+        <h1 class="text-5xl md:text-7xl font-black text-white mb-4 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-600 bg-clip-text text-transparent">
+          Contact Us
+        </h1>
+        <p class="text-xl text-blue-200">We're here to help with all your equipment needs</p>
+      </div>
+
+      <!-- Coming Soon Message -->
+      <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-8 mb-16 text-center">
+        <div class="text-6xl mb-4">🚀</div>
+        <h2 class="text-3xl font-bold text-white mb-4">Live Monitoring Coming Soon</h2>
+        <p class="text-xl text-blue-200 mb-6">Real-time equipment status and analytics will be available soon!</p>
+        <div class="bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-lg p-4">
+          <p class="text-blue-200">{contactInfo.message}</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        
+        <!-- Contact Form - Client Island -->
+        <div>
+          <ContactForm7 
+            title="Send us a Message"
+            description="Have a question about your equipment? Need service or parts? We're here to help!"
+            client:load
+          />
+        </div>
+
+        <!-- Contact Information & Equipment Status -->
+        <div class="space-y-8">
+          
+          <!-- Contact Info -->
+          <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-8">
+            <h3 class="text-2xl font-bold text-white mb-6 flex items-center">
+              <span class="mr-3">📧</span>
+              Support Contact
+            </h3>
+            
+            <div class="text-center">
+              <div class="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span class="text-white text-3xl">📧</span>
+              </div>
+              <div class="text-white font-semibold text-xl mb-2">Email Support</div>
+              <div class="text-blue-200 text-lg mb-4">{contactInfo.email}</div>
+              <p class="text-blue-200 text-sm">For all equipment support and questions</p>
+            </div>
+          </div>
+
+          <!-- Equipment Status - Server Island -->
+          <EquipmentStatusCard 
+            equipmentId="contact-page"
+            equipmentType="System Status"
+            client:load
+          />
+
+          <!-- Quick Actions -->
+          <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-8">
+            <h3 class="text-2xl font-bold text-white mb-6 flex items-center">
+              <span class="mr-3">⚡</span>
+              Quick Actions
+            </h3>
+            
+            <div class="grid grid-cols-1 gap-4">
+              <a href="/quote" class="flex items-center space-x-4 p-4 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-lg hover:from-blue-600 hover:to-indigo-700 transition-all duration-200 transform hover:scale-105">
+                <span class="text-2xl">📋</span>
+                <div>
+                  <div class="text-white font-semibold">Request Quote</div>
+                  <div class="text-blue-200 text-sm">Get pricing for parts and service</div>
+                </div>
+              </a>
+              
+              <a href="/equipment" class="flex items-center space-x-4 p-4 bg-gradient-to-r from-green-500 to-emerald-600 rounded-lg hover:from-green-600 hover:to-emerald-700 transition-all duration-200 transform hover:scale-105">
+                <span class="text-2xl">🔧</span>
+                <div>
+                  <div class="text-white font-semibold">Equipment Directory</div>
+                  <div class="text-green-200 text-sm">Browse all equipment and manuals</div>
+                </div>
+              </a>
+              
+              <a href="/docs" class="flex items-center space-x-4 p-4 bg-gradient-to-r from-purple-500 to-pink-600 rounded-lg hover:from-purple-600 hover:to-pink-700 transition-all duration-200 transform hover:scale-105">
+                <span class="text-2xl">📚</span>
+                <div>
+                  <div class="text-white font-semibold">Documentation</div>
+                  <div class="text-purple-200 text-sm">Access manuals and guides</div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    @keyframes blob {
+      0% { transform: translate(0px, 0px) scale(1); }
+      33% { transform: translate(30px, -50px) scale(1.1); }
+      66% { transform: translate(-20px, 20px) scale(0.9); }
+      100% { transform: translate(0px, 0px) scale(1); }
+    }
+    
+    .animate-blob { animation: blob 7s infinite; }
+    .animation-delay-2000 { animation-delay: 2s; }
+    .animation-delay-4000 { animation-delay: 4s; }
+  </style>
+</BaseLayout>

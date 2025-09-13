@@ -1,0 +1,305 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { realEquipmentData, searchPartsAcrossSuppliers, getPartsFromSuppliers } from "../data/partsSuppliers.js";
+
+// Get real parts data
+const partsCatalog = Object.values(realEquipmentData).map(equipment => ({
+  id: Object.keys(realEquipmentData).find(key => realEquipmentData[key] === equipment),
+  name: equipment.name,
+  manufacturer: equipment.manufacturer,
+  website: equipment.website,
+  supportPhone: equipment.supportPhone,
+  supportEmail: equipment.supportEmail,
+  partstownUrl: equipment.partstownUrl,
+  webstaurantUrl: equipment.webstaurantUrl,
+  parts: equipment.parts || []
+}));
+
+// Legacy data for other equipment
+const legacyPartsCatalog = [
+  {
+    category: "Refrigeration",
+    icon: "🧊",
+    equipment: [
+      {
+        name: "Hoshizaki Ice Makers",
+        parts: [
+          { name: "Water Filter", partNumber: "WF-001", price: "$45", inStock: true },
+          { name: "Harvest Switch", partNumber: "HS-500", price: "$125", inStock: true },
+          { name: "Water Inlet Valve", partNumber: "WIV-200", price: "$89", inStock: false },
+          { name: "Ice Level Sensor", partNumber: "ILS-300", price: "$75", inStock: true }
+        ]
+      },
+      {
+        name: "Perlick Glycol Chillers",
+        parts: [
+          { name: "Glycol Pump", partNumber: "GP-300", price: "$450", inStock: true },
+          { name: "Thermostat", partNumber: "T-100", price: "$75", inStock: true },
+          { name: "Glycol Lines", partNumber: "GL-500", price: "$25/ft", inStock: true },
+          { name: "Pressure Switch", partNumber: "PS-150", price: "$95", inStock: false }
+        ]
+      }
+    ]
+  },
+  {
+    category: "Cooking",
+    icon: "🔥",
+    equipment: [
+      {
+        name: "TurboChef Ovens",
+        parts: [
+          { name: "Temperature Sensor", partNumber: "TS-100", price: "$95", inStock: true },
+          { name: "Airflow Sensor", partNumber: "AS-200", price: "$120", inStock: true },
+          { name: "Door Switch", partNumber: "DS-300", price: "$65", inStock: true },
+          { name: "Heating Element", partNumber: "HE-400", price: "$180", inStock: false }
+        ]
+      },
+      {
+        name: "Southbend Ranges",
+        parts: [
+          { name: "Thermocouple", partNumber: "TC-150", price: "$35", inStock: true },
+          { name: "Gas Valve", partNumber: "GV-400", price: "$180", inStock: true },
+          { name: "Pilot Assembly", partNumber: "PA-250", price: "$85", inStock: true },
+          { name: "Burner Head", partNumber: "BH-300", price: "$120", inStock: true }
+        ]
+      }
+    ]
+  },
+  {
+    category: "Laundry",
+    icon: "👔",
+    equipment: [
+      {
+        name: "Chicago Folders",
+        parts: [
+          { name: "Feed Rollers", partNumber: "FR-100", price: "$125", inStock: true },
+          { name: "Air Pressure Valve", partNumber: "APV-50", price: "$75", inStock: true },
+          { name: "Alignment Sensor", partNumber: "AS-75", price: "$95", inStock: false },
+          { name: "Belt Assembly", partNumber: "BA-200", price: "$150", inStock: true }
+        ]
+      },
+      {
+        name: "Commercial Ironers",
+        parts: [
+          { name: "Heating Elements", partNumber: "HE-200", price: "$150", inStock: true },
+          { name: "Pressure Rollers", partNumber: "PR-300", price: "$200", inStock: true },
+          { name: "Speed Controller", partNumber: "SC-100", price: "$175", inStock: false },
+          { name: "Temperature Probe", partNumber: "TP-150", price: "$85", inStock: true }
+        ]
+      },
+      {
+        name: "Laundry Equipment",
+        parts: [
+          { name: "Drain Pump", partNumber: "DP-400", price: "$225", inStock: true },
+          { name: "Lint Filter", partNumber: "LF-50", price: "$35", inStock: true },
+          { name: "Motor Assembly", partNumber: "MA-500", price: "$350", inStock: true },
+          { name: "Water Level Switch", partNumber: "WLS-100", price: "$65", inStock: false }
+        ]
+      }
+    ]
+  }
+];
+---
+
+<BaseLayout>
+  <div class="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900">
+    
+    <!-- Animated Background -->
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="absolute -top-40 -right-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+      <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+      <div class="absolute top-40 left-40 w-80 h-80 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+    </div>
+
+    <!-- Header -->
+    <div class="relative z-10 container mx-auto px-6 py-12">
+      <div class="text-center mb-16">
+        <h1 class="text-5xl md:text-7xl font-black text-white mb-4 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-600 bg-clip-text text-transparent">
+          Parts Catalog
+        </h1>
+        <p class="text-xl text-blue-200">Find and order replacement parts for all equipment</p>
+      </div>
+
+      <!-- Real Equipment Parts -->
+      <div class="space-y-12">
+        {partsCatalog.map((equipment) => (
+          <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-8">
+            <div class="flex items-center justify-between mb-8">
+              <div class="flex items-center">
+                <div class="text-5xl mr-4">🔧</div>
+                <div>
+                  <h2 class="text-3xl font-bold text-white">{equipment.name}</h2>
+                  <p class="text-blue-200">{equipment.manufacturer}</p>
+                </div>
+              </div>
+              <div class="text-right">
+                <div class="text-sm text-blue-200">Support: {equipment.supportPhone}</div>
+                <div class="text-xs text-gray-400">{equipment.supportEmail}</div>
+              </div>
+            </div>
+
+            {equipment.parts.length > 0 ? (
+              <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                {equipment.parts.map((part) => (
+                  <div class="bg-white/5 rounded-xl p-6 hover:bg-white/10 transition-colors">
+                    <div class="flex items-start justify-between mb-4">
+                      <div class="flex-1">
+                        <h3 class="text-lg font-bold text-white mb-2">{part.name}</h3>
+                        <div class="text-blue-200 text-sm font-mono mb-1">Part #: {part.partNumber}</div>
+                        <div class="text-gray-400 text-xs font-mono">OEM #: {part.oemNumber}</div>
+                        <p class="text-gray-300 text-sm mt-2">{part.description}</p>
+                      </div>
+                      <div class={`text-xs px-2 py-1 rounded ${
+                        part.inStock 
+                          ? 'bg-green-500/20 text-green-300' 
+                          : 'bg-red-500/20 text-red-300'
+                      }`}>
+                        {part.inStock ? 'In Stock' : 'Out of Stock'}
+                      </div>
+                    </div>
+
+                    <!-- Pricing from multiple suppliers -->
+                    <div class="space-y-2 mb-4">
+                      <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-300">Parts Town:</span>
+                        <span class="text-green-400 font-bold">{part.partstownPrice}</span>
+                      </div>
+                      <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-300">Webstaurant:</span>
+                        <span class="text-blue-400 font-bold">{part.webstaurantPrice}</span>
+                      </div>
+                      <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-300">MSRP:</span>
+                        <span class="text-yellow-400 font-bold">{part.price}</span>
+                      </div>
+                    </div>
+
+                    <!-- Action buttons -->
+                    <div class="flex space-x-2">
+                      <a 
+                        href={part.partstownUrl}
+                        target="_blank"
+                        class="flex-1 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-center text-sm font-semibold"
+                      >
+                        🛒 Parts Town
+                      </a>
+                      <a 
+                        href={part.webstaurantUrl}
+                        target="_blank"
+                        class="flex-1 px-3 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-center text-sm font-semibold"
+                      >
+                        🛒 Webstaurant
+                      </a>
+                    </div>
+
+                    <!-- Specifications -->
+                    {part.specifications && (
+                      <div class="mt-4 pt-4 border-t border-gray-600">
+                        <div class="text-xs text-gray-400">
+                          {Object.entries(part.specifications).map(([key, value]) => (
+                            <div class="flex justify-between">
+                              <span class="capitalize">{key.replace(/([A-Z])/g, ' $1').trim()}:</span>
+                              <span class="text-gray-300">{value}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div class="text-center py-8">
+                <div class="text-4xl mb-4">🔍</div>
+                <p class="text-gray-300">No parts data available for this equipment.</p>
+                <p class="text-gray-400 text-sm mt-2">Contact support@myguy.dev for assistance.</p>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+
+      <!-- Supplier Information -->
+      <div class="mt-16 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-8">
+        <h2 class="text-3xl font-bold text-white mb-6 text-center">Our Trusted Suppliers</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="text-center bg-blue-500/10 rounded-xl p-6">
+            <div class="text-4xl mb-4">🏪</div>
+            <h3 class="text-lg font-bold text-white mb-2">Parts Town</h3>
+            <p class="text-blue-200 text-sm mb-3">Leading OEM parts supplier</p>
+            <a href="https://www.partstown.com" target="_blank" class="text-blue-400 hover:text-blue-300 text-sm">Visit Parts Town →</a>
+          </div>
+          
+          <div class="text-center bg-green-500/10 rounded-xl p-6">
+            <div class="text-4xl mb-4">🛒</div>
+            <h3 class="text-lg font-bold text-white mb-2">Webstaurant Store</h3>
+            <p class="text-green-200 text-sm mb-3">Commercial kitchen supplies</p>
+            <a href="https://www.webstaurantstore.com" target="_blank" class="text-green-400 hover:text-green-300 text-sm">Visit Webstaurant →</a>
+          </div>
+          
+          <div class="text-center bg-purple-500/10 rounded-xl p-6">
+            <div class="text-4xl mb-4">📞</div>
+            <h3 class="text-lg font-bold text-white mb-2">Direct Support</h3>
+            <p class="text-purple-200 text-sm mb-3">Expert technical assistance</p>
+            <a href="mailto:support@myguy.dev" class="text-purple-400 hover:text-purple-300 text-sm">Email Support →</a>
+          </div>
+          
+          <div class="text-center bg-yellow-500/10 rounded-xl p-6">
+            <div class="text-4xl mb-4">⚡</div>
+            <h3 class="text-lg font-bold text-white mb-2">Fast Shipping</h3>
+            <p class="text-yellow-200 text-sm mb-3">Same-day on in-stock items</p>
+            <span class="text-yellow-400 text-sm">1-2 business days</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Order Information -->
+      <div class="mt-8 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-8">
+        <h2 class="text-3xl font-bold text-white mb-6 text-center">How to Order</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="text-center">
+            <div class="text-4xl mb-4">🛒</div>
+            <h3 class="text-xl font-bold text-white mb-2">Direct Purchase</h3>
+            <p class="text-blue-200">Click supplier buttons above to order directly from Parts Town or Webstaurant Store</p>
+          </div>
+          
+          <div class="text-center">
+            <div class="text-4xl mb-4">📧</div>
+            <h3 class="text-xl font-bold text-white mb-2">Email Orders</h3>
+            <p class="text-blue-200">Send part numbers to <span id="manager-email">support@myguy.dev</span> for bulk orders or special requests</p>
+          </div>
+          
+          <div class="text-center">
+            <div class="text-4xl mb-4">📞</div>
+            <h3 class="text-xl font-bold text-white mb-2">Phone Support</h3>
+            <p class="text-blue-200">Call for urgent parts and technical help - we'll help you find the right parts</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Load manager email from localStorage
+    document.addEventListener('DOMContentLoaded', function() {
+      const managerEmail = localStorage.getItem('manager-email') || 'support@myguy.dev';
+      const emailElement = document.getElementById('manager-email');
+      if (emailElement) {
+        emailElement.textContent = managerEmail;
+      }
+    });
+  </script>
+
+  <style>
+    @keyframes blob {
+      0% { transform: translate(0px, 0px) scale(1); }
+      33% { transform: translate(30px, -50px) scale(1.1); }
+      66% { transform: translate(-20px, 20px) scale(0.9); }
+      100% { transform: translate(0px, 0px) scale(1); }
+    }
+    
+    .animate-blob { animation: blob 7s infinite; }
+    .animation-delay-2000 { animation-delay: 2s; }
+    .animation-delay-4000 { animation-delay: 4s; }
+  </style>
+</BaseLayout>

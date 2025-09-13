@@ -1,76 +1,378 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-const sections = [
-  // Refrigeration
-  { id: 'perlick', icon: '🍺', title: 'Perlick Glycol Chiller', category: 'Refrigeration' },
-  { id: 'perlick-lowboys', icon: '🍺', title: 'Perlick Low Boys', category: 'Refrigeration' },
-  { id: 'hoshizaki', icon: '🧊', title: 'Hoshizaki Ice Maker', category: 'Refrigeration' },
-  { id: 'hoshizaki-refrigerators', icon: '🧊', title: 'Hoshizaki Refrigerators', category: 'Refrigeration' },
-  { id: 'walk-ins', icon: '🚪', title: 'Walk-In Coolers', category: 'Refrigeration' },
-  { id: 'low-boys', icon: '📦', title: 'Low Boys', category: 'Refrigeration' },
-  { id: 'american-panel', icon: '🏢', title: 'American Panel', category: 'Refrigeration' },
-  
-  // Cooking
-  { id: 'turbochef', icon: '🔥', title: 'TurboChef Ovens', category: 'Cooking' },
-  { id: 'southbend', icon: '🍳', title: 'Southbend Range', category: 'Cooking' },
-  { id: 'frosty', icon: '🍦', title: 'Frosty Soft-Serve', category: 'Cooking' },
-  
-  // Controls
-  { id: 'k2e-controllers', icon: '🎛️', title: 'K2E Controllers', category: 'Controls' },
-  { id: 'adt-systems', icon: '📊', title: 'ADT Systems', category: 'Controls' },
-  
-  // Other Equipment
-  { id: 'chicago-folders', icon: '📄', title: 'Chicago Folders', category: 'Other' },
-  { id: 'ironers', icon: '🧺', title: 'Flatwork Ironers', category: 'Other' },
-  { id: 'laundry', icon: '🌀', title: 'Laundry Equipment', category: 'Other' },
-  { id: 'bills-bitch', icon: '✨', title: 'Bill\'s Bitch', category: 'Other' },
+// Equipment documentation data
+const equipmentDocs = [
+  {
+    id: "hoshizaki",
+    name: "Hoshizaki Ice Makers",
+    category: "Refrigeration",
+    icon: "🧊",
+    description: "Commercial ice makers for restaurants and bars",
+    manuals: [
+      {
+        title: "Hoshizaki KM-500MAH Service Manual",
+        file: "hoshizaki.pdf",
+        pages: 45,
+        lastUpdated: "2024"
+      },
+      {
+        title: "Hoshizaki Installation Guide",
+        file: "hoshizaki-install.pdf", 
+        pages: 12,
+        lastUpdated: "2024"
+      }
+    ],
+    commonIssues: [
+      "No ice production - check water supply and filters",
+      "Ice too thin - adjust water level and harvest time",
+      "Machine not harvesting - check harvest switch and timer"
+    ],
+    parts: [
+      { name: "Water Filter", partNumber: "WF-001", price: "$45" },
+      { name: "Harvest Switch", partNumber: "HS-500", price: "$125" },
+      { name: "Water Inlet Valve", partNumber: "WIV-200", price: "$89" }
+    ]
+  },
+  {
+    id: "perlick",
+    name: "Perlick Glycol Chillers",
+    category: "Refrigeration", 
+    icon: "🍺",
+    description: "Beer and beverage cooling systems",
+    manuals: [
+      {
+        title: "Perlick PC-2000 Service Manual",
+        file: "perlick.pdf",
+        pages: 38,
+        lastUpdated: "2024"
+      },
+      {
+        title: "Glycol System Setup Guide",
+        file: "perlick-glycol.pdf",
+        pages: 18,
+        lastUpdated: "2024"
+      }
+    ],
+    commonIssues: [
+      "Low glycol pressure - check pump and lines",
+      "Temperature fluctuations - calibrate thermostat",
+      "Pump not running - check power and fuses"
+    ],
+    parts: [
+      { name: "Glycol Pump", partNumber: "GP-300", price: "$450" },
+      { name: "Thermostat", partNumber: "T-100", price: "$75" },
+      { name: "Glycol Lines", partNumber: "GL-500", price: "$25/ft" }
+    ]
+  },
+  {
+    id: "turbochef",
+    name: "TurboChef Ovens",
+    category: "Cooking",
+    icon: "🔥",
+    description: "High-speed convection ovens",
+    manuals: [
+      {
+        title: "TurboChef Speedcook Service Manual",
+        file: "turbochef.pdf",
+        pages: 52,
+        lastUpdated: "2024"
+      },
+      {
+        title: "TurboChef Programming Guide",
+        file: "turbochef-programming.pdf",
+        pages: 24,
+        lastUpdated: "2024"
+      }
+    ],
+    commonIssues: [
+      "E05 Error - Temperature sensor failure",
+      "E18 Error - Airflow sensor issue", 
+      "E32 Error - Door switch malfunction"
+    ],
+    parts: [
+      { name: "Temperature Sensor", partNumber: "TS-100", price: "$95" },
+      { name: "Airflow Sensor", partNumber: "AS-200", price: "$120" },
+      { name: "Door Switch", partNumber: "DS-300", price: "$65" }
+    ]
+  },
+  {
+    id: "southbend",
+    name: "Southbend Ranges",
+    category: "Cooking",
+    icon: "🔥",
+    description: "Commercial gas ranges and griddles",
+    manuals: [
+      {
+        title: "Southbend Range Service Manual",
+        file: "southbend.pdf",
+        pages: 41,
+        lastUpdated: "2024"
+      },
+      {
+        title: "Gas Line Installation Guide",
+        file: "southbend-gas.pdf",
+        pages: 15,
+        lastUpdated: "2024"
+      }
+    ],
+    commonIssues: [
+      "Pilot won't light - check gas supply and thermocouple",
+      "Burner won't ignite - clean pilot and check gas pressure",
+      "Temperature not reaching set point - check gas valve"
+    ],
+    parts: [
+      { name: "Thermocouple", partNumber: "TC-150", price: "$35" },
+      { name: "Gas Valve", partNumber: "GV-400", price: "$180" },
+      { name: "Pilot Assembly", partNumber: "PA-250", price: "$85" }
+    ]
+  },
+  {
+    id: "chicago-folders",
+    name: "Chicago Folders",
+    category: "Laundry",
+    icon: "👔",
+    description: "Commercial shirt and garment folders",
+    manuals: [
+      {
+        title: "Chicago Folder Service Manual",
+        file: "chicago-folders.pdf",
+        pages: 33,
+        lastUpdated: "2024"
+      },
+      {
+        title: "Folder Setup and Calibration",
+        file: "chicago-setup.pdf",
+        pages: 20,
+        lastUpdated: "2024"
+      }
+    ],
+    commonIssues: [
+      "Misfeeding - adjust air pressure and alignment",
+      "Wrinkled output - check roller pressure settings",
+      "Jamming - clean feed path and check sensors"
+    ],
+    parts: [
+      { name: "Feed Rollers", partNumber: "FR-100", price: "$125" },
+      { name: "Air Pressure Valve", partNumber: "APV-50", price: "$75" },
+      { name: "Alignment Sensor", partNumber: "AS-75", price: "$95" }
+    ]
+  },
+  {
+    id: "ironers",
+    name: "Commercial Ironers",
+    category: "Laundry",
+    icon: "👕",
+    description: "Large capacity garment ironing systems",
+    manuals: [
+      {
+        title: "Ironer Service Manual",
+        file: "ironers.pdf",
+        pages: 29,
+        lastUpdated: "2024"
+      },
+      {
+        title: "Ironer Maintenance Guide",
+        file: "ironers-maintenance.pdf",
+        pages: 16,
+        lastUpdated: "2024"
+      }
+    ],
+    commonIssues: [
+      "Wrinkles in output - adjust roller pressure and speed",
+      "Roller not heating - check heating elements",
+      "Speed mismatch - calibrate motor controls"
+    ],
+    parts: [
+      { name: "Heating Elements", partNumber: "HE-200", price: "$150" },
+      { name: "Pressure Rollers", partNumber: "PR-300", price: "$200" },
+      { name: "Speed Controller", partNumber: "SC-100", price: "$175" }
+    ]
+  },
+  {
+    id: "laundry",
+    name: "Laundry Equipment",
+    category: "Laundry",
+    icon: "🧺",
+    description: "Washers, dryers, and finishing equipment",
+    manuals: [
+      {
+        title: "Laundry Equipment Service Manual",
+        file: "laundry.pdf",
+        pages: 47,
+        lastUpdated: "2024"
+      },
+      {
+        title: "Laundry System Troubleshooting",
+        file: "laundry-troubleshooting.pdf",
+        pages: 22,
+        lastUpdated: "2024"
+      }
+    ],
+    commonIssues: [
+      "Drain error - check drain pump and filters",
+      "Clogged filter - clean lint trap and drain lines",
+      "Pump failure - check motor and electrical connections"
+    ],
+    parts: [
+      { name: "Drain Pump", partNumber: "DP-400", price: "$225" },
+      { name: "Lint Filter", partNumber: "LF-50", price: "$35" },
+      { name: "Motor Assembly", partNumber: "MA-500", price: "$350" }
+    ]
+  }
 ];
 ---
 
 <BaseLayout>
-  <div class="mb-6">
-    <h1 class="text-3xl font-bold">📚 Equipment Docs</h1>
-    <p class="text-slate-600">Searchable hub with links to each equipment page and manual placeholders.</p>
-  </div>
+  <div class="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900">
+    
+    <!-- Animated Background -->
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="absolute -top-40 -right-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+      <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+      <div class="absolute top-40 left-40 w-80 h-80 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+    </div>
 
-  <div class="mb-6 flex gap-3 items-center">
-    <input id="docsSearch" type="text" placeholder="Search docs..." class="flex-1 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" />
-    <span class="text-sm text-slate-500">{sections.length} sections</span>
-  </div>
+    <!-- Header -->
+    <div class="relative z-10 container mx-auto px-6 py-12">
+      <div class="text-center mb-16">
+        <h1 class="text-5xl md:text-7xl font-black text-white mb-4 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-600 bg-clip-text text-transparent">
+          Equipment Documentation
+        </h1>
+        <p class="text-xl text-blue-200">Complete manuals, troubleshooting guides, and parts information</p>
+      </div>
 
-  <!-- Equipment by Category -->
-  {['Refrigeration', 'Cooking', 'Controls', 'Other'].map(category => (
-    <div class="mb-8">
-      <h2 class="text-2xl font-bold mb-4 text-slate-800">{category}</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {sections.filter(s => s.category === category).map((s) => (
-          <div class="doc-card bg-white rounded-lg shadow p-5 border hover:shadow-md transition" data-title={s.title.toLowerCase()}>
-            <div class="text-3xl mb-2">{s.icon}</div>
-            <div class="text-xl font-semibold mb-1">{s.title}</div>
-            <div class="text-sm text-slate-500 mb-3">Complete equipment documentation</div>
-            <div class="flex flex-wrap gap-2 text-sm">
-              <a href={`/${s.id}`} class="px-3 py-1 rounded bg-blue-600 text-white hover:bg-blue-700 transition-colors">📊 Dashboard</a>
-              <a href={`/manuals/${s.id}`} class="px-3 py-1 rounded bg-green-600 text-white hover:bg-green-700 transition-colors">📄 Manual</a>
-              <a href={`/parts/${s.id}`} class="px-3 py-1 rounded bg-purple-600 text-white hover:bg-purple-700 transition-colors">🔧 Parts</a>
+      <!-- Equipment Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {equipmentDocs.map((equipment) => (
+          <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
+            
+            <!-- Equipment Header -->
+            <div class="flex items-center mb-4">
+              <div class="text-4xl mr-4">{equipment.icon}</div>
+              <div>
+                <h3 class="text-xl font-bold text-white">{equipment.name}</h3>
+                <p class="text-blue-200 text-sm">{equipment.category}</p>
+              </div>
+            </div>
+            
+            <p class="text-gray-300 mb-6">{equipment.description}</p>
+
+            <!-- Manuals Section -->
+            <div class="mb-6">
+              <h4 class="text-lg font-semibold text-white mb-3 flex items-center">
+                <span class="mr-2">📚</span>
+                Manuals
+              </h4>
+              <div class="space-y-2">
+                {equipment.manuals.map((manual) => (
+                  <a 
+                    href={`/manuals/${manual.file}`}
+                    target="_blank"
+                    class="block p-3 bg-blue-500/20 border border-blue-400/30 rounded-lg hover:bg-blue-500/30 transition-colors"
+                  >
+                    <div class="flex items-center justify-between">
+                      <div>
+                        <div class="text-white font-medium text-sm">{manual.title}</div>
+                        <div class="text-blue-200 text-xs">{manual.pages} pages • {manual.lastUpdated}</div>
+                      </div>
+                      <div class="text-blue-400">📄</div>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            <!-- Common Issues -->
+            <div class="mb-6">
+              <h4 class="text-lg font-semibold text-white mb-3 flex items-center">
+                <span class="mr-2">⚠️</span>
+                Common Issues
+              </h4>
+              <ul class="space-y-1">
+                {equipment.commonIssues.map((issue) => (
+                  <li class="text-gray-300 text-sm flex items-start">
+                    <span class="text-red-400 mr-2">•</span>
+                    {issue}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <!-- Parts -->
+            <div>
+              <h4 class="text-lg font-semibold text-white mb-3 flex items-center">
+                <span class="mr-2">🛠</span>
+                Common Parts
+              </h4>
+              <div class="space-y-1">
+                {equipment.parts.map((part) => (
+                  <div class="flex justify-between items-center text-sm">
+                    <span class="text-gray-300">{part.name}</span>
+                    <div class="text-right">
+                      <div class="text-blue-400 font-mono text-xs">{part.partNumber}</div>
+                      <div class="text-green-400 font-semibold">{part.price}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="mt-6 flex space-x-2">
+              <a 
+                href={`/parts/${equipment.id}`}
+                class="flex-1 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-center text-sm font-semibold"
+              >
+                🛠 Parts
+              </a>
+              <a 
+                href={`/equipment/${equipment.id}`}
+                class="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-center text-sm font-semibold"
+              >
+                📋 Details
+              </a>
             </div>
           </div>
         ))}
       </div>
+
+      <!-- Quick Access Section -->
+      <div class="mt-16 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-8">
+        <h2 class="text-3xl font-bold text-white mb-6 text-center">Quick Access</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <a href="/manuals" class="group bg-gradient-to-br from-blue-500/20 to-indigo-500/20 backdrop-blur-md border border-blue-300/30 rounded-2xl p-6 hover:bg-blue-500/30 transition-all duration-300 transform hover:scale-105">
+            <div class="text-4xl mb-4 group-hover:scale-110 transition-transform">📚</div>
+            <h3 class="text-xl font-bold text-white mb-2">All Manuals</h3>
+            <p class="text-blue-200">Browse all equipment manuals in one place</p>
+          </a>
+          
+          <a href="/parts" class="group bg-gradient-to-br from-green-500/20 to-emerald-500/20 backdrop-blur-md border border-green-300/30 rounded-2xl p-6 hover:bg-green-500/30 transition-all duration-300 transform hover:scale-105">
+            <div class="text-4xl mb-4 group-hover:scale-110 transition-transform">🛠</div>
+            <h3 class="text-xl font-bold text-white mb-2">Parts Catalog</h3>
+            <p class="text-green-200">Find and order replacement parts</p>
+          </a>
+          
+          <a href="/contact" class="group bg-gradient-to-br from-purple-500/20 to-pink-500/20 backdrop-blur-md border border-purple-300/30 rounded-2xl p-6 hover:bg-purple-500/30 transition-all duration-300 transform hover:scale-105">
+            <div class="text-4xl mb-4 group-hover:scale-110 transition-transform">📞</div>
+            <h3 class="text-xl font-bold text-white mb-2">Get Support</h3>
+            <p class="text-purple-200">Contact support@myguy.dev for help</p>
+          </a>
+        </div>
+      </div>
     </div>
-  ))}
+  </div>
 
-  <script>
-    const input = document.getElementById('docsSearch');
-    const cards = document.querySelectorAll('.doc-card');
-    input.addEventListener('input', () => {
-      const q = input.value.toLowerCase();
-      cards.forEach(c => {
-        const t = c.dataset.title;
-        c.style.display = !q || t.includes(q) ? 'block' : 'none';
-      });
-    });
-  </script>
+  <style>
+    @keyframes blob {
+      0% { transform: translate(0px, 0px) scale(1); }
+      33% { transform: translate(30px, -50px) scale(1.1); }
+      66% { transform: translate(-20px, 20px) scale(0.9); }
+      100% { transform: translate(0px, 0px) scale(1); }
+    }
+    
+    .animate-blob { animation: blob 7s infinite; }
+    .animation-delay-2000 { animation-delay: 2s; }
+    .animation-delay-4000 { animation-delay: 4s; }
+  </style>
 </BaseLayout>
-
-

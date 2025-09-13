@@ -1,0 +1,164 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+// All manuals data
+const allManuals = [
+  {
+    id: "hoshizaki",
+    name: "Hoshizaki Ice Makers",
+    icon: "🧊",
+    manuals: [
+      { title: "KM-500MAH Service Manual", file: "hoshizaki.pdf", pages: 45 },
+      { title: "Installation Guide", file: "hoshizaki-install.pdf", pages: 12 }
+    ]
+  },
+  {
+    id: "perlick", 
+    name: "Perlick Glycol Chillers",
+    icon: "🍺",
+    manuals: [
+      { title: "PC-2000 Service Manual", file: "perlick.pdf", pages: 38 },
+      { title: "Glycol System Setup", file: "perlick-glycol.pdf", pages: 18 }
+    ]
+  },
+  {
+    id: "turbochef",
+    name: "TurboChef Ovens", 
+    icon: "🔥",
+    manuals: [
+      { title: "Speedcook Service Manual", file: "turbochef.pdf", pages: 52 },
+      { title: "Programming Guide", file: "turbochef-programming.pdf", pages: 24 }
+    ]
+  },
+  {
+    id: "southbend",
+    name: "Southbend Ranges",
+    icon: "🔥", 
+    manuals: [
+      { title: "Range Service Manual", file: "southbend.pdf", pages: 41 },
+      { title: "Gas Line Installation", file: "southbend-gas.pdf", pages: 15 }
+    ]
+  },
+  {
+    id: "chicago-folders",
+    name: "Chicago Folders",
+    icon: "👔",
+    manuals: [
+      { title: "Folder Service Manual", file: "chicago-folders.pdf", pages: 33 },
+      { title: "Setup and Calibration", file: "chicago-setup.pdf", pages: 20 }
+    ]
+  },
+  {
+    id: "ironers",
+    name: "Commercial Ironers",
+    icon: "👕",
+    manuals: [
+      { title: "Ironer Service Manual", file: "ironers.pdf", pages: 29 },
+      { title: "Maintenance Guide", file: "ironers-maintenance.pdf", pages: 16 }
+    ]
+  },
+  {
+    id: "laundry",
+    name: "Laundry Equipment",
+    icon: "🧺",
+    manuals: [
+      { title: "Laundry Service Manual", file: "laundry.pdf", pages: 47 },
+      { title: "Troubleshooting Guide", file: "laundry-troubleshooting.pdf", pages: 22 }
+    ]
+  }
+];
+---
+
+<BaseLayout>
+  <div class="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900">
+    
+    <!-- Animated Background -->
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="absolute -top-40 -right-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+      <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+      <div class="absolute top-40 left-40 w-80 h-80 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+    </div>
+
+    <!-- Header -->
+    <div class="relative z-10 container mx-auto px-6 py-12">
+      <div class="text-center mb-16">
+        <h1 class="text-5xl md:text-7xl font-black text-white mb-4 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-600 bg-clip-text text-transparent">
+          All Manuals
+        </h1>
+        <p class="text-xl text-blue-200">Complete equipment documentation library</p>
+      </div>
+
+      <!-- Manuals Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {allManuals.map((equipment) => (
+          <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
+            
+            <!-- Equipment Header -->
+            <div class="flex items-center mb-4">
+              <div class="text-4xl mr-4">{equipment.icon}</div>
+              <div>
+                <h3 class="text-xl font-bold text-white">{equipment.name}</h3>
+              </div>
+            </div>
+
+            <!-- Manuals List -->
+            <div class="space-y-3">
+              {equipment.manuals.map((manual) => (
+                <a 
+                  href={`/manuals/${manual.file}`}
+                  target="_blank"
+                  class="block p-4 bg-blue-500/20 border border-blue-400/30 rounded-lg hover:bg-blue-500/30 transition-colors group"
+                >
+                  <div class="flex items-center justify-between">
+                    <div class="flex-1">
+                      <div class="text-white font-medium group-hover:text-blue-200 transition-colors">
+                        {manual.title}
+                      </div>
+                      <div class="text-blue-200 text-sm mt-1">
+                        {manual.pages} pages • PDF
+                      </div>
+                    </div>
+                    <div class="text-blue-400 group-hover:text-blue-300 transition-colors">
+                      📄
+                    </div>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="mt-16 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-8">
+        <h2 class="text-3xl font-bold text-white mb-6 text-center">Need Help?</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <a href="/contact" class="group bg-gradient-to-br from-purple-500/20 to-pink-500/20 backdrop-blur-md border border-purple-300/30 rounded-2xl p-6 hover:bg-purple-500/30 transition-all duration-300 transform hover:scale-105">
+            <div class="text-4xl mb-4 group-hover:scale-110 transition-transform">📞</div>
+            <h3 class="text-xl font-bold text-white mb-2">Contact Support</h3>
+            <p class="text-purple-200">Get help from support@myguy.dev</p>
+          </a>
+          
+          <a href="/docs" class="group bg-gradient-to-br from-green-500/20 to-emerald-500/20 backdrop-blur-md border border-green-300/30 rounded-2xl p-6 hover:bg-green-500/30 transition-all duration-300 transform hover:scale-105">
+            <div class="text-4xl mb-4 group-hover:scale-110 transition-transform">📚</div>
+            <h3 class="text-xl font-bold text-white mb-2">Equipment Docs</h3>
+            <p class="text-green-200">Browse equipment details and troubleshooting</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    @keyframes blob {
+      0% { transform: translate(0px, 0px) scale(1); }
+      33% { transform: translate(30px, -50px) scale(1.1); }
+      66% { transform: translate(-20px, 20px) scale(0.9); }
+      100% { transform: translate(0px, 0px) scale(1); }
+    }
+    
+    .animate-blob { animation: blob 7s infinite; }
+    .animation-delay-2000 { animation-delay: 2s; }
+    .animation-delay-4000 { animation-delay: 4s; }
+  </style>
+</BaseLayout>

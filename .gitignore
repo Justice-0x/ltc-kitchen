@@ -31,7 +31,7 @@ lerna-debug.log*
 ._*
 .Spotlight-V100
 .Trashes
-ehthumbs.db
+ehthumbs.db  # Windows thumbnail cache
 Thumbs.db
 
 # IDEs

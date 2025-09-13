@@ -1,0 +1,162 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout>
+  <div class="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 p-8">
+    <div class="max-w-2xl mx-auto text-center">
+      <h1 class="text-4xl font-bold text-white mb-8">QR Code Test Page</h1>
+      
+      <div class="bg-white rounded-lg p-8 mb-8">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">Test Your QR Code</h2>
+        <p class="text-gray-600 mb-6">Scan your QR code to test Bills Bitch access:</p>
+        
+        <!-- QR Code Scanner Test -->
+        <div class="scanner-area bg-gray-100 p-8 rounded-lg border-2 border-dashed border-gray-300 mb-6">
+          <div class="text-6xl mb-4">📱</div>
+          <p class="text-sm text-gray-500">QR Code Scanner Area</p>
+          <p class="text-xs text-gray-400 mt-2">Point your QR code at the camera</p>
+        </div>
+        
+        <button onclick="testQRScan()" class="px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors font-semibold mb-4">
+          📸 Test QR Scanner
+        </button>
+        
+        <div class="space-y-4">
+          <p class="text-sm text-gray-600">
+            <strong>Instructions:</strong><br>
+            1. Click "Test QR Scanner" above<br>
+            2. Allow camera access when prompted<br>
+            3. Point your phone's QR code at the camera<br>
+            4. It should unlock Bills Bitch access
+          </p>
+          
+          <div class="flex space-x-4 justify-center">
+            <a href="/bills-bitch" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+              🔒 Go to Bills Bitch
+            </a>
+            <a href="/admin" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
+              ⚙️ Admin Panel
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    import QrScanner from 'qr-scanner';
+    
+    // Make QrScanner available globally
+    window.QrScanner = QrScanner;
+    
+    function testQRScan() {
+      // Check if QR scanner is available
+      if (typeof window !== 'undefined' && window.QrScanner) {
+        // Check if camera is available
+        if (!QrScanner.hasCamera()) {
+          alert('No camera found. Please use a device with a camera or try the manual test below.');
+          return;
+        }
+        
+        // Create a video element for scanning
+        const video = document.createElement('video');
+        video.style.width = '100%';
+        video.style.height = '200px';
+        video.style.border = '2px solid #8b5cf6';
+        video.style.borderRadius = '8px';
+        
+        // Replace the scanner area with the video
+        const scannerArea = document.querySelector('.scanner-area');
+        scannerArea.innerHTML = '';
+        scannerArea.appendChild(video);
+        
+        const qrScanner = new QrScanner(video, result => {
+          console.log('QR Code detected:', result);
+          qrScanner.stop();
+          
+          // Extract the actual text content from the result
+          const qrText = result.data || result.text || result.toString() || JSON.stringify(result);
+          console.log('QR Text extracted:', qrText);
+          
+          // Show what was detected first
+          alert('QR Code Detected: ' + qrText + '\n\nChecking if valid...');
+          
+          // More flexible validation - check for any of these patterns
+          const isValid = qrText.includes('myguy.dev') || 
+                        qrText.includes('bills-bitch') || 
+                        qrText.includes('BILLS_BITCH') ||
+                        qrText.includes('myguy') ||
+                        qrText.includes('bill') ||
+                        qrText.toLowerCase().includes('bills') ||
+                        qrText.toLowerCase().includes('bitch') ||
+                        qrText.includes('qrco.de') ||
+                        qrText.includes('bglkX3');
+          
+          if (isValid) {
+            alert('✅ Valid Bills Bitch QR Code! Access granted!');
+            // Set the unlock flag
+            localStorage.setItem('bills-bitch-unlocked', 'true');
+            // Redirect to Bills Bitch
+            window.location.href = '/bills-bitch';
+          } else {
+            alert('❌ Invalid QR Code. Please scan the correct Bills Bitch QR code.\n\nDetected: ' + qrText + '\n\nExpected: URL containing "myguy.dev" or "bills-bitch"');
+            // Restart scanning
+            qrScanner.start();
+          }
+        }, {
+          highlightScanRegion: true,
+          highlightCodeOutline: true,
+        });
+        
+        qrScanner.start().catch(err => {
+          console.error('QR Scanner error:', err);
+          alert('QR Scanner error: ' + err.message);
+        });
+        
+        // Add stop button
+        const stopButton = document.createElement('button');
+        stopButton.textContent = 'Stop Scanning';
+        stopButton.className = 'mt-4 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors';
+        stopButton.onclick = () => {
+          qrScanner.stop();
+          scannerArea.innerHTML = `
+            <div class="text-6xl mb-4">📱</div>
+            <p class="text-sm text-gray-500">QR Code Scanner Area</p>
+            <p class="text-xs text-gray-400 mt-2">Point your QR code at the camera</p>
+          `;
+        };
+        scannerArea.appendChild(stopButton);
+        
+      } else {
+        // Fallback - manual input
+        const testCode = prompt('Enter your QR code content (or paste the URL from your QR code):');
+        if (testCode) {
+          console.log('Test QR Code:', testCode);
+          
+          // More flexible validation for manual input
+          const isValid = testCode.includes('myguy.dev') || 
+                        testCode.includes('bills-bitch') || 
+                        testCode.includes('BILLS_BITCH') ||
+                        testCode.includes('myguy') ||
+                        testCode.includes('bill') ||
+                        testCode.toLowerCase().includes('bills') ||
+                        testCode.toLowerCase().includes('bitch');
+          
+          if (isValid) {
+            alert('✅ Valid Bills Bitch QR Code! Access granted!');
+            // Set the unlock flag
+            localStorage.setItem('bills-bitch-unlocked', 'true');
+            // Redirect to Bills Bitch
+            window.location.href = '/bills-bitch';
+          } else {
+            alert('❌ Invalid QR Code. Please scan the correct Bills Bitch QR code.\n\nDetected: ' + testCode + '\n\nExpected: URL containing "myguy.dev" or "bills-bitch"');
+          }
+        }
+      }
+    }
+    
+    // Make function globally available
+    window.testQRScan = testQRScan;
+  </script>
+</BaseLayout>

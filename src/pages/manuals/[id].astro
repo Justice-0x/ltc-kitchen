@@ -1,5 +1,8 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import InteractiveManual from "../../components/InteractiveManual.jsx";
+import StatusIndicator from "../../components/StatusIndicator.jsx";
+import FloatingActions from "../../components/FloatingActions.jsx";
 
 export async function getStaticPaths() {
   const equipmentIds = [
@@ -273,15 +276,19 @@ const additionalManualData = {
   'chicago-folders': {
     title: 'Chicago Folders Manual',
     icon: '📄',
-    model: 'CF-2000',
+    model: 'CF-2000 High-Speed Folder',
     specs: {
       'Processing Speed': '12,000 sheets/hour',
       'Paper Weight': '16-28 lb bond',
-      'Fold Types': 'Letter, Half, Z-fold',
-      'Power': '115V/60Hz/1Ph',
+      'Fold Types': 'Letter, Half, Z-fold, Gate fold',
+      'Power': '115V/60Hz/1Ph - 2.5 Amps',
       'Air Pressure': '80-120 PSI',
       'Dimensions': '48"W x 30"D x 42"H',
       'Weight': '285 lbs',
+      'Feed Capacity': '500 sheets',
+      'Stack Height': '4 inches max',
+      'Fold Accuracy': '±0.5mm',
+      'Noise Level': '65 dB',
       'Warranty': '1 Year Parts & Labor'
     },
     sections: [
@@ -295,7 +302,89 @@ const additionalManualData = {
       'Error Code Reference',
       'Parts Identification',
       'Service Manual'
-    ]
+    ],
+    troubleshooting: {
+      'Paper Jamming': {
+        causes: ['Incorrect paper weight', 'Dirty feed rollers', 'Misaligned paper guides', 'Worn feed belts'],
+        solutions: ['Check paper weight (16-28 lb)', 'Clean feed rollers with alcohol', 'Adjust paper guide alignment', 'Replace worn feed belts']
+      },
+      'Inconsistent Folding': {
+        causes: ['Dull folding knives', 'Incorrect fold settings', 'Paper moisture issues', 'Worn fold rollers'],
+        solutions: ['Sharpen or replace folding knives', 'Recalibrate fold settings', 'Check paper storage conditions', 'Replace fold rollers']
+      },
+      'Machine Won\'t Start': {
+        causes: ['Power supply issue', 'Safety switch activated', 'Control board failure', 'Motor overload'],
+        solutions: ['Check 115V power supply', 'Reset safety switches', 'Test control board outputs', 'Check motor windings']
+      }
+    },
+    maintenance: {
+      'Daily': ['Clean feed rollers', 'Check paper guides', 'Lubricate moving parts', 'Test all fold functions'],
+      'Weekly': ['Deep clean paper path', 'Check belt tension', 'Inspect folding knives', 'Calibrate sensors'],
+      'Monthly': ['Replace air filters', 'Service motors', 'Check electrical connections', 'Update software'],
+      'Quarterly': ['Complete system overhaul', 'Replace wear parts', 'Professional calibration', 'Safety inspection']
+    }
+  },
+  'perlick-lowboys': {
+    title: 'Perlick Low Boys Manual',
+    icon: '🍺',
+    model: 'PB42-2 Door Low Boy Refrigerator',
+    specs: {
+      'Storage Capacity': '42 cu ft',
+      'Temperature Range': '32-40°F (adjustable)',
+      'Power': '115V/60Hz/1Ph - 3.2 Amps',
+      'Refrigerant': 'R-404A - 8 oz charge',
+      'Dimensions': '48"W x 32"D x 34"H',
+      'Net Weight': '285 lbs',
+      'Door Type': '2-door with glass panels',
+      'Shelving': '4 adjustable wire shelves',
+      'Lighting': 'LED interior lighting',
+      'Thermostat': 'Digital with 0.1°F accuracy',
+      'Safety Features': 'Door locks, temperature alarm',
+      'Certifications': 'NSF, UL Listed',
+      'Warranty': '2 Years Parts & Labor'
+    },
+    sections: [
+      'Safety Information & Warnings',
+      'Installation Requirements',
+      'Electrical Connection & Wiring',
+      'Initial Startup Procedures',
+      'Temperature Control Setup',
+      'Daily Operation Guide',
+      'Cleaning & Sanitization',
+      'Preventive Maintenance Schedule',
+      'Troubleshooting Guide',
+      'Component Testing Procedures',
+      'Refrigerant System Service',
+      'Electrical Schematics & Wiring',
+      'Parts Breakdown & Ordering',
+      'Service Tools Required',
+      'Warranty & Technical Support'
+    ],
+    troubleshooting: {
+      'Temperature Not Maintaining': {
+        causes: ['Door seal failure', 'Thermostat malfunction', 'Low refrigerant charge', 'Dirty condenser'],
+        solutions: ['Replace door gaskets', 'Calibrate or replace thermostat', 'Check for leaks and recharge', 'Clean condenser coil']
+      },
+      'Excessive Frost Build-up': {
+        causes: ['Door left open', 'Frequent door opening', 'High humidity', 'Defrost system failure'],
+        solutions: ['Check door closure', 'Reduce door opening frequency', 'Install dehumidifier', 'Test defrost timer and heater']
+      },
+      'Compressor Won\'t Start': {
+        causes: ['Power supply issue', 'Thermostat failure', 'Start relay problem', 'Compressor overload'],
+        solutions: ['Check 115V power and circuit breaker', 'Test thermostat continuity', 'Replace start relay', 'Check compressor windings']
+      },
+      'Loud Operation': {
+        causes: ['Loose mounting bolts', 'Fan blade hitting housing', 'Compressor mounting issues', 'Refrigerant flow problems'],
+        solutions: ['Tighten all mounting bolts', 'Check fan blade clearance', 'Secure compressor mounts', 'Check refrigerant levels']
+      }
+    },
+    maintenance: {
+      'Daily': ['Check temperature readings', 'Inspect door seals', 'Clean exterior surfaces', 'Verify proper door closure'],
+      'Weekly': ['Clean interior surfaces', 'Check condenser coil', 'Test door locks', 'Inspect electrical connections'],
+      'Monthly': ['Deep clean interior', 'Check refrigerant levels', 'Test defrost system', 'Lubricate door hinges'],
+      'Quarterly': ['Replace air filter', 'Service door gaskets', 'Check thermostat calibration', 'Professional inspection'],
+      'Annually': ['Complete system service', 'Refrigerant leak test', 'Electrical safety check', 'Warranty registration']
+    }
   },
   'ironers': {
     title: 'Commercial Ironers Manual',
@@ -515,10 +604,74 @@ const additionalManualData = {
       'Warranty Information',
       'Technical Support'
     ]
+  },
+  'hoshizaki-refrigerators': {
+    title: 'Hoshizaki Refrigerators Manual',
+    icon: '🧊',
+    model: 'HR-48U Under Counter Refrigerator',
+    specs: {
+      'Storage Capacity': '4.8 cu ft',
+      'Temperature Range': '32-40°F (adjustable)',
+      'Power': '115V/60Hz/1Ph - 2.8 Amps',
+      'Refrigerant': 'R-134a - 6 oz charge',
+      'Dimensions': '24"W x 28"D x 34"H',
+      'Net Weight': '145 lbs',
+      'Door Type': 'Single door with glass panel',
+      'Shelving': '3 adjustable wire shelves',
+      'Lighting': 'LED interior lighting',
+      'Thermostat': 'Digital with 0.1°F accuracy',
+      'Safety Features': 'Door locks, temperature alarm',
+      'Certifications': 'NSF, UL Listed',
+      'Warranty': '2 Years Parts & Labor'
+    },
+    sections: [
+      'Safety Information & Warnings',
+      'Installation Requirements',
+      'Electrical Connection & Wiring',
+      'Initial Startup Procedures',
+      'Temperature Control Setup',
+      'Daily Operation Guide',
+      'Cleaning & Sanitization',
+      'Preventive Maintenance Schedule',
+      'Troubleshooting Guide',
+      'Component Testing Procedures',
+      'Refrigerant System Service',
+      'Electrical Schematics & Wiring',
+      'Parts Breakdown & Ordering',
+      'Service Tools Required',
+      'Warranty & Technical Support'
+    ],
+    troubleshooting: {
+      'Temperature Not Maintaining': {
+        causes: ['Door seal failure', 'Thermostat malfunction', 'Low refrigerant charge', 'Dirty condenser'],
+        solutions: ['Replace door gaskets', 'Calibrate or replace thermostat', 'Check for leaks and recharge', 'Clean condenser coil']
+      },
+      'Excessive Frost Build-up': {
+        causes: ['Door left open', 'Frequent door opening', 'High humidity', 'Defrost system failure'],
+        solutions: ['Check door closure', 'Reduce door opening frequency', 'Install dehumidifier', 'Test defrost timer and heater']
+      },
+      'Compressor Won\'t Start': {
+        causes: ['Power supply issue', 'Thermostat failure', 'Start relay problem', 'Compressor overload'],
+        solutions: ['Check 115V power and circuit breaker', 'Test thermostat continuity', 'Replace start relay', 'Check compressor windings']
+      },
+      'Loud Operation': {
+        causes: ['Loose mounting bolts', 'Fan blade hitting housing', 'Compressor mounting issues', 'Refrigerant flow problems'],
+        solutions: ['Tighten all mounting bolts', 'Check fan blade clearance', 'Secure compressor mounts', 'Check refrigerant levels']
+      }
+    },
+    maintenance: {
+      'Daily': ['Check temperature readings', 'Inspect door seals', 'Clean exterior surfaces', 'Verify proper door closure'],
+      'Weekly': ['Clean interior surfaces', 'Check condenser coil', 'Test door locks', 'Inspect electrical connections'],
+      'Monthly': ['Deep clean interior', 'Check refrigerant levels', 'Test defrost system', 'Lubricate door hinges'],
+      'Quarterly': ['Replace air filter', 'Service door gaskets', 'Check thermostat calibration', 'Professional inspection'],
+      'Annually': ['Complete system service', 'Refrigerant leak test', 'Electrical safety check', 'Warranty registration']
+    }
   }
 };
 
 const allManualData = { ...manualData, ...additionalManualData };
+
+// Data lookup working correctly
 
 const currentManual = allManualData[id] || {
   title: `${id} Manual`,
@@ -533,167 +686,252 @@ const currentManual = allManualData[id] || {
 ---
 
 <BaseLayout>
-  <div class="mb-8">
-    <div class="flex items-center space-x-4 mb-4">
-      <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center text-3xl">
-        {currentManual.icon}
-      </div>
-      <div>
-        <h1 class="text-3xl font-bold">{currentManual.title}</h1>
-        <p class="text-slate-600">Model: {currentManual.model}</p>
-      </div>
+  <!-- RADICAL NEW DESIGN - Built at Lightspeed Style -->
+  <div class="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 relative overflow-hidden">
+    
+    <!-- Animated Background Elements -->
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="absolute -top-40 -right-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+      <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-yellow-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+      <div class="absolute top-40 left-40 w-80 h-80 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
     </div>
-  </div>
 
-  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
-    <div class="lg:col-span-2">
-      <div class="bg-white rounded-xl shadow p-6 mb-6">
-        <div class="flex items-center justify-between mb-4">
-          <h2 class="text-xl font-bold">📄 Technical Manual</h2>
-          <a class="px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700 text-sm" href={pdfPath} target="_blank">
-            Open PDF Manual
+    <!-- Floating Navigation -->
+    <div class="fixed top-6 left-6 z-50">
+      <a href="/equipment" class="group flex items-center space-x-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-4 py-2 text-white hover:bg-white/20 transition-all duration-300">
+        <svg class="w-5 h-5 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+        </svg>
+        <span class="font-medium">Back</span>
+      </a>
+    </div>
+
+    <!-- Main Content Container -->
+    <div class="relative z-10 container mx-auto px-6 py-12">
+      
+      <!-- Hero Section - COMPLETELY NEW DESIGN -->
+      <div class="text-center mb-16">
+        <div class="inline-flex items-center justify-center w-32 h-32 bg-gradient-to-br from-yellow-400 via-red-500 to-pink-600 rounded-full mb-8 shadow-2xl animate-pulse">
+          <span class="text-6xl">{currentManual.icon}</span>
+        </div>
+        <h1 class="text-6xl md:text-8xl font-black text-white mb-4 bg-gradient-to-r from-yellow-400 via-red-500 to-pink-600 bg-clip-text text-transparent animate-gradient">
+          {currentManual.title}
+        </h1>
+        <p class="text-2xl text-blue-200 mb-8 font-light">Model: {currentManual.model}</p>
+        
+        <!-- Status and Actions -->
+        <div class="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+          <StatusIndicator equipmentType={id} equipmentId={id} client:visible />
+          <a 
+            href="/manuals/{currentManual.id}.pdf" 
+            download="{currentManual.title}.pdf"
+            class="group relative px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold rounded-full shadow-2xl hover:shadow-green-500/50 transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 inline-block"
+          >
+            <span class="relative z-10 flex items-center space-x-2">
+              <span>📄</span>
+              <span>Download Manual</span>
+            </span>
+            <div class="absolute inset-0 bg-gradient-to-r from-green-600 to-emerald-700 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </a>
         </div>
-        <div class="bg-gradient-to-br from-blue-50 to-purple-50 rounded-lg p-8 text-center border-2 border-dashed border-blue-200 mb-4">
-          <div class="text-4xl mb-2">📋</div>
-          <p class="text-slate-700 font-medium">Complete service and operation manual</p>
-          <p class="text-sm text-slate-600 mt-2">Click "Open PDF Manual" to view the full technical documentation</p>
-          <div class="mt-4 flex justify-center space-x-4 text-xs text-slate-500">
-            <span>📄 150+ pages</span>
-            <span>🔧 Detailed schematics</span>
-            <span>⚡ Troubleshooting guides</span>
+      </div>
+
+      <!-- Tabs Navigation - NEW STYLE -->
+      <div class="flex flex-wrap justify-center mb-12">
+        <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-full p-2 flex space-x-2">
+          <button class="manual-tab px-6 py-3 rounded-full text-white font-semibold transition-all duration-300 bg-white/20 shadow-lg" data-tab="specs">
+            ⚙️ Specifications
+          </button>
+          <button class="manual-tab px-6 py-3 rounded-full text-white/70 hover:text-white hover:bg-white/10 transition-all duration-300" data-tab="troubleshooting">
+            🚨 Troubleshooting
+          </button>
+          <button class="manual-tab px-6 py-3 rounded-full text-white/70 hover:text-white hover:bg-white/10 transition-all duration-300" data-tab="maintenance">
+            🔧 Maintenance
+          </button>
+          <button class="manual-tab px-6 py-3 rounded-full text-white/70 hover:text-white hover:bg-white/10 transition-all duration-300" data-tab="sections">
+            📚 Sections
+          </button>
+        </div>
+      </div>
+
+      <!-- Tab Content - DRAMATICALLY DIFFERENT -->
+      <div class="max-w-6xl mx-auto">
+        
+        <!-- Specifications Tab -->
+        <div id="specs-content" class="tab-content">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {Object.entries(currentManual.specs || {}).map(([key, value], index) => (
+              <div class="group bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:bg-white/20 transition-all duration-300 transform hover:scale-105 hover:-translate-y-2">
+                <div class="text-3xl mb-4">⚡</div>
+                <h3 class="text-white font-bold text-lg mb-2">{key}</h3>
+                <p class="text-blue-200 text-xl font-semibold">{value}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Troubleshooting Tab -->
+        <div id="troubleshooting-content" class="tab-content hidden">
+          <div class="space-y-6">
+            {currentManual.troubleshooting ? (
+              Object.entries(currentManual.troubleshooting).map(([problem, details], index) => (
+                <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-8 hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
+                  <h3 class="text-2xl font-bold text-white mb-6 flex items-center">
+                    <span class="text-4xl mr-4">🚨</span>
+                    {problem}
+                  </h3>
+                  <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-red-500/20 border border-red-400/30 rounded-xl p-6">
+                      <h4 class="text-red-200 font-bold text-lg mb-4 flex items-center">
+                        <span class="mr-2">⚠️</span>
+                        Possible Causes
+                      </h4>
+                      <ul class="space-y-2">
+                        {details.causes?.map((cause, i) => (
+                          <li class="text-red-100 flex items-start">
+                            <span class="text-red-400 mr-2 mt-1">•</span>
+                            <span>{cause}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div class="bg-green-500/20 border border-green-400/30 rounded-xl p-6">
+                      <h4 class="text-green-200 font-bold text-lg mb-4 flex items-center">
+                        <span class="mr-2">✅</span>
+                        Solutions
+                      </h4>
+                      <ul class="space-y-2">
+                        {details.solutions?.map((solution, i) => (
+                          <li class="text-green-100 flex items-start">
+                            <span class="text-green-400 mr-2 mt-1">•</span>
+                            <span>{solution}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-12 text-center">
+                <div class="text-6xl mb-4">🔧</div>
+                <h3 class="text-2xl font-bold text-white mb-4">No Troubleshooting Data</h3>
+                <p class="text-blue-200">Contact technical support for assistance</p>
+              </div>
+            )}
+          </div>
+        </div>
+
+        <!-- Maintenance Tab -->
+        <div id="maintenance-content" class="tab-content hidden">
+          {currentManual.maintenance ? (
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {Object.entries(currentManual.maintenance).map(([frequency, tasks]) => (
+                <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
+                  <h3 class="text-2xl font-bold text-white mb-6 flex items-center">
+                    <span class={`w-4 h-4 rounded-full mr-3 ${
+                      frequency === 'Daily' ? 'bg-green-400' :
+                      frequency === 'Weekly' ? 'bg-blue-400' :
+                      frequency === 'Monthly' ? 'bg-yellow-400' :
+                      frequency === 'Quarterly' ? 'bg-orange-400' :
+                      'bg-purple-400'
+                    }`}></span>
+                    {frequency}
+                  </h3>
+                  <ul class="space-y-3">
+                    {tasks.map((task, index) => (
+                      <li class="text-blue-200 flex items-start">
+                        <span class="text-white mr-3 mt-1">•</span>
+                        <span>{task}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-12 text-center">
+              <div class="text-6xl mb-4">📅</div>
+              <h3 class="text-2xl font-bold text-white mb-4">No Maintenance Schedule</h3>
+              <p class="text-blue-200">Contact technical support for maintenance guidance</p>
+            </div>
+          )}
+        </div>
+
+        <!-- Sections Tab -->
+        <div id="sections-content" class="tab-content hidden">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {currentManual.sections?.map((section, index) => (
+              <div class="group bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:bg-white/20 transition-all duration-300 transform hover:scale-105 hover:-translate-y-2">
+                <div class="flex items-center space-x-4">
+                  <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-xl">
+                    {index + 1}
+                  </div>
+                  <h3 class="text-white font-bold text-lg">{section}</h3>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
-
-      <div class="bg-white rounded-xl shadow p-6">
-        <h3 class="text-xl font-bold mb-4">📚 Manual Sections</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-          {currentManual.sections.map((section, index) => (
-            <div class="flex items-center p-3 bg-slate-50 rounded-lg hover:bg-slate-100 transition-colors">
-              <span class="w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3">
-                {index + 1}
-              </span>
-              <span class="text-sm font-medium text-slate-800">{section}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <!-- Quick Troubleshooting Guide -->
-      <div class="bg-white rounded-xl shadow p-6 mt-6">
-        <h3 class="text-xl font-bold mb-4 flex items-center">
-          <span class="text-red-600 mr-2">🚨</span>
-          Quick Troubleshooting Guide
-        </h3>
-        <div class="space-y-4">
-          {id === 'turbochef' && (
-            <div class="space-y-3">
-              <div class="p-4 bg-red-50 border-l-4 border-red-500 rounded-r-lg">
-                <div class="font-semibold text-red-900">No Power / Display Dark</div>
-                <ul class="text-sm text-red-800 mt-2 space-y-1">
-                  <li>• Check circuit breaker and power connection</li>
-                  <li>• Verify door is fully closed and latched</li>
-                  <li>• Test door interlock switches</li>
-                  <li>• Check fuses on control board</li>
-                </ul>
-              </div>
-              <div class="p-4 bg-yellow-50 border-l-4 border-yellow-500 rounded-r-lg">
-                <div class="font-semibold text-yellow-900">Uneven Cooking / Cold Spots</div>
-                <ul class="text-sm text-yellow-800 mt-2 space-y-1">
-                  <li>• Clean magnetron waveguide</li>
-                  <li>• Check convection fan operation</li>
-                  <li>• Verify temperature sensor calibration</li>
-                  <li>• Inspect air filter for blockages</li>
-                </ul>
-              </div>
-              <div class="p-4 bg-blue-50 border-l-4 border-blue-500 rounded-r-lg">
-                <div class="font-semibold text-blue-900">Error Codes E1-E5</div>
-                <ul class="text-sm text-blue-800 mt-2 space-y-1">
-                  <li>• E1: Temperature sensor fault</li>
-                  <li>• E2: Magnetron overheating</li>
-                  <li>• E3: Door switch malfunction</li>
-                  <li>• E4: Control board communication error</li>
-                </ul>
-              </div>
-            </div>
-          )}
-          {id === 'hoshizaki' && (
-            <div class="space-y-3">
-              <div class="p-4 bg-red-50 border-l-4 border-red-500 rounded-r-lg">
-                <div class="font-semibold text-red-900">No Ice Production</div>
-                <ul class="text-sm text-red-800 mt-2 space-y-1">
-                  <li>• Check water supply and pressure</li>
-                  <li>• Clean condenser coils</li>
-                  <li>• Verify bin switch operation</li>
-                  <li>• Test hot gas valve operation</li>
-                </ul>
-              </div>
-              <div class="p-4 bg-yellow-50 border-l-4 border-yellow-500 rounded-r-lg">
-                <div class="font-semibold text-yellow-900">Ice Won't Harvest</div>
-                <ul class="text-sm text-yellow-800 mt-2 space-y-1">
-                  <li>• Check cube thickness control</li>
-                  <li>• Test harvest assist solenoid</li>
-                  <li>• Verify water temperature (70°F max)</li>
-                  <li>• Clean water distribution system</li>
-                </ul>
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
     </div>
 
-    <div class="space-y-6">
-      <div class="bg-white rounded-xl shadow p-6">
-        <h3 class="text-lg font-semibold mb-4">⚙️ Specifications</h3>
-        <div class="space-y-3">
-          {Object.entries(currentManual.specs).map(([key, value]) => (
-            <div class="flex justify-between items-start">
-              <span class="text-sm font-medium text-slate-700 flex-shrink-0 mr-2">{key}:</span>
-              <span class="text-sm text-slate-900 text-right">{value}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div class="bg-white rounded-xl shadow p-6">
-        <h3 class="text-lg font-semibold mb-4">🔗 Quick Links</h3>
-        <div class="space-y-2">
-          <a href={`/parts/${id}`} class="block w-full px-3 py-2 bg-green-600 text-white rounded hover:bg-green-700 text-sm text-center">
-            🛠 View Parts
-          </a>
-          <a href={`/${id}#troubleshooting`} class="block w-full px-3 py-2 bg-red-600 text-white rounded hover:bg-red-700 text-sm text-center">
-            🚨 Troubleshooting
-          </a>
-          <a href={`/${id}`} class="block w-full px-3 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm text-center">
-            📊 Live Status
-          </a>
-        </div>
-      </div>
-    </div>
+    <!-- Floating Action Button -->
+    <FloatingActions equipmentId={id} client:idle />
   </div>
 
-  <div class="bg-gradient-to-r from-orange-50 to-red-50 rounded-xl p-6 border border-orange-200">
-    <h3 class="text-lg font-semibold text-slate-900 mb-4">📞 Technical Support</h3>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
-      <div>
-        <div class="text-2xl mb-2">🆘</div>
-        <div class="font-medium">Emergency Service</div>
-        <div class="text-sm text-slate-600">1-800-SERVICE</div>
-      </div>
-      <div>
-        <div class="text-2xl mb-2">💬</div>
-        <div class="font-medium">Technical Help</div>
-        <div class="text-sm text-slate-600">support@ltckitchen.com</div>
-      </div>
-      <div>
-        <div class="text-2xl mb-2">📖</div>
-        <div class="font-medium">Training Videos</div>
-        <div class="text-sm text-slate-600">training.ltckitchen.com</div>
-      </div>
-    </div>
-  </div>
+  <style>
+    @keyframes blob {
+      0% { transform: translate(0px, 0px) scale(1); }
+      33% { transform: translate(30px, -50px) scale(1.1); }
+      66% { transform: translate(-20px, 20px) scale(0.9); }
+      100% { transform: translate(0px, 0px) scale(1); }
+    }
+    
+    @keyframes gradient {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+    
+    .animate-blob { animation: blob 7s infinite; }
+    .animation-delay-2000 { animation-delay: 2s; }
+    .animation-delay-4000 { animation-delay: 4s; }
+    .animate-gradient { 
+      background-size: 200% 200%;
+      animation: gradient 3s ease infinite;
+    }
+  </style>
+
+  <script>
+    // Tab switching functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const tabs = document.querySelectorAll('.manual-tab');
+      const contents = document.querySelectorAll('.tab-content');
+      
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          // Remove active class from all tabs
+          tabs.forEach(t => {
+            t.classList.remove('bg-white/20', 'shadow-lg');
+            t.classList.add('text-white/70', 'hover:text-white', 'hover:bg-white/10');
+          });
+          
+          // Hide all content
+          contents.forEach(content => content.classList.add('hidden'));
+          
+          // Add active class to clicked tab
+          tab.classList.remove('text-white/70', 'hover:text-white', 'hover:bg-white/10');
+          tab.classList.add('bg-white/20', 'shadow-lg', 'text-white');
+          
+          // Show corresponding content
+          const tabId = tab.getAttribute('data-tab');
+          const content = document.getElementById(tabId + '-content');
+          if (content) content.classList.remove('hidden');
+        });
+      });
+    });
+  </script>
+
 </BaseLayout>
 
 

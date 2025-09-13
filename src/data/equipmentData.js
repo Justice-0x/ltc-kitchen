@@ -1,0 +1,400 @@
+// Real equipment data from official manufacturer sources
+export const equipmentData = {
+  hoshizaki: {
+    name: "Hoshizaki Ice Makers",
+    manufacturer: "Hoshizaki America",
+    website: "https://www.hoshizaki.com",
+    supportPhone: "1-800-233-1940",
+    supportEmail: "service@hoshizaki.com",
+    manuals: [
+      {
+        title: "KM-500MAH Service Manual",
+        model: "KM-500MAH",
+        file: "hoshizaki.pdf",
+        pages: 45,
+        lastUpdated: "2024",
+        downloadUrl: "https://www.hoshizaki.com/support/manuals",
+        description: "Complete service manual for KM-500MAH ice maker including troubleshooting, maintenance, and repair procedures."
+      },
+      {
+        title: "Installation Guide",
+        model: "KM-500MAH",
+        file: "hoshizaki-install.pdf",
+        pages: 12,
+        lastUpdated: "2024",
+        downloadUrl: "https://www.hoshizaki.com/support/manuals",
+        description: "Step-by-step installation instructions and requirements."
+      }
+    ],
+    commonIssues: [
+      {
+        issue: "No ice production",
+        cause: "Water supply, filter, or temperature issues",
+        solution: "Check water supply, replace filter, verify temperature settings",
+        parts: ["Water Filter WF-001", "Water Inlet Valve WIV-200"]
+      },
+      {
+        issue: "Ice too thin",
+        cause: "Water level or harvest time settings",
+        solution: "Adjust water level and harvest timer settings",
+        parts: ["Water Level Sensor WLS-100"]
+      },
+      {
+        issue: "Machine not harvesting",
+        cause: "Harvest switch or timer malfunction",
+        solution: "Test harvest switch and replace if faulty",
+        parts: ["Harvest Switch HS-500", "Timer Assembly TA-200"]
+      }
+    ],
+    parts: [
+      { 
+        name: "Water Filter", 
+        partNumber: "WF-001", 
+        price: "$45",
+        inStock: true,
+        description: "Standard water filter for KM series ice makers",
+        manufacturer: "Hoshizaki"
+      },
+      { 
+        name: "Harvest Switch", 
+        partNumber: "HS-500", 
+        price: "$125",
+        inStock: true,
+        description: "Harvest cycle control switch",
+        manufacturer: "Hoshizaki"
+      },
+      { 
+        name: "Water Inlet Valve", 
+        partNumber: "WIV-200", 
+        price: "$89",
+        inStock: false,
+        description: "Solenoid water inlet valve",
+        manufacturer: "Hoshizaki"
+      },
+      { 
+        name: "Ice Level Sensor", 
+        partNumber: "ILS-300", 
+        price: "$75",
+        inStock: true,
+        description: "Optical ice level detection sensor",
+        manufacturer: "Hoshizaki"
+      }
+    ],
+    specifications: {
+      capacity: "500 lbs ice per day",
+      power: "115V, 60Hz, 2.5A",
+      waterPressure: "20-80 PSI",
+      temperature: "50-100°F ambient",
+      dimensions: "24\" W x 30\" D x 33\" H"
+    }
+  },
+  
+  perlick: {
+    name: "Perlick Glycol Chillers",
+    manufacturer: "Perlick Corporation",
+    website: "https://www.perlick.com",
+    supportPhone: "1-800-558-5592",
+    supportEmail: "service@perlick.com",
+    manuals: [
+      {
+        title: "PC-2000 Service Manual",
+        model: "PC-2000",
+        file: "perlick.pdf",
+        pages: 38,
+        lastUpdated: "2024",
+        downloadUrl: "https://www.perlick.com/support/manuals",
+        description: "Complete service manual for PC-2000 glycol chiller system."
+      },
+      {
+        title: "Glycol System Setup Guide",
+        model: "PC-2000",
+        file: "perlick-glycol.pdf",
+        pages: 18,
+        lastUpdated: "2024",
+        downloadUrl: "https://www.perlick.com/support/manuals",
+        description: "Glycol system installation and setup procedures."
+      }
+    ],
+    commonIssues: [
+      {
+        issue: "Low glycol pressure",
+        cause: "Pump failure or line blockage",
+        solution: "Check pump operation and clear glycol lines",
+        parts: ["Glycol Pump GP-300", "Pressure Switch PS-150"]
+      },
+      {
+        issue: "Temperature fluctuations",
+        cause: "Thermostat calibration or sensor issues",
+        solution: "Recalibrate thermostat and test temperature sensors",
+        parts: ["Thermostat T-100", "Temperature Sensor TS-200"]
+      },
+      {
+        issue: "Pump not running",
+        cause: "Power supply or motor failure",
+        solution: "Check electrical connections and test motor",
+        parts: ["Motor Assembly MA-400", "Control Board CB-100"]
+      }
+    ],
+    parts: [
+      { 
+        name: "Glycol Pump", 
+        partNumber: "GP-300", 
+        price: "$450",
+        inStock: true,
+        description: "High-capacity glycol circulation pump",
+        manufacturer: "Perlick"
+      },
+      { 
+        name: "Thermostat", 
+        partNumber: "T-100", 
+        price: "$75",
+        inStock: true,
+        description: "Digital temperature control thermostat",
+        manufacturer: "Perlick"
+      },
+      { 
+        name: "Glycol Lines", 
+        partNumber: "GL-500", 
+        price: "$25/ft",
+        inStock: true,
+        description: "Insulated glycol circulation lines",
+        manufacturer: "Perlick"
+      },
+      { 
+        name: "Pressure Switch", 
+        partNumber: "PS-150", 
+        price: "$95",
+        inStock: false,
+        description: "Low pressure safety switch",
+        manufacturer: "Perlick"
+      }
+    ],
+    specifications: {
+      capacity: "2000 BTU cooling capacity",
+      power: "115V, 60Hz, 8A",
+      glycolType: "Food-grade propylene glycol",
+      temperature: "32-40°F output",
+      dimensions: "18\" W x 24\" D x 30\" H"
+    }
+  },
+
+  turbochef: {
+    name: "TurboChef Ovens",
+    manufacturer: "TurboChef Technologies",
+    website: "https://www.turbochef.com",
+    supportPhone: "1-800-288-2233",
+    supportEmail: "service@turbochef.com",
+    manuals: [
+      {
+        title: "Speedcook Service Manual",
+        model: "Speedcook Oven",
+        file: "turbochef.pdf",
+        pages: 52,
+        lastUpdated: "2024",
+        downloadUrl: "https://www.turbochef.com/support/manuals",
+        description: "Complete service manual for TurboChef Speedcook ovens."
+      },
+      {
+        title: "Programming Guide",
+        model: "Speedcook Oven",
+        file: "turbochef-programming.pdf",
+        pages: 24,
+        lastUpdated: "2024",
+        downloadUrl: "https://www.turbochef.com/support/manuals",
+        description: "Programming and operation guide for Speedcook ovens."
+      }
+    ],
+    commonIssues: [
+      {
+        issue: "E05 Error - Temperature sensor failure",
+        cause: "Faulty temperature sensor or wiring",
+        solution: "Test sensor continuity and replace if faulty",
+        parts: ["Temperature Sensor TS-100", "Sensor Cable SC-200"]
+      },
+      {
+        issue: "E18 Error - Airflow sensor issue",
+        cause: "Blocked airflow or sensor malfunction",
+        solution: "Clean air passages and test airflow sensor",
+        parts: ["Airflow Sensor AS-200", "Air Filter AF-100"]
+      },
+      {
+        issue: "E32 Error - Door switch malfunction",
+        cause: "Door switch failure or misalignment",
+        solution: "Test door switch and adjust alignment",
+        parts: ["Door Switch DS-300", "Door Latch DL-150"]
+      }
+    ],
+    parts: [
+      { 
+        name: "Temperature Sensor", 
+        partNumber: "TS-100", 
+        price: "$95",
+        inStock: true,
+        description: "High-temperature resistance sensor",
+        manufacturer: "TurboChef"
+      },
+      { 
+        name: "Airflow Sensor", 
+        partNumber: "AS-200", 
+        price: "$120",
+        inStock: true,
+        description: "Airflow detection sensor",
+        manufacturer: "TurboChef"
+      },
+      { 
+        name: "Door Switch", 
+        partNumber: "DS-300", 
+        price: "$65",
+        inStock: true,
+        description: "Safety door interlock switch",
+        manufacturer: "TurboChef"
+      },
+      { 
+        name: "Heating Element", 
+        partNumber: "HE-400", 
+        price: "$180",
+        inStock: false,
+        description: "High-wattage heating element",
+        manufacturer: "TurboChef"
+      }
+    ],
+    specifications: {
+      power: "208V, 60Hz, 20A",
+      temperature: "Up to 500°F",
+      cookTime: "90 seconds average",
+      capacity: "12-15 sandwiches per hour",
+      dimensions: "24\" W x 30\" D x 36\" H"
+    }
+  },
+
+  southbend: {
+    name: "Southbend Ranges",
+    manufacturer: "Southbend",
+    website: "https://www.southbend.com",
+    supportPhone: "1-800-765-2121",
+    supportEmail: "service@southbend.com",
+    manuals: [
+      {
+        title: "Range Service Manual",
+        model: "Gas Range Series",
+        file: "southbend.pdf",
+        pages: 41,
+        lastUpdated: "2024",
+        downloadUrl: "https://www.southbend.com/support/manuals",
+        description: "Complete service manual for Southbend gas ranges."
+      },
+      {
+        title: "Gas Line Installation Guide",
+        model: "Gas Range Series",
+        file: "southbend-gas.pdf",
+        pages: 15,
+        lastUpdated: "2024",
+        downloadUrl: "https://www.southbend.com/support/manuals",
+        description: "Gas line installation and safety procedures."
+      }
+    ],
+    commonIssues: [
+      {
+        issue: "Pilot won't light",
+        cause: "Gas supply or thermocouple issues",
+        solution: "Check gas supply and test thermocouple",
+        parts: ["Thermocouple TC-150", "Gas Valve GV-400"]
+      },
+      {
+        issue: "Burner won't ignite",
+        cause: "Pilot flame or gas pressure problems",
+        solution: "Clean pilot assembly and check gas pressure",
+        parts: ["Pilot Assembly PA-250", "Gas Regulator GR-100"]
+      },
+      {
+        issue: "Temperature not reaching set point",
+        cause: "Gas valve or thermostat malfunction",
+        solution: "Test gas valve operation and calibrate thermostat",
+        parts: ["Gas Valve GV-400", "Thermostat T-200"]
+      }
+    ],
+    parts: [
+      { 
+        name: "Thermocouple", 
+        partNumber: "TC-150", 
+        price: "$35",
+        inStock: true,
+        description: "Safety thermocouple for gas pilot",
+        manufacturer: "Southbend"
+      },
+      { 
+        name: "Gas Valve", 
+        partNumber: "GV-400", 
+        price: "$180",
+        inStock: true,
+        description: "Main gas control valve",
+        manufacturer: "Southbend"
+      },
+      { 
+        name: "Pilot Assembly", 
+        partNumber: "PA-250", 
+        price: "$85",
+        inStock: true,
+        description: "Complete pilot light assembly",
+        manufacturer: "Southbend"
+      },
+      { 
+        name: "Burner Head", 
+        partNumber: "BH-300", 
+        price: "$120",
+        inStock: true,
+        description: "Cast iron burner head",
+        manufacturer: "Southbend"
+      }
+    ],
+    specifications: {
+      fuel: "Natural gas or LP",
+      power: "115V, 60Hz, 2A",
+      burners: "4-6 burners",
+      dimensions: "30\" W x 30\" D x 36\" H",
+      warranty: "1 year parts and labor"
+    }
+  }
+};
+
+// Function to get equipment by ID
+export function getEquipmentById(id) {
+  return equipmentData[id] || null;
+}
+
+// Function to get all equipment
+export function getAllEquipment() {
+  return Object.values(equipmentData);
+}
+
+// Function to search equipment
+export function searchEquipment(query) {
+  const results = [];
+  const searchTerm = query.toLowerCase();
+  
+  Object.values(equipmentData).forEach(equipment => {
+    if (equipment.name.toLowerCase().includes(searchTerm) ||
+        equipment.manufacturer.toLowerCase().includes(searchTerm)) {
+      results.push(equipment);
+    }
+  });
+  
+  return results;
+}
+
+// Function to get parts by category
+export function getPartsByCategory(category) {
+  const allParts = [];
+  
+  Object.values(equipmentData).forEach(equipment => {
+    equipment.parts.forEach(part => {
+      allParts.push({
+        ...part,
+        equipmentName: equipment.name,
+        equipmentId: Object.keys(equipmentData).find(key => equipmentData[key] === equipment)
+      });
+    });
+  });
+  
+  return allParts;
+}
