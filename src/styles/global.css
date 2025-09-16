@@ -106,7 +106,64 @@ body.dark .bg-gray-50 {
   background-color: #3a3a3a !important;
 }
 
-/* Spooky theme removed - was causing blinking issues */
+/* Spooky Theme (non-blinking, high-contrast) */
+[data-theme="spooky"] body,
+body.spooky {
+  background-color: #0b0a10 !important; /* deep nearly-black purple */
+  color: #eaeafc !important;           /* very light lavender */
+}
+
+[data-theme="spooky"] .bg-white,
+body.spooky .bg-white {
+  background-color: #171425 !important;
+  color: #eaeafc !important;
+  border: 1px solid #2a2542 !important;
+}
+
+[data-theme="spooky"] .text-gray-800,
+body.spooky .text-gray-800 {
+  color: #f4f4ff !important;
+}
+
+[data-theme="spooky"] .text-gray-600,
+body.spooky .text-gray-600 {
+  color: #c7c7e8 !important;
+}
+
+[data-theme="spooky"] .border-gray-300,
+body.spooky .border-gray-300 {
+  border-color: #2a2542 !important;
+}
+
+[data-theme="spooky"] .bg-blue-600,
+body.spooky .bg-blue-600 {
+  background-color: #6d28d9 !important; /* violet */
+  color: #ffffff !important;
+}
+
+[data-theme="spooky"] .bg-green-600,
+body.spooky .bg-green-600 {
+  background-color: #16a34a !important; /* emerald */
+  color: #ffffff !important;
+}
+
+[data-theme="spooky"] .bg-slate-800,
+body.spooky .bg-slate-800 {
+  background-color: #141225 !important;
+}
+
+/* Ensure mobile header/sidebar adapt in spooky */
+@media (max-width: 768px) {
+  [data-theme="spooky"] .lg\:hidden,
+  body.spooky .lg\:hidden {
+    background-color: #141225 !important;
+    color: #eaeafc !important;
+  }
+  [data-theme="spooky"] #mobile-sidebar,
+  body.spooky #mobile-sidebar {
+    background-color: #141225 !important;
+  }
+}
 
 /* Flicker Animation - REMOVED */
 

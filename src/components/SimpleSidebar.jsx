@@ -6,7 +6,7 @@ const SimpleSidebar = () => {
   const [logoClickCount, setLogoClickCount] = useState(0);
   const [showEasterEgg, setShowEasterEgg] = useState(false);
   const [currentTheme, setCurrentTheme] = useState('dark');
-  const themes = ['light', 'dark'];
+  const themes = ['dark', 'light', 'spooky'];
 
   useEffect(() => {
     const path = window.location.pathname;
@@ -153,18 +153,17 @@ const SimpleSidebar = () => {
       <div className="p-4 border-t border-cyan-700">
         <button
           onClick={() => {
-            const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            
-            // Apply theme directly
+            const order = ['dark', 'light', 'spooky'];
+            const idx = order.indexOf(currentTheme);
+            const nextTheme = order[(idx + 1) % order.length];
+
             document.documentElement.setAttribute('data-theme', nextTheme);
             document.body.classList.remove('light', 'dark', 'spooky');
             document.body.classList.add(nextTheme);
             localStorage.setItem('theme', nextTheme);
-            
-            // Update state
+
             setCurrentTheme(nextTheme);
-            
-            // Update theme buttons
+
             document.querySelectorAll('.theme-btn').forEach(btn => {
               btn.classList.remove('ring-2', 'ring-blue-500', 'bg-blue-200');
             });
@@ -172,11 +171,11 @@ const SimpleSidebar = () => {
           className="w-full flex items-center justify-center space-x-2 px-3 py-2 text-cyan-400 hover:text-white hover:bg-cyan-800/50 rounded-lg transition-colors"
         >
           <span className="text-lg">
-            {currentTheme === 'dark' ? '☀️' : '🌙'}
+            {currentTheme === 'dark' ? '☀️' : currentTheme === 'light' ? '🌙' : '🕸️'}
           </span>
           {!isCollapsed && (
             <span className="text-sm">
-              {currentTheme === 'dark' ? 'Light' : 'Dark'}
+              {currentTheme === 'dark' ? 'Light' : currentTheme === 'light' ? 'Spooky' : 'Dark'}
             </span>
           )}
         </button>

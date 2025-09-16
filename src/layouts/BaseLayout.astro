@@ -20,13 +20,23 @@ import "../styles/global.css";
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script>
-      // Apply theme immediately to prevent flash and ensure mobile compatibility
+      // Apply theme as early as possible; guard if body not ready
       (function() {
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        document.documentElement.setAttribute('data-theme', savedTheme);
-        // Also set body class immediately for mobile
-        document.body.classList.remove('light', 'dark', 'spooky');
-        document.body.classList.add(savedTheme);
+        try {
+          const savedTheme = localStorage.getItem('theme') || 'dark';
+          document.documentElement.setAttribute('data-theme', savedTheme);
+          if (document.body) {
+            document.body.classList.remove('light', 'dark', 'spooky');
+            document.body.classList.add(savedTheme);
+          } else {
+            document.addEventListener('DOMContentLoaded', function() {
+              document.body.classList.remove('light', 'dark', 'spooky');
+              document.body.classList.add(savedTheme);
+            });
+          }
+        } catch (e) {
+          // no-op
+        }
       })();
     </script>
   </head>
@@ -163,18 +173,24 @@ import "../styles/global.css";
         const mobileThemeBtn = document.getElementById('mobile-theme-btn');
         if (mobileThemeBtn) {
           mobileThemeBtn.addEventListener('click', () => {
-            const currentTheme = localStorage.getItem('theme') || 'light';
-            const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
+            const order = ['dark', 'light', 'spooky'];
+            const currentTheme = localStorage.getItem('theme') || 'dark';
+            const idx = order.indexOf(currentTheme);
+            const nextTheme = order[(idx + 1) % order.length];
             switchTheme(nextTheme);
-            
+
             // Update mobile button icon
             const icon = mobileThemeBtn.querySelector('svg path');
             if (icon) {
-              // Toggle between moon and sun icons
               if (nextTheme === 'dark') {
+                // sun icon under dark mode (indicates switching to light next)
                 icon.setAttribute('d', 'M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z');
-              } else {
+              } else if (nextTheme === 'light') {
+                // moon icon under light mode (indicates switching to spooky next)
                 icon.setAttribute('d', 'M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z');
+              } else {
+                // spooky: show a star-like icon
+                icon.setAttribute('d', 'M12 2l2.39 4.84L20 8l-4 3.9L17 18l-5-2.6L7 18l1-6.1L4 8l5.61-1.16L12 2z');
               }
             }
           });
