@@ -219,12 +219,167 @@ const equipmentDocs = [
       { name: "Lint Filter", partNumber: "LF-50", price: "$35" },
       { name: "Motor Assembly", partNumber: "MA-500", price: "$350" }
     ]
+  },
+  {
+    id: "bills-bitch",
+    name: "Bill's Bitch AI Assistant",
+    category: "AI & Automation",
+    icon: "✨",
+    description: "Private AI assistant for advanced kitchen management",
+    manuals: [
+      {
+        title: "AI Assistant User Guide",
+        file: "bills-bitch-guide.pdf",
+        pages: 28,
+        lastUpdated: "2025"
+      },
+      {
+        title: "QR Code Access Setup",
+        file: "qr-access-setup.pdf",
+        pages: 12,
+        lastUpdated: "2025"
+      }
+    ],
+    commonIssues: [
+      "QR code not scanning - check camera permissions",
+      "AI not responding - verify internet connection",
+      "Access denied - contact admin for QR code reset"
+    ],
+    parts: [
+      { name: "QR Code Sticker", partNumber: "QR-001", price: "$5" },
+      { name: "Access Code Reset", partNumber: "ACR-100", price: "$25" },
+      { name: "AI Training Session", partNumber: "AIT-200", price: "$150" }
+    ]
+  },
+  {
+    id: "adt-systems",
+    name: "ADT Security Systems",
+    category: "Security",
+    icon: "🔒",
+    description: "Commercial security and monitoring systems",
+    manuals: [
+      {
+        title: "ADT System Service Manual",
+        file: "adt-systems.pdf",
+        pages: 35,
+        lastUpdated: "2024"
+      },
+      {
+        title: "Security Panel Programming",
+        file: "adt-programming.pdf",
+        pages: 18,
+        lastUpdated: "2024"
+      }
+    ],
+    commonIssues: [
+      "False alarms - check sensor alignment and sensitivity",
+      "Panel not responding - check power and communication",
+      "Keypad malfunction - clean contacts and test buttons"
+    ],
+    parts: [
+      { name: "Motion Sensor", partNumber: "MS-300", price: "$85" },
+      { name: "Keypad Assembly", partNumber: "KA-150", price: "$120" },
+      { name: "Control Panel", partNumber: "CP-400", price: "$250" }
+    ]
+  },
+  {
+    id: "american-panel",
+    name: "American Panel Equipment",
+    category: "Control Systems",
+    icon: "⚡",
+    description: "Electrical control panels and power distribution",
+    manuals: [
+      {
+        title: "Control Panel Service Manual",
+        file: "american-panel.pdf",
+        pages: 42,
+        lastUpdated: "2024"
+      },
+      {
+        title: "Electrical Safety Guide",
+        file: "electrical-safety.pdf",
+        pages: 25,
+        lastUpdated: "2024"
+      }
+    ],
+    commonIssues: [
+      "Breaker tripping - check load distribution and wiring",
+      "Panel overheating - clean vents and check connections",
+      "Display not working - check power supply and fuses"
+    ],
+    parts: [
+      { name: "Circuit Breaker", partNumber: "CB-200", price: "$45" },
+      { name: "Power Supply", partNumber: "PS-100", price: "$95" },
+      { name: "Display Module", partNumber: "DM-75", price: "$180" }
+    ]
+  },
+  {
+    id: "frosty",
+    name: "Frosty Freezers",
+    category: "Refrigeration",
+    icon: "❄️",
+    description: "Commercial freezer units and cold storage",
+    manuals: [
+      {
+        title: "Frosty Freezer Service Manual",
+        file: "frosty.pdf",
+        pages: 38,
+        lastUpdated: "2024"
+      },
+      {
+        title: "Temperature Control Guide",
+        file: "frosty-temp-control.pdf",
+        pages: 16,
+        lastUpdated: "2024"
+      }
+    ],
+    commonIssues: [
+      "Temperature too high - check thermostat and compressor",
+      "Frost buildup - defrost cycle not working properly",
+      "Door seal leak - replace gasket and adjust alignment"
+    ],
+    parts: [
+      { name: "Thermostat", partNumber: "TH-150", price: "$65" },
+      { name: "Door Gasket", partNumber: "DG-200", price: "$35" },
+      { name: "Compressor", partNumber: "CP-500", price: "$450" }
+    ]
+  },
+  {
+    id: "walk-ins",
+    name: "Walk-in Coolers",
+    category: "Refrigeration",
+    icon: "🚪",
+    description: "Large capacity walk-in refrigeration units",
+    manuals: [
+      {
+        title: "Walk-in Cooler Service Manual",
+        file: "walk-ins.pdf",
+        pages: 52,
+        lastUpdated: "2024"
+      },
+      {
+        title: "Insulation Repair Guide",
+        file: "walk-ins-insulation.pdf",
+        pages: 20,
+        lastUpdated: "2024"
+      }
+    ],
+    commonIssues: [
+      "Temperature fluctuation - check door seals and insulation",
+      "Condensation issues - verify humidity control settings",
+      "Compressor cycling - check pressure switches and sensors"
+    ],
+    parts: [
+      { name: "Door Seal Kit", partNumber: "DSK-300", price: "$125" },
+      { name: "Pressure Switch", partNumber: "PS-250", price: "$85" },
+      { name: "Insulation Panel", partNumber: "IP-400", price: "$200" }
+    ]
   }
 ];
 ---
 
 <BaseLayout>
-  <div class="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900">
+  <div class="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 dark:from-slate-900 dark:via-blue-900 dark:to-indigo-900 light:from-gray-100 light:via-blue-50 light:to-white">
     
     <!-- Animated Background -->
     <div class="absolute inset-0 overflow-hidden">
@@ -236,27 +391,27 @@ const equipmentDocs = [
     <!-- Header -->
     <div class="relative z-10 container mx-auto px-6 py-12">
       <div class="text-center mb-16">
-        <h1 class="text-5xl md:text-7xl font-black text-white mb-4 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-600 bg-clip-text text-transparent">
+        <h1 class="text-5xl md:text-7xl font-black text-white dark:text-white light:text-gray-800 mb-4 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-600 bg-clip-text text-transparent">
           Equipment Documentation
         </h1>
-        <p class="text-xl text-blue-200">Complete manuals, troubleshooting guides, and parts information</p>
+        <p class="text-xl text-blue-200 dark:text-blue-200 light:text-gray-600">Complete manuals, troubleshooting guides, and parts information</p>
       </div>
 
       <!-- Equipment Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {equipmentDocs.map((equipment) => (
-          <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
+          <div class="bg-white/10 dark:bg-white/10 light:bg-white/80 backdrop-blur-md border border-white/20 dark:border-white/20 light:border-gray-200/50 rounded-2xl p-6 hover:bg-white/20 dark:hover:bg-white/20 light:hover:bg-white/90 transition-all duration-300 transform hover:scale-105">
             
             <!-- Equipment Header -->
             <div class="flex items-center mb-4">
               <div class="text-4xl mr-4">{equipment.icon}</div>
               <div>
-                <h3 class="text-xl font-bold text-white">{equipment.name}</h3>
-                <p class="text-blue-200 text-sm">{equipment.category}</p>
+                <h3 class="text-xl font-bold text-white dark:text-white light:text-gray-800">{equipment.name}</h3>
+                <p class="text-blue-200 dark:text-blue-200 light:text-gray-600 text-sm">{equipment.category}</p>
               </div>
             </div>
             
-            <p class="text-gray-300 mb-6">{equipment.description}</p>
+            <p class="text-gray-300 dark:text-gray-300 light:text-gray-600 mb-6">{equipment.description}</p>
 
             <!-- Manuals Section -->
             <div class="mb-6">
@@ -284,7 +439,7 @@ const equipmentDocs = [
             </div>
 
             <!-- Common Issues -->
-            <div class="mb-6">
+  <div class="mb-6">
               <h4 class="text-lg font-semibold text-white mb-3 flex items-center">
                 <span class="mr-2">⚠️</span>
                 Common Issues
@@ -297,7 +452,7 @@ const equipmentDocs = [
                   </li>
                 ))}
               </ul>
-            </div>
+  </div>
 
             <!-- Parts -->
             <div>
@@ -316,7 +471,7 @@ const equipmentDocs = [
                   </div>
                 ))}
               </div>
-            </div>
+  </div>
 
             <!-- Action Buttons -->
             <div class="mt-6 flex space-x-2">

@@ -5,6 +5,8 @@ const SimpleSidebar = () => {
   const [activeSection, setActiveSection] = useState('dashboard');
   const [logoClickCount, setLogoClickCount] = useState(0);
   const [showEasterEgg, setShowEasterEgg] = useState(false);
+  const [currentTheme, setCurrentTheme] = useState('dark');
+  const themes = ['light', 'dark'];
 
   useEffect(() => {
     const path = window.location.pathname;
@@ -15,6 +17,14 @@ const SimpleSidebar = () => {
     else if (path.includes('/contact')) setActiveSection('contact');
     else if (path.includes('/bills-bitch')) setActiveSection('bills-bitch');
     else if (path.includes('/admin')) setActiveSection('admin');
+    
+    // Load current theme
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    setCurrentTheme(savedTheme);
+    // Apply theme immediately
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    document.body.classList.remove('light', 'dark', 'spooky');
+    document.body.classList.add(savedTheme);
   }, []);
 
   const handleLogoClick = () => {
@@ -45,7 +55,7 @@ const SimpleSidebar = () => {
   return (
     <div className={`bg-gradient-to-b from-teal-900 to-cyan-900 text-white transition-all duration-300 ${
       isCollapsed ? 'w-16' : 'w-64'
-    } h-screen flex flex-col shadow-2xl`}>
+    } h-screen flex flex-col shadow-2xl overflow-y-auto overflow-x-hidden md:block hidden`}>
       
                   {/* Easter Egg Display */}
                   {showEasterEgg && (
@@ -128,15 +138,48 @@ const SimpleSidebar = () => {
           <div className="text-center">
             <div className="text-xs text-cyan-400 mb-2">Powered by</div>
             <div className="flex items-center justify-center space-x-2">
-              <img src="/logo.png" alt="LTC Kitchen Logo" className="w-4 h-4 rounded" />
+              <img src="/favicon.svg" alt="Margaritaville Kitchen Logo" className="w-4 h-4 rounded" />
               <div className="text-sm font-semibold text-cyan-300">myguy.dev</div>
             </div>
           </div>
         ) : (
           <div className="flex justify-center">
-            <img src="/logo.png" alt="LTC Kitchen Logo" className="w-6 h-6 rounded" />
+            <img src="/favicon.svg" alt="Margaritaville Kitchen Logo" className="w-6 h-6 rounded" />
           </div>
         )}
+      </div>
+
+      {/* Theme Toggle */}
+      <div className="p-4 border-t border-cyan-700">
+        <button
+          onClick={() => {
+            const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            // Apply theme directly
+            document.documentElement.setAttribute('data-theme', nextTheme);
+            document.body.classList.remove('light', 'dark', 'spooky');
+            document.body.classList.add(nextTheme);
+            localStorage.setItem('theme', nextTheme);
+            
+            // Update state
+            setCurrentTheme(nextTheme);
+            
+            // Update theme buttons
+            document.querySelectorAll('.theme-btn').forEach(btn => {
+              btn.classList.remove('ring-2', 'ring-blue-500', 'bg-blue-200');
+            });
+          }}
+          className="w-full flex items-center justify-center space-x-2 px-3 py-2 text-cyan-400 hover:text-white hover:bg-cyan-800/50 rounded-lg transition-colors"
+        >
+          <span className="text-lg">
+            {currentTheme === 'dark' ? '☀️' : '🌙'}
+          </span>
+          {!isCollapsed && (
+            <span className="text-sm">
+              {currentTheme === 'dark' ? 'Light' : 'Dark'}
+            </span>
+          )}
+        </button>
       </div>
 
       {/* Collapse Button */}

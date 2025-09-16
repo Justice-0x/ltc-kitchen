@@ -4,7 +4,7 @@ import StatusIndicator from "../components/StatusIndicator.jsx";
 ---
 
 <BaseLayout>
-  <div class="min-h-screen bg-gradient-to-br from-slate-900 via-gray-900 to-black relative overflow-hidden">
+  <div class="min-h-screen bg-gradient-to-br from-slate-900 via-gray-900 to-black dark:from-slate-900 dark:via-gray-900 dark:to-black light:from-gray-100 light:via-blue-50 light:to-white relative overflow-hidden">
     
     <!-- King Kong Style Searchlights -->
     <div class="absolute inset-0 overflow-hidden">
@@ -40,11 +40,11 @@ import StatusIndicator from "../components/StatusIndicator.jsx";
       <div class="text-center mb-16">
         <div class="mb-8">
           <div class="text-8xl mb-4 drop-shadow-2xl">🏝️</div>
-          <h1 class="text-6xl md:text-8xl font-black text-white mb-4 bg-gradient-to-r from-yellow-400 via-orange-300 to-red-400 bg-clip-text text-transparent drop-shadow-2xl">
+          <h1 class="text-6xl md:text-8xl font-black text-white dark:text-white light:text-gray-800 mb-4 bg-gradient-to-r from-yellow-400 via-orange-300 to-red-400 bg-clip-text text-transparent drop-shadow-2xl">
             Margaritaville Kitchen
           </h1>
-          <p class="text-2xl text-cyan-200 mb-6 font-light drop-shadow-lg">Real-time Equipment Management Dashboard</p>
-          <div class="inline-flex items-center bg-gradient-to-r from-slate-800/40 to-slate-700/40 backdrop-blur-md border border-white/20 rounded-full px-6 py-3 text-white shadow-2xl">
+          <p class="text-2xl text-cyan-200 dark:text-cyan-200 light:text-gray-600 mb-6 font-light drop-shadow-lg">Real-time Equipment Management Dashboard</p>
+          <div class="inline-flex items-center bg-gradient-to-r from-slate-800/40 to-slate-700/40 dark:from-slate-800/40 dark:to-slate-700/40 light:from-blue-100/80 light:to-blue-200/80 backdrop-blur-md border border-white/20 dark:border-white/20 light:border-gray-300/50 rounded-full px-6 py-3 text-white dark:text-white light:text-gray-800 shadow-2xl">
             <div class="w-3 h-3 bg-green-400 rounded-full mr-3 animate-pulse shadow-lg"></div>
             <span class="font-semibold">Operational</span>
             <span class="ml-2 text-sm font-mono" id="current-time"></span>
@@ -52,30 +52,30 @@ import StatusIndicator from "../components/StatusIndicator.jsx";
         </div>
       </div>
 
-      <!-- Stats Cards with Movie Theme -->
+      <!-- Stats Cards with Theme Support -->
       <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16">
-        <div class="bg-gradient-to-br from-slate-800/40 to-slate-700/40 backdrop-blur-md border border-white/10 rounded-2xl p-6 text-center hover:bg-slate-700/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-white/10">
-          <div class="text-5xl font-bold text-yellow-400 mb-2 drop-shadow-lg">4</div>
-          <div class="text-white font-medium">Total Equipment</div>
-          <div class="text-white/60 text-sm mt-1">Kitchen & Bar Systems</div>
+        <div class="bg-gradient-to-br from-slate-800/40 to-slate-700/40 dark:from-slate-800/40 dark:to-slate-700/40 light:from-white/80 light:to-gray-100/80 backdrop-blur-md border border-white/10 dark:border-white/10 light:border-gray-200/50 rounded-2xl p-6 text-center hover:bg-slate-700/50 dark:hover:bg-slate-700/50 light:hover:bg-gray-200/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-white/10 dark:hover:shadow-white/10 light:hover:shadow-gray-300/20">
+          <div class="text-5xl font-bold text-yellow-400 dark:text-yellow-400 light:text-yellow-600 mb-2 drop-shadow-lg">4</div>
+          <div class="text-white dark:text-white light:text-gray-800 font-medium">Total Equipment</div>
+          <div class="text-white/60 dark:text-white/60 light:text-gray-600 text-sm mt-1">Kitchen & Bar Systems</div>
         </div>
         
-        <div class="bg-gradient-to-br from-slate-800/40 to-slate-700/40 backdrop-blur-md border border-white/10 rounded-2xl p-6 text-center hover:bg-slate-700/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-white/10">
-          <div class="text-5xl font-bold text-green-400 mb-2 drop-shadow-lg">2</div>
-          <div class="text-white font-medium">Operational</div>
-          <div class="text-white/60 text-sm mt-1">Running Smoothly</div>
+        <div class="bg-gradient-to-br from-slate-800/40 to-slate-700/40 dark:from-slate-800/40 dark:to-slate-700/40 light:from-white/80 light:to-gray-100/80 backdrop-blur-md border border-white/10 dark:border-white/10 light:border-gray-200/50 rounded-2xl p-6 text-center hover:bg-slate-700/50 dark:hover:bg-slate-700/50 light:hover:bg-gray-200/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-white/10 dark:hover:shadow-white/10 light:hover:shadow-gray-300/20">
+          <div class="text-5xl font-bold text-green-400 dark:text-green-400 light:text-green-600 mb-2 drop-shadow-lg">2</div>
+          <div class="text-white dark:text-white light:text-gray-800 font-medium">Operational</div>
+          <div class="text-white/60 dark:text-white/60 light:text-gray-600 text-sm mt-1">Running Smoothly</div>
         </div>
         
-        <div class="bg-gradient-to-br from-slate-800/40 to-slate-700/40 backdrop-blur-md border border-white/10 rounded-2xl p-6 text-center hover:bg-slate-700/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-white/10">
-          <div class="text-5xl font-bold text-orange-400 mb-2 drop-shadow-lg">2</div>
-          <div class="text-white font-medium">Needs Attention</div>
-          <div class="text-white/60 text-sm mt-1">Scheduled Maintenance</div>
+        <div class="bg-gradient-to-br from-slate-800/40 to-slate-700/40 dark:from-slate-800/40 dark:to-slate-700/40 light:from-white/80 light:to-gray-100/80 backdrop-blur-md border border-white/10 dark:border-white/10 light:border-gray-200/50 rounded-2xl p-6 text-center hover:bg-slate-700/50 dark:hover:bg-slate-700/50 light:hover:bg-gray-200/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-white/10 dark:hover:shadow-white/10 light:hover:shadow-gray-300/20">
+          <div class="text-5xl font-bold text-orange-400 dark:text-orange-400 light:text-orange-600 mb-2 drop-shadow-lg">2</div>
+          <div class="text-white dark:text-white light:text-gray-800 font-medium">Needs Attention</div>
+          <div class="text-white/60 dark:text-white/60 light:text-gray-600 text-sm mt-1">Scheduled Maintenance</div>
         </div>
         
-        <div class="bg-gradient-to-br from-slate-800/40 to-slate-700/40 backdrop-blur-md border border-white/10 rounded-2xl p-6 text-center hover:bg-slate-700/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-white/10">
-          <div class="text-5xl font-bold text-blue-400 mb-2 drop-shadow-lg">95%</div>
-          <div class="text-white font-medium">Avg Uptime</div>
-          <div class="text-white/60 text-sm mt-1">This Month</div>
+        <div class="bg-gradient-to-br from-slate-800/40 to-slate-700/40 dark:from-slate-800/40 dark:to-slate-700/40 light:from-white/80 light:to-gray-100/80 backdrop-blur-md border border-white/10 dark:border-white/10 light:border-gray-200/50 rounded-2xl p-6 text-center hover:bg-slate-700/50 dark:hover:bg-slate-700/50 light:hover:bg-gray-200/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-white/10 dark:hover:shadow-white/10 light:hover:shadow-gray-300/20">
+          <div class="text-5xl font-bold text-blue-400 dark:text-blue-400 light:text-blue-600 mb-2 drop-shadow-lg">95%</div>
+          <div class="text-white dark:text-white light:text-gray-800 font-medium">Avg Uptime</div>
+          <div class="text-white/60 dark:text-white/60 light:text-gray-600 text-sm mt-1">This Month</div>
         </div>
       </div>
 

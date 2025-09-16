@@ -1,5 +1,4 @@
-/* 🌙 Gothic font import must be at the very top */
-@import url('https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap');
+/* Font imports */
 
 @tailwind base;
 @tailwind components;
@@ -107,66 +106,9 @@ body.dark .bg-gray-50 {
   background-color: #3a3a3a !important;
 }
 
-body.spooky {
-  background: linear-gradient(to bottom, #0a0a0a, #1a001a);
-  color: #ff8c00;
-  font-family: 'UnifrakturCook', cursive;
-  font-size: 18px; /* larger base in spooky */
-}
+/* Spooky theme removed - was causing blinking issues */
 
-/* Improve readability of text inside cards */
-body.spooky .bg-white { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, 'Apple Color Emoji', 'Segoe UI Emoji'; color: #2b2b2b; }
-body.spooky .bg-white h1,
-body.spooky .bg-white h2,
-body.spooky .bg-white h3 { color: #1f1f1f; text-shadow: none; }
-body.spooky .bg-white li { color: #333; }
-body.spooky .bg-white p { color: #333; }
-
-/* Headings bigger */
-body.spooky h1 { font-size: 2.25rem; }
-body.spooky h2 { font-size: 1.5rem; }
-body.spooky h3 { font-size: 1.25rem; }
-
-/* Mild glow and letter spacing for spooky titles */
-body.spooky h1, body.spooky h2, body.spooky h3 {
-  letter-spacing: 0.02em;
-}
-
-/* Sidebar Glow in Spooky */
-/* Sidebar element is a <nav>, not <aside> */
-body.spooky nav {
-  background: linear-gradient(to bottom, #000, #2a002a);
-  box-shadow: 0 0 15px rgba(138, 43, 226, 0.7);
-}
-
-/* Neon Glow Text */
-body.spooky > h1,
-body.spooky > h2,
-body.spooky > h3 {
-  color: #ff33cc;
-  text-shadow: 0 0 5px #ff33cc, 0 0 10px #ff66ff, 0 0 20px #ff33cc;
-}
-
-/* Spooky link hover colors */
-body.spooky a { color: #ffb347; }
-body.spooky a:hover { color: #ffa500; text-shadow: 0 0 6px rgba(255,165,0,.6); }
-
-/* Focus visibility for accessibility */
-body.spooky *:focus-visible { outline: 2px dashed #ff8c00; outline-offset: 2px; }
-
-/* Flicker Animation */
-@keyframes flicker {
-  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
-    opacity: 1;
-  }
-  20%, 24%, 55% {
-    opacity: 0.3;
-  }
-}
-
-body.spooky h1 {
-  animation: flicker 3s infinite;
-}
+/* Flicker Animation - REMOVED */
 
 /* Enhanced UI Animations */
 @keyframes shimmer {
@@ -466,4 +408,34 @@ body.spooky h1 {
 /* Radial gradient utility */
 .bg-gradient-radial {
   background: radial-gradient(circle, var(--tw-gradient-stops));
+}
+
+/* Mobile Theme Fixes */
+@media (max-width: 768px) {
+  /* Ensure theme classes work on mobile */
+  body.light {
+    background-color: #f3f4f6 !important;
+    color: #1f2937 !important;
+  }
+  
+  body.dark {
+    background-color: #1f2937 !important;
+    color: #f9fafb !important;
+  }
+  
+  /* Fix mobile header theme */
+  .lg\\:hidden {
+    background-color: #1f2937 !important;
+  }
+  
+  /* Ensure mobile sidebar respects theme */
+  #mobile-sidebar {
+    background-color: #1f2937 !important;
+  }
+  
+  /* Fix mobile text colors */
+  .lg\\:hidden h1,
+  .lg\\:hidden button {
+    color: #f9fafb !important;
+  }
 }

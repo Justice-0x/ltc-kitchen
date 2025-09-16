@@ -723,7 +723,7 @@ const currentManual = allManualData[id] || {
         <div class="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
           <StatusIndicator equipmentType={id} equipmentId={id} client:visible />
           <a 
-            href="/manuals/{currentManual.id}.pdf" 
+            href="/manuals/{id}.pdf" 
             download="{currentManual.title}.pdf"
             class="group relative px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold rounded-full shadow-2xl hover:shadow-green-500/50 transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 inline-block"
           >
