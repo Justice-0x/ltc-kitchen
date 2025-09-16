@@ -7,5 +7,10 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    function({ addVariant }) {
+      // Enable `light:` utility classes to apply when `.light` is present on a parent (e.g., body)
+      addVariant('light', '.light &');
+    }
+  ],
 };
