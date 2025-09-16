@@ -147,7 +147,7 @@ import "../styles/global.css";
 
       // Initialize body class after DOM is ready and wire listeners
       document.addEventListener('DOMContentLoaded', function() {
-        const savedTheme = localStorage.getItem('theme') || 'light';
+        const savedTheme = localStorage.getItem('theme') || 'dark';
         document.body.classList.remove('light', 'dark', 'spooky');
         document.body.classList.add(savedTheme);
         updateActiveThemeButton(savedTheme);

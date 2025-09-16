@@ -55,7 +55,7 @@ const SimpleSidebar = () => {
   return (
     <div className={`bg-gradient-to-b from-teal-900 to-cyan-900 text-white transition-all duration-300 ${
       isCollapsed ? 'w-16' : 'w-64'
-    } h-screen flex flex-col shadow-2xl overflow-y-auto overflow-x-hidden md:block hidden`}>
+    } h-screen flex flex-col shadow-2xl overflow-y-auto overflow-x-hidden`}>
       
                   {/* Easter Egg Display */}
                   {showEasterEgg && (
