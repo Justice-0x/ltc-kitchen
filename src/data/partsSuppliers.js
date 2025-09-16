@@ -273,7 +273,7 @@ export const realEquipmentData = {
         webstaurantUrl: "https://www.webstaurantstore.com/southbend-gas-valve/",
         specifications: {
           gasType: "Natural gas",
-          pressure: "0.5-14" W.C.",
+          pressure: "0.5-14 W.C.",
           voltage: "24V AC",
           compatibility: "Gas range series"
         }
