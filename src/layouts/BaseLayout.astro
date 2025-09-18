@@ -18,7 +18,7 @@ import "../styles/global.css";
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Creepster&display=swap" rel="stylesheet">
     <script>
       // Apply theme as early as possible; guard if body not ready
       (function() {
@@ -57,7 +57,7 @@ import "../styles/global.css";
     <header class="lg:hidden bg-slate-900 border-b border-slate-700 px-4 py-3">
       <div class="flex justify-between items-center">
         <div class="flex items-center space-x-3">
-          <button id="mobile-menu-btn" class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 transition-colors">
+          <button id="mobile-menu-btn" class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 transition-colors" title="Menu (m)">
             <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
             </svg>
@@ -66,12 +66,12 @@ import "../styles/global.css";
         </div>
         <div class="flex items-center space-x-2">
           <!-- Theme Toggle for Mobile -->
-          <button id="mobile-theme-btn" class="theme-btn p-2 rounded-lg bg-slate-800 hover:bg-slate-700 transition-colors" title="Toggle Theme">
+          <button id="mobile-theme-btn" class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 transition-colors" title="Toggle Theme (t)">
             <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
             </svg>
           </button>
-          <button id="qr-scanner-btn" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-medium transition-colors">
+          <button id="qr-scanner-btn" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-medium transition-colors" title="QR Scanner (q)">
             📱 QR
           </button>
         </div>
@@ -92,7 +92,12 @@ import "../styles/global.css";
 
       <!-- Main Content -->
       <main class="flex-1 relative z-10 min-w-0 overflow-x-auto">
-        <slot />
+    <slot />
+    <!-- Sticky mobile actions -->
+    <client:load>
+      {/* @ts-ignore React island */}
+      {await import('../components/FloatingActions.jsx').then(m => m.default({}))}
+    </client:load>
       </main>
     </div>
 
@@ -131,7 +136,7 @@ import "../styles/global.css";
       </div>
     </footer>
 
-    <!-- Theme Management Script -->
+    <!-- Theme & Shortcuts Script -->
     <script>
       // Theme management functionality
       function switchTheme(theme) {
@@ -177,6 +182,23 @@ import "../styles/global.css";
             const currentTheme = localStorage.getItem('theme') || 'dark';
             const idx = order.indexOf(currentTheme);
             const nextTheme = order[(idx + 1) % order.length];
+            
+            console.log('Mobile theme toggle:', { currentTheme, nextTheme, idx });
+            
+            // Apply theme changes directly (same as sidebar)
+            document.documentElement.setAttribute('data-theme', nextTheme);
+            document.body.classList.remove('light', 'dark', 'spooky');
+            document.body.classList.add(nextTheme);
+            localStorage.setItem('theme', nextTheme);
+            
+            // Force a visual refresh
+            document.body.style.display = 'none';
+            document.body.offsetHeight; // Trigger reflow
+            document.body.style.display = '';
+            
+            alert(`Mobile theme changed to: ${nextTheme}`);
+            
+            // Also call switchTheme for consistency
             switchTheme(nextTheme);
 
             // Update mobile button icon
@@ -198,6 +220,30 @@ import "../styles/global.css";
 
         // Parts ordering functionality
         initializePartsOrdering();
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+          if (e.key === '/' && !e.metaKey && !e.ctrlKey && !e.altKey) {
+            e.preventDefault();
+            window.location.href = '/search';
+          }
+          if (e.key.toLowerCase() === 'm') {
+            const btn = document.getElementById('mobile-menu-btn');
+            if (btn) btn.click();
+          }
+          if (e.key.toLowerCase() === 't') {
+            const btn = document.getElementById('mobile-theme-btn');
+            if (btn) btn.click();
+          }
+          if (e.key.toLowerCase() === 'q') {
+            const btn = document.getElementById('qr-scanner-btn');
+            if (btn) btn.click();
+          }
+        });
+
+        // Register service worker
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('/sw.js').catch(console.error);
+        }
       });
 
       function initializePartsOrdering() {

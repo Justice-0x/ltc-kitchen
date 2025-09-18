@@ -8,11 +8,18 @@
 html { font-size: 16px; }
 body { line-height: 1.6; }
 
-/* Dark Theme Styles */
+/* Dark Theme Styles - Much Darker */
 [data-theme="dark"] body,
 body.dark {
-  background-color: #1a1a1a !important;
-  color: #e5e5e5 !important;
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+/* Light Theme Styles - Bright and Clear */
+[data-theme="light"] body,
+body.light {
+  background: linear-gradient(135deg, #f0f9ff, #e0f2fe, #bae6fd) !important;
+  color: #0c4a6e !important;
 }
 
 /* Improve text contrast in dark mode */
@@ -109,8 +116,9 @@ body.dark .bg-gray-50 {
 /* Spooky Theme (non-blinking, high-contrast) */
 [data-theme="spooky"] body,
 body.spooky {
-  background-color: #0b0a10 !important; /* deep nearly-black purple */
-  color: #eaeafc !important;           /* very light lavender */
+  background: linear-gradient(135deg, #2d1b69, #11998e, #38ef7d) !important;
+  color: #ff6b35 !important;
+  font-family: 'Creepster', cursive, 'UnifrakturCook', cursive !important;
 }
 
 [data-theme="spooky"] .bg-white,

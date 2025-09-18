@@ -2,8 +2,44 @@ export async function POST({ request }) {
   try {
     const { message, systemPrompt } = await request.json();
 
-    // For now, return a mock response that follows the Bill's Bitch personality
-    // You can replace this with actual Gemini API integration
+    const apiKey = process.env.GOOGLE_API_KEY;
+    if (apiKey && typeof fetch === 'function') {
+      try {
+        const resp = await fetch(
+          "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=" + apiKey,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              contents: [
+                {
+                  role: "user",
+                  parts: [
+                    {
+                      text: `${systemPrompt || `You are Bill's Bitch, the dedicated smart assistant for LTC Kitchen.\nOnly help with kitchen equipment, manuals, troubleshooting, and parts.`}\n\nUser: ${message}`,
+                    },
+                  ],
+                },
+              ],
+              safetySettings: [],
+            }),
+          }
+        );
+        if (!resp.ok) {
+          throw new Error(`Gemini API error: ${resp.status}`);
+        }
+        const data = await resp.json();
+        const text = data?.candidates?.[0]?.content?.parts?.[0]?.text || "No response.";
+        return new Response(JSON.stringify({ message: text }), {
+          status: 200,
+          headers: { "Content-Type": "application/json" },
+        });
+      } catch (err) {
+        console.error('Gemini call failed, falling back to mock:', err);
+      }
+    }
+
+    // Mock responses fallback (no API key or API error)
     const mockResponses = {
       'hoshizaki ice maker not making ice': `🧊 **Hoshizaki Ice Maker - No Ice Production**
 
@@ -183,8 +219,9 @@ Example: "Hoshizaki ice maker not making ice"
       }
     }
 
-    return new Response(JSON.stringify({ 
-      message: responseContent 
+    return new Response(JSON.stringify({
+      message: responseContent,
+      note: apiKey ? undefined : 'Mock response (no GOOGLE_API_KEY set)'
     }), {
       status: 200,
       headers: {

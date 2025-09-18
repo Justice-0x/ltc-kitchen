@@ -1,9 +1,20 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const PartsOrder = ({ part, equipment }) => {
   const [quantity, setQuantity] = useState(1);
   const [isOrdering, setIsOrdering] = useState(false);
   const [showQuote, setShowQuote] = useState(false);
+  const [prefill, setPrefill] = useState({ model: '', serial: '' });
+
+  // Prefill from URL params (?model=...&serial=...)
+  useEffect(() => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const model = params.get('model') || '';
+      const serial = params.get('serial') || '';
+      if (model || serial) setPrefill({ model, serial });
+    } catch (_) {}
+  }, []);
 
   const suppliers = [
     {
@@ -50,6 +61,8 @@ const PartsOrder = ({ part, equipment }) => {
       sku: part.sku,
       quantity: quantity,
       equipment: equipment,
+      model: prefill.model,
+      serial: prefill.serial,
       timestamp: new Date().toISOString()
     };
     
@@ -63,6 +76,12 @@ const PartsOrder = ({ part, equipment }) => {
 
   return (
     <div className="space-y-4">
+      {/* Current Unit Context */}
+      {(prefill.model || prefill.serial) && (
+        <div className="p-2 rounded bg-blue-50 border border-blue-200 text-xs text-blue-800">
+          Unit context: {prefill.model && (<span className="mr-2"><strong>Model:</strong> {prefill.model}</span>)}{prefill.serial && (<span><strong>Serial:</strong> {prefill.serial}</span>)}
+        </div>
+      )}
       {/* Quantity Selector */}
       <div className="flex items-center space-x-2">
         <label className="text-sm font-medium text-slate-700">Quantity:</label>

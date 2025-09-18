@@ -11,6 +11,8 @@ module.exports = {
     function({ addVariant }) {
       // Enable `light:` utility classes to apply when `.light` is present on a parent (e.g., body)
       addVariant('light', '.light &');
+      // Enable `spooky:` utility classes to apply when `.spooky` is present on a parent (e.g., body)
+      addVariant('spooky', '.spooky &');
     }
   ],
 };

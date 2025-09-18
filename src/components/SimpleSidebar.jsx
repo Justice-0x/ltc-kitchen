@@ -18,13 +18,20 @@ const SimpleSidebar = () => {
     else if (path.includes('/bills-bitch')) setActiveSection('bills-bitch');
     else if (path.includes('/admin')) setActiveSection('admin');
     
-    // Load current theme
-    const savedTheme = localStorage.getItem('theme') || 'dark';
+    // Load current theme and ensure it's valid
+    let savedTheme = localStorage.getItem('theme') || 'dark';
+    if (!['dark', 'light', 'spooky'].includes(savedTheme)) {
+      savedTheme = 'dark';
+      localStorage.setItem('theme', savedTheme);
+    }
+    
     setCurrentTheme(savedTheme);
     // Apply theme immediately
     document.documentElement.setAttribute('data-theme', savedTheme);
     document.body.classList.remove('light', 'dark', 'spooky');
     document.body.classList.add(savedTheme);
+    
+    console.log('Sidebar initialized with theme:', savedTheme);
   }, []);
 
   const handleLogoClick = () => {
@@ -43,12 +50,48 @@ const SimpleSidebar = () => {
     }
   };
 
+  const handleThemeToggle = () => {
+    // Get current theme from localStorage instead of state
+    const currentThemeFromStorage = localStorage.getItem('theme') || 'dark';
+    const order = ['dark', 'light', 'spooky'];
+    const idx = order.indexOf(currentThemeFromStorage);
+    const nextTheme = order[(idx + 1) % order.length];
+
+    console.log('Theme toggle:', { currentThemeFromStorage, nextTheme, idx });
+
+    // Always update the theme directly
+    document.documentElement.setAttribute('data-theme', nextTheme);
+    document.body.classList.remove('light', 'dark', 'spooky');
+    document.body.classList.add(nextTheme);
+    localStorage.setItem('theme', nextTheme);
+    
+    // Force a visual refresh
+    document.body.style.display = 'none';
+    document.body.offsetHeight; // Trigger reflow
+    document.body.style.display = '';
+    
+    // Update state
+    setCurrentTheme(nextTheme);
+    
+    // Show alert for testing with more info
+    alert(`Theme changed to: ${nextTheme}\nPrevious: ${currentThemeFromStorage}\nIndex: ${idx}`);
+    
+    // Also call global function if available for consistency
+    if (window.switchTheme) {
+      window.switchTheme(nextTheme);
+    }
+  };
+
   const navigationItems = [
     { name: 'Dashboard', href: '/', icon: '🏠' },
     { name: 'Equipment', href: '/equipment', icon: '📋' },
     { name: 'Monitoring', href: '/monitoring', icon: '📊' },
     { name: 'Contact', href: '/contact', icon: '📞' },
     { name: 'Docs', href: '/docs', icon: '📚' },
+    { name: 'Commissioning', href: '/commissioning', icon: '✅' },
+    { name: 'Calculators', href: '/calculators', icon: '🧮' },
+    { name: 'PT Chart', href: '/pt-chart', icon: '📈' },
+    { name: 'Search', href: '/search', icon: '🔎' },
     { name: 'Bills Bitch', href: '/bills-bitch', icon: '✨' }
   ];
 
@@ -152,22 +195,7 @@ const SimpleSidebar = () => {
       {/* Theme Toggle */}
       <div className="p-4 border-t border-cyan-700">
         <button
-          onClick={() => {
-            const order = ['dark', 'light', 'spooky'];
-            const idx = order.indexOf(currentTheme);
-            const nextTheme = order[(idx + 1) % order.length];
-
-            document.documentElement.setAttribute('data-theme', nextTheme);
-            document.body.classList.remove('light', 'dark', 'spooky');
-            document.body.classList.add(nextTheme);
-            localStorage.setItem('theme', nextTheme);
-
-            setCurrentTheme(nextTheme);
-
-            document.querySelectorAll('.theme-btn').forEach(btn => {
-              btn.classList.remove('ring-2', 'ring-blue-500', 'bg-blue-200');
-            });
-          }}
+          onClick={handleThemeToggle}
           className="w-full flex items-center justify-center space-x-2 px-3 py-2 text-cyan-400 hover:text-white hover:bg-cyan-800/50 rounded-lg transition-colors"
         >
           <span className="text-lg">
