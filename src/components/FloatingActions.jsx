@@ -3,7 +3,7 @@ import React from 'react';
 export default function FloatingActions() {
   const items = [
     { href: '/docs', label: 'Manuals', emoji: '📚' },
-    { href: '/parts', label: 'Parts', emoji: '🛠️' },
+    { href: '/parts-order', label: 'Order', emoji: '📦' },
     { href: '/calculators', label: 'Calc', emoji: '🧮' },
     { href: '/contact', label: 'Support', emoji: '📞' },
   ];

@@ -4,6 +4,7 @@ import DocsButtons from "../components/DocsButtons.astro";
 import SectionCard from "../components/SectionCard.astro";
 import TroubleshootingDropdown from "../components/TroubleshootingDropdown.astro";
 import QuickActions from "../components/QuickActions.jsx";
+import ModelSelector from "../components/ModelSelector.jsx";
 
 const status = "operational";
 
@@ -95,6 +96,14 @@ const getSeverityColor = (severity: string) => {
   </div>
 
   <DocsButtons id="turbochef" />
+
+  <!-- Model Selector -->
+  <div class="mb-8">
+    <client:load>
+      {/* @ts-ignore React island */}
+      {await import('../components/ModelSelector.jsx').then(m => m.default({ brandId: 'turbochef' }))}
+    </client:load>
+  </div>
 
   <!-- Main Dashboard Grid -->
   <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">

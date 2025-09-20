@@ -1,0 +1,29 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import TroubleshootingFlowchart from "../components/TroubleshootingFlowchart.jsx";
+---
+
+<BaseLayout>
+  <div class="min-h-screen py-10 px-4 md:px-8 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 dark:from-slate-900 dark:via-blue-900 dark:to-indigo-900 light:from-gray-100 light:via-blue-50 light:to-white spooky:from-purple-900 spooky:via-gray-900 spooky:to-black">
+    <div class="max-w-5xl mx-auto">
+      <div class="mb-6 text-center">
+        <h1 class="text-4xl font-extrabold text-white light:text-gray-800 spooky:text-orange-300">Troubleshooting Flowcharts</h1>
+        <p class="text-blue-200 light:text-gray-600">Interactive step-by-step troubleshooting with expected readings</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <div class="bg-white/10 dark:bg-white/10 light:bg-white/80 spooky:bg-gray-800/80 backdrop-blur-md border border-white/20 light:border-gray-200/50 spooky:border-orange-500/30 rounded-2xl p-6">
+          <h3 class="text-xl font-bold text-white light:text-gray-800 spooky:text-orange-300 mb-4">Hoshizaki Ice Maker</h3>
+          <p class="text-blue-200 light:text-gray-600 mb-4">No ice production troubleshooting</p>
+          <TroubleshootingFlowchart brandId="hoshizaki" flowchartId="no-ice-production" />
+        </div>
+        
+        <div class="bg-white/10 dark:bg-white/10 light:bg-white/80 spooky:bg-gray-800/80 backdrop-blur-md border border-white/20 light:border-gray-200/50 spooky:border-orange-500/30 rounded-2xl p-6">
+          <h3 class="text-xl font-bold text-white light:text-gray-800 spooky:text-orange-300 mb-4">TurboChef Oven</h3>
+          <p class="text-blue-200 light:text-gray-600 mb-4">E05 error troubleshooting</p>
+          <TroubleshootingFlowchart brandId="turbochef" flowchartId="e05-error" />
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

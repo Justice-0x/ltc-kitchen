@@ -91,6 +91,9 @@ const SimpleSidebar = () => {
     { name: 'Commissioning', href: '/commissioning', icon: '✅' },
     { name: 'Calculators', href: '/calculators', icon: '🧮' },
     { name: 'PT Chart', href: '/pt-chart', icon: '📈' },
+    { name: 'Troubleshooting', href: '/troubleshooting', icon: '🔧' },
+    { name: 'Parts Order', href: '/parts-order', icon: '📦' },
+    { name: 'Parts Cross-Ref', href: '/parts-crossref', icon: '🔄' },
     { name: 'Search', href: '/search', icon: '🔎' },
     { name: 'Bills Bitch', href: '/bills-bitch', icon: '✨' }
   ];

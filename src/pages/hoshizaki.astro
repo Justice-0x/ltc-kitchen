@@ -4,6 +4,7 @@ import DocsButtons from "../components/DocsButtons.astro";
 import SectionCard from "../components/SectionCard.astro";
 import TroubleshootingDropdown from "../components/TroubleshootingDropdown.astro";
 import QuickActions from "../components/QuickActions.jsx";
+import ModelSelector from "../components/ModelSelector.jsx";
 
 const troubleshootingIssues = [
   {
@@ -71,6 +72,14 @@ const troubleshootingIssues = [
   </div>
 
   <DocsButtons id="hoshizaki" />
+
+  <!-- Model Selector -->
+  <div class="mb-8">
+    <client:load>
+      {/* @ts-ignore React island */}
+      {await import('../components/ModelSelector.jsx').then(m => m.default({ brandId: 'hoshizaki' }))}
+    </client:load>
+  </div>
 
   <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
     <SectionCard title="Cycle Overview" class="lg:col-span-2">

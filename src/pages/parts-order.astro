@@ -1,0 +1,17 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import EnhancedPartsOrder from "../components/EnhancedPartsOrder.jsx";
+---
+
+<BaseLayout>
+  <div class="min-h-screen py-10 px-4 md:px-8 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 dark:from-slate-900 dark:via-blue-900 dark:to-indigo-900 light:from-gray-100 light:via-blue-50 light:to-white spooky:from-purple-900 spooky:via-gray-900 spooky:to-black">
+    <div class="max-w-6xl mx-auto">
+      <div class="mb-6 text-center">
+        <h1 class="text-4xl font-extrabold text-white light:text-gray-800 spooky:text-orange-300">Enhanced Parts Order</h1>
+        <p class="text-blue-200 light:text-gray-600">Smart parts ordering with prefill, CC/BCC routing, and email generation</p>
+      </div>
+      
+      <EnhancedPartsOrder />
+    </div>
+  </div>
+</BaseLayout>
