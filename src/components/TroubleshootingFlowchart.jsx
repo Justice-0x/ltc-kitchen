@@ -19,6 +19,14 @@ export default function TroubleshootingFlowchart({ brandId, flowchartId = null }
 
   const currentStep = flowchart.steps.find(s => s.id === currentStepId) || flowchart.steps[0];
   
+  if (!currentStep) {
+    return (
+      <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
+        <p className="text-red-800">No steps available for this flowchart.</p>
+      </div>
+    );
+  }
+  
   const handleAnswer = (answer) => {
     setCompletedSteps(prev => new Set([...prev, currentStepId]));
     
@@ -40,6 +48,14 @@ export default function TroubleshootingFlowchart({ brandId, flowchartId = null }
   };
 
   const renderStep = (step) => {
+    if (!step || typeof step !== 'object') {
+      return (
+        <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
+          <p className="text-red-800">Invalid step data.</p>
+        </div>
+      );
+    }
+    
     switch (step.type) {
       case 'check':
         return (
@@ -78,7 +94,7 @@ export default function TroubleshootingFlowchart({ brandId, flowchartId = null }
             </div>
             <div className="mb-4">
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Reading ({step.reading}):
+                Reading {step.reading ? `(${step.reading})` : ''}:
               </label>
               <input
                 type="number"
