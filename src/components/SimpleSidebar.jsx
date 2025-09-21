@@ -94,7 +94,8 @@ const SimpleSidebar = () => {
     { name: 'Parts Order', href: '/parts-order', icon: '📦' },
     { name: 'Parts Cross-Ref', href: '/parts-crossref', icon: '🔄' },
     { name: 'Search', href: '/search', icon: '🔎' },
-    { name: 'Kitchen Assistant', href: '/kitchen-assistant', icon: '🤖' }
+    { name: 'Kitchen Assistant', href: '/kitchen-assistant', icon: '🤖' },
+    { name: 'Admin Portal', href: '/admin', icon: '⚙️' }
   ];
 
   return (

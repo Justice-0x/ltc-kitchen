@@ -413,6 +413,123 @@ export const equipmentData = {
       temperature: "Hot/Cold water supply",
       dimensions: "36\" W x 42\" D x 48\" H"
     }
+  },
+
+  // Additional Equipment Types
+  "walk-in-coolers": {
+    name: "Walk-in Coolers & Freezers",
+    manufacturer: "Various",
+    website: "https://www.walkincoolers.com",
+    supportPhone: "1-800-WALKIN",
+    supportEmail: "support@walkincoolers.com",
+    manuals: [
+      {
+        title: "Walk-in Cooler Installation Manual",
+        model: "WIC-8x10",
+        file: "walk-ins.pdf",
+        pages: 45,
+        lastUpdated: "2024",
+        downloadUrl: "https://www.walkincoolers.com/manuals",
+        description: "Complete installation and service manual for walk-in coolers"
+      }
+    ],
+    commonIssues: [
+      {
+        issue: "Temperature not maintaining",
+        cause: "Refrigerant leak or compressor issues",
+        solution: "Check refrigerant levels and compressor operation",
+        parts: ["Refrigerant R-404A", "Compressor CP-200", "Evaporator EV-150"]
+      },
+      {
+        issue: "Door not sealing properly",
+        cause: "Door gasket or hinge problems",
+        solution: "Inspect and replace door gasket, check hinge alignment",
+        parts: ["Door Gasket DG-300", "Door Hinge DH-100"]
+      }
+    ],
+    parts: [
+      { 
+        name: "Door Gasket", 
+        partNumber: "DG-300", 
+        price: "$125",
+        inStock: true,
+        description: "Heavy-duty magnetic door gasket for walk-in coolers",
+        manufacturer: "CoolerPro"
+      },
+      { 
+        name: "Compressor", 
+        partNumber: "CP-200", 
+        price: "$1,200",
+        inStock: false,
+        description: "High-efficiency refrigeration compressor",
+        manufacturer: "CoolerPro"
+      }
+    ],
+    specifications: {
+      capacity: "8x10x8 feet",
+      power: "220V, 60Hz, 40A",
+      temperature: "35-40°F (cooler), -10 to 0°F (freezer)",
+      refrigerant: "R-404A",
+      dimensions: "96\" W x 120\" D x 96\" H"
+    }
+  },
+
+  "dishwashers": {
+    name: "Commercial Dishwashers",
+    manufacturer: "Various",
+    website: "https://www.commercialdishwashers.com",
+    supportPhone: "1-800-DISHWASH",
+    supportEmail: "support@commercialdishwashers.com",
+    manuals: [
+      {
+        title: "High-Temp Dishwasher Service Manual",
+        model: "HTD-500",
+        file: "dishwashers.pdf",
+        pages: 32,
+        lastUpdated: "2024",
+        downloadUrl: "https://www.commercialdishwashers.com/manuals",
+        description: "Service manual for high-temperature commercial dishwashers"
+      }
+    ],
+    commonIssues: [
+      {
+        issue: "Dishes not getting clean",
+        cause: "Low water temperature or spray arm issues",
+        solution: "Check water heater and clean spray arms",
+        parts: ["Water Heater WH-400", "Spray Arm SA-200", "Detergent Pump DP-100"]
+      },
+      {
+        issue: "Machine not draining",
+        cause: "Drain pump or filter problems",
+        solution: "Clean filters and check drain pump operation",
+        parts: ["Drain Pump DP-150", "Filter Assembly FA-75"]
+      }
+    ],
+    parts: [
+      { 
+        name: "Water Heater", 
+        partNumber: "WH-400", 
+        price: "$450",
+        inStock: true,
+        description: "High-efficiency water heater for dishwashers",
+        manufacturer: "DishPro"
+      },
+      { 
+        name: "Spray Arm", 
+        partNumber: "SA-200", 
+        price: "$85",
+        inStock: true,
+        description: "Stainless steel spray arm assembly",
+        manufacturer: "DishPro"
+      }
+    ],
+    specifications: {
+      capacity: "500-1000 racks per hour",
+      power: "220V, 60Hz, 50A",
+      waterTemperature: "140-180°F",
+      waterPressure: "20-60 PSI",
+      dimensions: "36\" W x 30\" D x 72\" H"
+    }
   }
 };
 
