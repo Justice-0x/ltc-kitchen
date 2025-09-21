@@ -354,6 +354,65 @@ export const equipmentData = {
       dimensions: "30\" W x 30\" D x 36\" H",
       warranty: "1 year parts and labor"
     }
+  },
+  
+  // Laundry Equipment
+  laundry: {
+    name: "Commercial Laundry Equipment",
+    manufacturer: "Various",
+    website: "https://www.laundryequipment.com",
+    supportPhone: "1-800-LAUNDRY",
+    supportEmail: "support@laundryequipment.com",
+    manuals: [
+      {
+        title: "Commercial Washer Service Manual",
+        model: "CW-5000",
+        file: "laundry.pdf",
+        pages: 28,
+        lastUpdated: "2024",
+        downloadUrl: "https://www.laundryequipment.com/manuals",
+        description: "Complete service manual for commercial washing machines"
+      }
+    ],
+    commonIssues: [
+      {
+        issue: "Machine not spinning",
+        cause: "Belt or motor problems",
+        solution: "Check belt tension and motor operation",
+        parts: ["Drive Belt DB-500", "Motor Assembly MA-300"]
+      },
+      {
+        issue: "Water not draining",
+        cause: "Pump or drain valve issues",
+        solution: "Inspect pump and drain valve operation",
+        parts: ["Drain Pump DP-200", "Drain Valve DV-150"]
+      }
+    ],
+    parts: [
+      { 
+        name: "Drive Belt", 
+        partNumber: "DB-500", 
+        price: "$85",
+        inStock: true,
+        description: "Heavy-duty drive belt for commercial washers",
+        manufacturer: "LaundryPro"
+      },
+      { 
+        name: "Drain Pump", 
+        partNumber: "DP-200", 
+        price: "$195",
+        inStock: true,
+        description: "High-capacity drain pump assembly",
+        manufacturer: "LaundryPro"
+      }
+    ],
+    specifications: {
+      capacity: "50-100 lbs per load",
+      power: "220V, 60Hz, 30A",
+      waterPressure: "20-60 PSI",
+      temperature: "Hot/Cold water supply",
+      dimensions: "36\" W x 42\" D x 48\" H"
+    }
   }
 };
 

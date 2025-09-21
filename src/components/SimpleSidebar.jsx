@@ -73,8 +73,7 @@ const SimpleSidebar = () => {
     // Update state
     setCurrentTheme(nextTheme);
     
-    // Show alert for testing with more info
-    alert(`Theme changed to: ${nextTheme}\nPrevious: ${currentThemeFromStorage}\nIndex: ${idx}`);
+    // Theme changed successfully
     
     // Also call global function if available for consistency
     if (window.switchTheme) {
@@ -95,7 +94,7 @@ const SimpleSidebar = () => {
     { name: 'Parts Order', href: '/parts-order', icon: '📦' },
     { name: 'Parts Cross-Ref', href: '/parts-crossref', icon: '🔄' },
     { name: 'Search', href: '/search', icon: '🔎' },
-    { name: 'Bills Bitch', href: '/bills-bitch', icon: '✨' }
+    { name: 'Kitchen Assistant', href: '/kitchen-assistant', icon: '🤖' }
   ];
 
   return (

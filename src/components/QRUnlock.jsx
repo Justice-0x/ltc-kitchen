@@ -19,7 +19,7 @@ const QRUnlock = () => {
       // Initialize with welcome message
       setMessages([{
         role: 'assistant',
-        content: "👋 **Bill's Bitch here** — your kitchen equipment assistant. I'm here to fix gear, not chat about life.\n\n**Quick Links:**\n• `/parts/hoshizaki` → Ice maker parts\n• `/manuals/perlick.pdf` → Glycol chiller manual\n• `/diagrams/turbochef.png` → Oven wiring\n\n**What's broken today?**"
+        content: "👋 **Kitchen Assistant here** — your professional equipment support system. I'm here to help with repairs, maintenance, and troubleshooting.\n\n**Quick Links:**\n• `/parts/hoshizaki` → Ice maker parts\n• `/manuals/perlick.pdf` → Glycol chiller manual\n• `/diagrams/turbochef.png` → Oven wiring\n\n**What equipment needs attention today?**"
       }]);
     }
   }, []);
@@ -41,9 +41,9 @@ const QRUnlock = () => {
         },
         body: JSON.stringify({
           message: inputMessage,
-          systemPrompt: `You are Bill's Bitch, the dedicated smart assistant for LTC Kitchen. 
+          systemPrompt: `You are the Kitchen Assistant, the professional equipment support system for LTC Kitchen. 
 You exist ONLY to help technicians and staff with kitchen equipment, manuals, troubleshooting, and parts. 
-You DO NOT answer unrelated questions — if asked, firmly redirect back to equipment support.
+You DO NOT answer unrelated questions — if asked, politely redirect back to equipment support.
 
 Your core responsibilities:
 1. 📖 Manuals → Guide users to the correct PDF/manual in /public/manuals/{id}.pdf.

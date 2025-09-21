@@ -207,7 +207,7 @@ export default function TroubleshootingFlowchart({ brandId, flowchartId = null }
               return step ? (
                 <div key={stepId} className="flex items-center mb-1">
                   <span className="text-green-600 mr-2">✓</span>
-                  {step.question || step.title}
+                  {step.question || step.title || 'Step completed'}
                 </div>
               ) : null;
             })}
