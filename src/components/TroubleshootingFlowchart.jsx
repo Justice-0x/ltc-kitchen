@@ -60,10 +60,10 @@ export default function TroubleshootingFlowchart({ brandId, flowchartId = null }
       case 'check':
         return (
           <div className="bg-white border border-gray-200 rounded-lg p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">{step.question}</h3>
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">{step.question || 'Check required'}</h3>
             <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded">
               <p className="text-sm text-blue-800">
-                <strong>Expected:</strong> {step.expected}
+                <strong>Expected:</strong> {step.expected || 'No specific expectation'}
               </p>
             </div>
             <div className="flex space-x-4">
@@ -86,10 +86,10 @@ export default function TroubleshootingFlowchart({ brandId, flowchartId = null }
       case 'measure':
         return (
           <div className="bg-white border border-gray-200 rounded-lg p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">{step.question}</h3>
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">{step.question || 'Measurement required'}</h3>
             <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded">
               <p className="text-sm text-blue-800">
-                <strong>Expected:</strong> {step.expected}
+                <strong>Expected:</strong> {step.expected || 'No specific expectation'}
               </p>
             </div>
             <div className="mb-4">
@@ -124,10 +124,10 @@ export default function TroubleshootingFlowchart({ brandId, flowchartId = null }
       case 'test':
         return (
           <div className="bg-white border border-gray-200 rounded-lg p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">{step.question}</h3>
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">{step.question || 'Test required'}</h3>
             <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded">
               <p className="text-sm text-blue-800">
-                <strong>Expected:</strong> {step.expected}
+                <strong>Expected:</strong> {step.expected || 'No specific expectation'}
               </p>
             </div>
             <div className="flex space-x-4">
@@ -150,16 +150,16 @@ export default function TroubleshootingFlowchart({ brandId, flowchartId = null }
       case 'action':
         return (
           <div className="bg-white border border-gray-200 rounded-lg p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">{step.title}</h3>
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">{step.title || 'Action required'}</h3>
             <div className="mb-4">
               <h4 className="text-md font-medium text-gray-700 mb-2">Actions Required:</h4>
               <ul className="list-disc pl-6 space-y-1">
-                {step.actions.map((action, index) => (
+                {step.actions && Array.isArray(step.actions) ? step.actions.map((action, index) => (
                   <li key={index} className="text-gray-600">{action}</li>
-                ))}
+                )) : <li className="text-gray-500 italic">No actions specified</li>}
               </ul>
             </div>
-            {step.parts && step.parts.length > 0 && (
+            {step.parts && Array.isArray(step.parts) && step.parts.length > 0 && (
               <div className="mb-4">
                 <h4 className="text-md font-medium text-gray-700 mb-2">Parts Needed:</h4>
                 <ul className="list-disc pl-6 space-y-1">
@@ -183,9 +183,9 @@ export default function TroubleshootingFlowchart({ brandId, flowchartId = null }
           <div className="bg-green-50 border border-green-200 rounded-lg p-6">
             <div className="flex items-center mb-4">
               <div className="text-2xl mr-3">✅</div>
-              <h3 className="text-lg font-semibold text-green-900">{step.title}</h3>
+              <h3 className="text-lg font-semibold text-green-900">{step.title || 'Success'}</h3>
             </div>
-            <p className="text-green-800 mb-4">{step.message}</p>
+            <p className="text-green-800 mb-4">{step.message || 'Issue resolved successfully.'}</p>
             <button
               onClick={resetFlowchart}
               className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
