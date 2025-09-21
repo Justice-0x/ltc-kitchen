@@ -530,6 +530,233 @@ export const equipmentData = {
       waterPressure: "20-60 PSI",
       dimensions: "36\" W x 30\" D x 72\" H"
     }
+  },
+
+  // KE2 Therm Temperature & Defrost Controls
+  "ke2-therm-controls": {
+    name: "KE2 Therm Temperature & Defrost Controls",
+    manufacturer: "KE2 Therm",
+    website: "https://www.ke2therm.com",
+    supportPhone: "1-800-KE2-THERM",
+    supportEmail: "support@ke2therm.com",
+    manuals: [
+      {
+        title: "KE2 Therm Temperature Control Installation Manual",
+        model: "KE2-3000",
+        file: "ke2-therm-controls.pdf",
+        pages: 45,
+        lastUpdated: "2024",
+        downloadUrl: "https://www.ke2therm.com/literature",
+        description: "Complete installation and programming manual for KE2 Therm temperature controls"
+      },
+      {
+        title: "KE2 SmartAccess User Guide",
+        model: "KE2-SmartAccess",
+        file: "ke2-smartaccess.pdf",
+        pages: 28,
+        lastUpdated: "2024",
+        downloadUrl: "https://www.ke2therm.com/ke2-smartaccess-login",
+        description: "User guide for KE2 SmartAccess monitoring and connectivity platform"
+      }
+    ],
+    commonIssues: [
+      {
+        issue: "Temperature not maintaining setpoint",
+        cause: "Sensor calibration or control board issues",
+        solution: "Check sensor calibration and control board operation",
+        parts: ["Temperature Sensor TS-100", "Control Board CB-200", "Calibration Kit CK-50"]
+      },
+      {
+        issue: "Defrost cycle not working",
+        cause: "Defrost timer or heater element problems",
+        solution: "Check defrost timer settings and heater element continuity",
+        parts: ["Defrost Timer DT-150", "Heater Element HE-300", "Defrost Thermostat DT-75"]
+      },
+      {
+        issue: "Display showing error codes",
+        cause: "Communication or sensor wiring issues",
+        solution: "Check wiring connections and sensor resistance",
+        parts: ["Communication Cable CC-100", "Sensor Wiring SW-50", "Display Board DB-200"]
+      }
+    ],
+    parts: [
+      { 
+        name: "Temperature Sensor", 
+        partNumber: "KE2-TS-100", 
+        price: "$125",
+        inStock: true,
+        description: "High-accuracy temperature sensor for refrigeration control",
+        manufacturer: "KE2 Therm"
+      },
+      { 
+        name: "Control Board", 
+        partNumber: "KE2-CB-200", 
+        price: "$450",
+        inStock: true,
+        description: "Main control board with digital display and programming",
+        manufacturer: "KE2 Therm"
+      },
+      { 
+        name: "Defrost Timer", 
+        partNumber: "KE2-DT-150", 
+        price: "$85",
+        inStock: true,
+        description: "Electronic defrost timer with multiple cycle options",
+        manufacturer: "KE2 Therm"
+      },
+      { 
+        name: "Heater Element", 
+        partNumber: "KE2-HE-300", 
+        price: "$95",
+        inStock: false,
+        description: "Defrost heater element for evaporator coils",
+        manufacturer: "KE2 Therm"
+      },
+      { 
+        name: "Communication Cable", 
+        partNumber: "KE2-CC-100", 
+        price: "$35",
+        inStock: true,
+        description: "RS-485 communication cable for SmartAccess connectivity",
+        manufacturer: "KE2 Therm"
+      }
+    ],
+    specifications: {
+      temperatureRange: "-40°F to 140°F",
+      accuracy: "±0.5°F",
+      power: "24V AC/DC",
+      communication: "RS-485, Modbus RTU",
+      display: "4-digit LED with status indicators",
+      dimensions: "4.5\" W x 3.5\" H x 1.5\" D"
+    }
+  },
+
+  // KE2 Therm Monitoring & Connectivity
+  "ke2-therm-monitoring": {
+    name: "KE2 Therm Monitoring & Connectivity",
+    manufacturer: "KE2 Therm",
+    website: "https://www.ke2therm.com",
+    supportPhone: "1-800-KE2-THERM",
+    supportEmail: "support@ke2therm.com",
+    manuals: [
+      {
+        title: "KE2 SmartAccess Monitoring Setup",
+        model: "KE2-SmartAccess",
+        file: "ke2-monitoring.pdf",
+        pages: 35,
+        lastUpdated: "2024",
+        downloadUrl: "https://www.ke2therm.com/ke2-smartaccess-login",
+        description: "Setup and configuration guide for KE2 SmartAccess monitoring platform"
+      }
+    ],
+    commonIssues: [
+      {
+        issue: "No data transmission to cloud",
+        cause: "Network connectivity or configuration issues",
+        solution: "Check network settings and cloud configuration",
+        parts: ["Network Module NM-100", "Antenna ANT-50", "SIM Card SC-25"]
+      },
+      {
+        issue: "Alerts not being received",
+        cause: "Notification settings or email configuration",
+        solution: "Verify alert settings and email configuration",
+        parts: ["Alert Module AM-75", "Email Gateway EG-100"]
+      }
+    ],
+    parts: [
+      { 
+        name: "Network Module", 
+        partNumber: "KE2-NM-100", 
+        price: "$275",
+        inStock: true,
+        description: "4G LTE network module for cloud connectivity",
+        manufacturer: "KE2 Therm"
+      },
+      { 
+        name: "Antenna", 
+        partNumber: "KE2-ANT-50", 
+        price: "$45",
+        inStock: true,
+        description: "High-gain antenna for cellular connectivity",
+        manufacturer: "KE2 Therm"
+      },
+      { 
+        name: "SIM Card", 
+        partNumber: "KE2-SC-25", 
+        price: "$25",
+        inStock: true,
+        description: "Pre-configured SIM card for data transmission",
+        manufacturer: "KE2 Therm"
+      }
+    ],
+    specifications: {
+      connectivity: "4G LTE, WiFi, Ethernet",
+      dataInterval: "1 minute to 1 hour configurable",
+      cloudPlatform: "KE2 SmartAccess",
+      alerts: "Email, SMS, Push notifications",
+      batteryBackup: "24 hours",
+      operatingTemp: "-40°F to 140°F"
+    }
+  },
+
+  // Resort-Specific Equipment
+  "resort-refrigeration": {
+    name: "Resort Refrigeration Systems",
+    manufacturer: "Various",
+    website: "https://www.resortrefrigeration.com",
+    supportPhone: "1-800-RESORT-REF",
+    supportEmail: "support@resortrefrigeration.com",
+    manuals: [
+      {
+        title: "Resort Walk-in Cooler Service Manual",
+        model: "RRC-12x16",
+        file: "resort-refrigeration.pdf",
+        pages: 52,
+        lastUpdated: "2024",
+        downloadUrl: "https://www.resortrefrigeration.com/manuals",
+        description: "Complete service manual for resort walk-in refrigeration systems"
+      }
+    ],
+    commonIssues: [
+      {
+        issue: "Temperature fluctuations in guest areas",
+        cause: "Poor insulation or door seal issues",
+        solution: "Check door seals and insulation integrity",
+        parts: ["Door Seal DS-400", "Insulation Panel IP-200", "Door Hinge DH-150"]
+      },
+      {
+        issue: "High energy consumption",
+        cause: "Inefficient defrost cycles or dirty coils",
+        solution: "Optimize defrost settings and clean evaporator coils",
+        parts: ["Defrost Controller DC-300", "Coil Cleaner CC-100"]
+      }
+    ],
+    parts: [
+      { 
+        name: "Door Seal", 
+        partNumber: "RRC-DS-400", 
+        price: "$180",
+        inStock: true,
+        description: "Heavy-duty magnetic door seal for resort walk-ins",
+        manufacturer: "ResortRef"
+      },
+      { 
+        name: "Defrost Controller", 
+        partNumber: "RRC-DC-300", 
+        price: "$320",
+        inStock: true,
+        description: "Energy-efficient defrost controller with smart scheduling",
+        manufacturer: "ResortRef"
+      }
+    ],
+    specifications: {
+      capacity: "12x16x8 feet",
+      temperature: "35-40°F",
+      power: "220V, 60Hz, 60A",
+      refrigerant: "R-448A (low GWP)",
+      energyRating: "Energy Star certified",
+      dimensions: "144\" W x 192\" D x 96\" H"
+    }
   }
 };
 

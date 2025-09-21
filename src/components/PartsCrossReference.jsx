@@ -29,11 +29,23 @@ export default function PartsCrossReference() {
   };
 
   const getPriorityColor = (priority) => {
-    return stockingPriorities[priority]?.color || 'gray';
+    const colorMap = {
+      'High': 'red',
+      'Medium': 'yellow', 
+      'Low': 'green',
+      'Critical': 'purple'
+    };
+    return colorMap[priority] || 'gray';
   };
 
   const getQualityColor = (quality) => {
-    return qualityLevels[quality]?.color || 'gray';
+    const colorMap = {
+      'Premium': 'blue',
+      'Standard': 'green',
+      'Economy': 'yellow',
+      'OEM': 'purple'
+    };
+    return colorMap[quality] || 'gray';
   };
 
   const generateStockingReport = () => {
@@ -124,7 +136,13 @@ export default function PartsCrossReference() {
                     </div>
                     <div>
                       <span className="font-medium text-white light:text-gray-900">Quality:</span> 
-                      <span className={`ml-1 px-1 py-0.5 rounded text-xs bg-${getQualityColor(result.aftermarket.quality)}-100 text-${getQualityColor(result.aftermarket.quality)}-800`}>
+                      <span className={`ml-1 px-1 py-0.5 rounded text-xs ${
+                        result.aftermarket.quality === 'Premium' ? 'bg-blue-100 text-blue-800' :
+                        result.aftermarket.quality === 'Standard' ? 'bg-green-100 text-green-800' :
+                        result.aftermarket.quality === 'Economy' ? 'bg-yellow-100 text-yellow-800' :
+                        result.aftermarket.quality === 'OEM' ? 'bg-purple-100 text-purple-800' :
+                        'bg-gray-100 text-gray-800'
+                      }`}>
                         {result.aftermarket.quality}
                       </span>
                     </div>
@@ -133,7 +151,13 @@ export default function PartsCrossReference() {
                     </div>
                     <div>
                       <span className="font-medium text-white light:text-gray-900">Priority:</span>
-                      <span className={`ml-1 px-1 py-0.5 rounded text-xs bg-${getPriorityColor(result.aftermarket.stockingPriority)}-100 text-${getPriorityColor(result.aftermarket.stockingPriority)}-800`}>
+                      <span className={`ml-1 px-1 py-0.5 rounded text-xs ${
+                        result.aftermarket.stockingPriority === 'High' ? 'bg-red-100 text-red-800' :
+                        result.aftermarket.stockingPriority === 'Medium' ? 'bg-yellow-100 text-yellow-800' :
+                        result.aftermarket.stockingPriority === 'Low' ? 'bg-green-100 text-green-800' :
+                        result.aftermarket.stockingPriority === 'Critical' ? 'bg-purple-100 text-purple-800' :
+                        'bg-gray-100 text-gray-800'
+                      }`}>
                         {result.aftermarket.stockingPriority}
                       </span>
                     </div>
@@ -218,7 +242,13 @@ export default function PartsCrossReference() {
                           </div>
                           <div>
                             <span className="font-medium text-white light:text-gray-900">Quality:</span>
-                            <span className={`ml-1 px-1 py-0.5 rounded text-xs bg-${getQualityColor(am.quality)}-100 text-${getQualityColor(am.quality)}-800`}>
+                            <span className={`ml-1 px-1 py-0.5 rounded text-xs ${
+                              am.quality === 'Premium' ? 'bg-blue-100 text-blue-800' :
+                              am.quality === 'Standard' ? 'bg-green-100 text-green-800' :
+                              am.quality === 'Economy' ? 'bg-yellow-100 text-yellow-800' :
+                              am.quality === 'OEM' ? 'bg-purple-100 text-purple-800' :
+                              'bg-gray-100 text-gray-800'
+                            }`}>
                               {am.quality}
                             </span>
                           </div>
@@ -227,7 +257,13 @@ export default function PartsCrossReference() {
                           </div>
                           <div>
                             <span className="font-medium text-white light:text-gray-900">Stocking Priority:</span>
-                            <span className={`ml-1 px-1 py-0.5 rounded text-xs bg-${getPriorityColor(am.stockingPriority)}-100 text-${getPriorityColor(am.stockingPriority)}-800`}>
+                            <span className={`ml-1 px-1 py-0.5 rounded text-xs ${
+                              am.stockingPriority === 'High' ? 'bg-red-100 text-red-800' :
+                              am.stockingPriority === 'Medium' ? 'bg-yellow-100 text-yellow-800' :
+                              am.stockingPriority === 'Low' ? 'bg-green-100 text-green-800' :
+                              am.stockingPriority === 'Critical' ? 'bg-purple-100 text-purple-800' :
+                              'bg-gray-100 text-gray-800'
+                            }`}>
                               {am.stockingPriority}
                             </span>
                           </div>
@@ -255,23 +291,43 @@ export default function PartsCrossReference() {
           <div>
             <h4 className="font-medium text-white light:text-gray-900 mb-2">Stocking Priority</h4>
             <div className="space-y-1">
-              {Object.entries(stockingPriorities).map(([priority, info]) => (
-                <div key={priority} className="flex items-center">
-                  <span className={`w-4 h-4 rounded mr-2 bg-${info.color}-500`}></span>
-                  <span className="text-sm text-gray-300 light:text-gray-600">{priority}: {info.description}</span>
-                </div>
-              ))}
+              <div className="flex items-center">
+                <span className="w-4 h-4 rounded mr-2 bg-red-500"></span>
+                <span className="text-sm text-gray-300 light:text-gray-600">High: Critical for operations</span>
+              </div>
+              <div className="flex items-center">
+                <span className="w-4 h-4 rounded mr-2 bg-yellow-500"></span>
+                <span className="text-sm text-gray-300 light:text-gray-600">Medium: Important for maintenance</span>
+              </div>
+              <div className="flex items-center">
+                <span className="w-4 h-4 rounded mr-2 bg-green-500"></span>
+                <span className="text-sm text-gray-300 light:text-gray-600">Low: Nice to have</span>
+              </div>
+              <div className="flex items-center">
+                <span className="w-4 h-4 rounded mr-2 bg-purple-500"></span>
+                <span className="text-sm text-gray-300 light:text-gray-600">Critical: Emergency replacement</span>
+              </div>
             </div>
           </div>
           <div>
             <h4 className="font-medium text-white light:text-gray-900 mb-2">Quality Levels</h4>
             <div className="space-y-1">
-              {Object.entries(qualityLevels).map(([quality, info]) => (
-                <div key={quality} className="flex items-center">
-                  <span className={`w-4 h-4 rounded mr-2 bg-${info.color}-500`}></span>
-                  <span className="text-sm text-gray-300 light:text-gray-600">{quality}: {info.description}</span>
-                </div>
-              ))}
+              <div className="flex items-center">
+                <span className="w-4 h-4 rounded mr-2 bg-blue-500"></span>
+                <span className="text-sm text-gray-300 light:text-gray-600">Premium: Highest quality, longest lifespan</span>
+              </div>
+              <div className="flex items-center">
+                <span className="w-4 h-4 rounded mr-2 bg-green-500"></span>
+                <span className="text-sm text-gray-300 light:text-gray-600">Standard: Good quality, reliable performance</span>
+              </div>
+              <div className="flex items-center">
+                <span className="w-4 h-4 rounded mr-2 bg-yellow-500"></span>
+                <span className="text-sm text-gray-300 light:text-gray-600">Economy: Basic quality, cost-effective</span>
+              </div>
+              <div className="flex items-center">
+                <span className="w-4 h-4 rounded mr-2 bg-purple-500"></span>
+                <span className="text-sm text-gray-300 light:text-gray-600">OEM: Original equipment manufacturer</span>
+              </div>
             </div>
           </div>
         </div>
