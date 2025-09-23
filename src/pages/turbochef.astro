@@ -100,8 +100,7 @@ const getSeverityColor = (severity: string) => {
   <!-- Model Selector -->
   <div class="mb-8">
     <client:load>
-      {/* @ts-ignore React island */}
-      {await import('../components/ModelSelector.jsx').then(m => m.default({ brandId: 'turbochef' }))}
+      <ModelSelector brandId="turbochef" />
     </client:load>
   </div>
 

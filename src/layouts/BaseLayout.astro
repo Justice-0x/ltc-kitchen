@@ -1,5 +1,6 @@
 ---
 import SimpleSidebar from "../components/SimpleSidebar.jsx";
+import FloatingActions from "../components/FloatingActions.jsx";
 import "../styles/global.css";
 ---
 
@@ -95,8 +96,7 @@ import "../styles/global.css";
     <slot />
     <!-- Sticky mobile actions -->
     <client:load>
-      {/* @ts-ignore React island */}
-      {await import('../components/FloatingActions.jsx').then(m => m.default({}))}
+      <FloatingActions />
     </client:load>
       </main>
     </div>

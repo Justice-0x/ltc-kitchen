@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import WaterQualityCard from "../components/WaterQualityCard.jsx";
 
 // Equipment documentation data
 const equipmentDocs = [
@@ -229,8 +230,7 @@ const lastReviewed = new Date().toISOString().slice(0, 10);
       <!-- Water Quality -->
       <div class="mb-10">
         <client:load>
-          {/* @ts-ignore React island */}
-          {await import('../components/WaterQualityCard.jsx').then(m => m.default({}))}
+          <WaterQualityCard />
         </client:load>
       </div>
 
