@@ -31,26 +31,41 @@ const SimpleSidebar = () => {
     document.body.classList.remove('light', 'dark', 'spooky');
     document.body.classList.add(savedTheme);
     
+    // Reset easter egg state on component mount
+    setLogoClickCount(0);
+    setShowEasterEgg(false);
+    
     console.log('Sidebar initialized with theme:', savedTheme);
   }, []);
 
-  const handleLogoClick = () => {
+  const handleLogoClick = (e) => {
+    e.stopPropagation(); // Prevent event bubbling
     const newCount = logoClickCount + 1;
     setLogoClickCount(newCount);
     
+    console.log('Logo clicked, count:', newCount);
+    
     if (newCount === 3) {
       setShowEasterEgg(true);
-      // Reset counter after 5 seconds
+      // Reset counter after 3 seconds (shorter timeout)
       setTimeout(() => {
         setLogoClickCount(0);
         setShowEasterEgg(false);
-      }, 5000);
+        console.log('Easter egg reset');
+      }, 3000);
     } else if (newCount > 3) {
       setLogoClickCount(0);
     }
   };
 
-  const handleThemeToggle = () => {
+  const handleThemeToggle = (e) => {
+    e.stopPropagation(); // Prevent event bubbling
+    console.log('Theme toggle clicked, current logo count:', logoClickCount, 'easter egg showing:', showEasterEgg);
+    
+    // Reset logo click counter to prevent accidental easter egg
+    setLogoClickCount(0);
+    setShowEasterEgg(false);
+    
     // Get current theme from localStorage instead of state
     const currentThemeFromStorage = localStorage.getItem('theme') || 'dark';
     const order = ['dark', 'light', 'spooky'];
