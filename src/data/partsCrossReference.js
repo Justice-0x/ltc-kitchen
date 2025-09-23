@@ -70,6 +70,82 @@ export const partsCrossReference = {
             notes: 'Direct replacement, same specifications'
           }
         ]
+      },
+      {
+        oemPartNumber: 'CFM-100',
+        oemName: 'Condenser Fan Motor',
+        oemPrice: '$165.00',
+        oemSupplier: 'Hoshizaki',
+        aftermarket: [
+          {
+            partNumber: 'CFM-100-AM',
+            name: 'Condenser Fan Motor (Aftermarket)',
+            supplier: 'Motor Solutions',
+            price: '$95.00',
+            compatibility: '100%',
+            quality: 'Excellent',
+            availability: 'High',
+            stockingPriority: 'High',
+            notes: '115V 1/8HP, direct replacement'
+          }
+        ]
+      },
+      {
+        oemPartNumber: 'WP-300',
+        oemName: 'Water Pump',
+        oemPrice: '$245.00',
+        oemSupplier: 'Hoshizaki',
+        aftermarket: [
+          {
+            partNumber: 'WP-300-AM',
+            name: 'Recirculating Water Pump',
+            supplier: 'PumpTech',
+            price: '$180.00',
+            compatibility: '100%',
+            quality: 'Excellent',
+            availability: 'High',
+            stockingPriority: 'High',
+            notes: 'Same flow rate and pressure specs'
+          }
+        ]
+      },
+      {
+        oemPartNumber: 'EVAP-500',
+        oemName: 'Evaporator Assembly',
+        oemPrice: '$875.00',
+        oemSupplier: 'Hoshizaki',
+        aftermarket: [
+          {
+            partNumber: 'EVAP-500-AM',
+            name: 'Evaporator Assembly (Aftermarket)',
+            supplier: 'Refrigeration Parts Co',
+            price: '$650.00',
+            compatibility: '95%',
+            quality: 'Good',
+            availability: 'Medium',
+            stockingPriority: 'Medium',
+            notes: 'May require minor modifications'
+          }
+        ]
+      },
+      {
+        oemPartNumber: 'CTL-400',
+        oemName: 'Cube Thickness Control',
+        oemPrice: '$195.75',
+        oemSupplier: 'Hoshizaki',
+        aftermarket: [
+          {
+            partNumber: 'CTL-400-AM',
+            name: 'Electronic Thickness Sensor',
+            supplier: 'Sensor Solutions',
+            price: '$125.00',
+            compatibility: '100%',
+            quality: 'Excellent',
+            availability: 'High',
+            stockingPriority: 'High',
+            notes: 'Enhanced accuracy, digital display'
+          }
+        ]
       }
     ]
   },
@@ -124,6 +200,44 @@ export const partsCrossReference = {
             notes: 'May require calibration'
           }
         ]
+      },
+      {
+        oemPartNumber: 'DS-300',
+        oemName: 'Door Switch',
+        oemPrice: '$65.00',
+        oemSupplier: 'TurboChef',
+        aftermarket: [
+          {
+            partNumber: 'DS-300-AM',
+            name: 'Safety Door Switch',
+            supplier: 'Switch Solutions',
+            price: '$45.00',
+            compatibility: '100%',
+            quality: 'Excellent',
+            availability: 'High',
+            stockingPriority: 'High',
+            notes: 'Direct replacement for E32 error'
+          }
+        ]
+      },
+      {
+        oemPartNumber: 'HE-400',
+        oemName: 'Heating Element',
+        oemPrice: '$180.00',
+        oemSupplier: 'TurboChef',
+        aftermarket: [
+          {
+            partNumber: 'HE-400-AM',
+            name: 'High-Wattage Heating Element',
+            supplier: 'Heating Solutions',
+            price: '$135.00',
+            compatibility: '100%',
+            quality: 'Excellent',
+            availability: 'High',
+            stockingPriority: 'High',
+            notes: '3000W, 208V, same specifications'
+          }
+        ]
       }
     ]
   },
@@ -165,6 +279,44 @@ export const partsCrossReference = {
             availability: 'High',
             stockingPriority: 'High',
             notes: 'Enhanced features, better accuracy'
+          }
+        ]
+      },
+      {
+        oemPartNumber: 'GL-500',
+        oemName: 'Glycol Lines',
+        oemPrice: '$25.00/ft',
+        oemSupplier: 'Perlick',
+        aftermarket: [
+          {
+            partNumber: 'GL-500-AM',
+            name: 'Food-Grade Glycol Lines',
+            supplier: 'Line Solutions',
+            price: '$18.00/ft',
+            compatibility: '100%',
+            quality: 'Excellent',
+            availability: 'High',
+            stockingPriority: 'High',
+            notes: 'Same specifications, food-grade material'
+          }
+        ]
+      },
+      {
+        oemPartNumber: 'PS-150',
+        oemName: 'Pressure Switch',
+        oemPrice: '$95.00',
+        oemSupplier: 'Perlick',
+        aftermarket: [
+          {
+            partNumber: 'PS-150-AM',
+            name: 'Pressure Switch (Aftermarket)',
+            supplier: 'Pressure Solutions',
+            price: '$65.00',
+            compatibility: '100%',
+            quality: 'Excellent',
+            availability: 'High',
+            stockingPriority: 'High',
+            notes: 'Same pressure range, direct replacement'
           }
         ]
       }
