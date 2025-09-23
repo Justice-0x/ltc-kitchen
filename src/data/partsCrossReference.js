@@ -321,6 +321,328 @@ export const partsCrossReference = {
         ]
       }
     ]
+  },
+  
+  // Add all the missing equipment types
+  'low-boys': {
+    name: 'Low Boys & Refrigeration',
+    parts: [
+      {
+        oemPartNumber: 'LB-100',
+        oemName: 'Door Gasket',
+        oemPrice: '$85.00',
+        oemSupplier: 'Various',
+        aftermarket: [
+          {
+            partNumber: 'LB-100-AM',
+            name: 'Universal Door Gasket',
+            supplier: 'Gasket Solutions',
+            price: '$45.00',
+            compatibility: '95%',
+            quality: 'Good',
+            availability: 'High',
+            stockingPriority: 'High',
+            notes: 'Fits most low boy models'
+          }
+        ]
+      },
+      {
+        oemPartNumber: 'LB-200',
+        oemName: 'Thermostat',
+        oemPrice: '$125.00',
+        oemSupplier: 'Various',
+        aftermarket: [
+          {
+            partNumber: 'LB-200-AM',
+            name: 'Digital Thermostat',
+            supplier: 'Control Systems',
+            price: '$75.00',
+            compatibility: '100%',
+            quality: 'Excellent',
+            availability: 'High',
+            stockingPriority: 'High',
+            notes: 'Enhanced temperature control'
+          }
+        ]
+      },
+      {
+        oemPartNumber: 'LB-300',
+        oemName: 'Evaporator Fan',
+        oemPrice: '$95.00',
+        oemSupplier: 'Various',
+        aftermarket: [
+          {
+            partNumber: 'LB-300-AM',
+            name: 'Evaporator Fan Motor',
+            supplier: 'Fan Solutions',
+            price: '$65.00',
+            compatibility: '100%',
+            quality: 'Excellent',
+            availability: 'High',
+            stockingPriority: 'High',
+            notes: '115V, direct replacement'
+          }
+        ]
+      }
+    ]
+  },
+  
+  'walk-ins': {
+    name: 'Walk-In Coolers & Freezers',
+    parts: [
+      {
+        oemPartNumber: 'WI-100',
+        oemName: 'Door Hinge',
+        oemPrice: '$45.00',
+        oemSupplier: 'Various',
+        aftermarket: [
+          {
+            partNumber: 'WI-100-AM',
+            name: 'Heavy Duty Door Hinge',
+            supplier: 'Hinge Solutions',
+            price: '$28.00',
+            compatibility: '100%',
+            quality: 'Excellent',
+            availability: 'High',
+            stockingPriority: 'High',
+            notes: 'Stainless steel construction'
+          }
+        ]
+      },
+      {
+        oemPartNumber: 'WI-200',
+        oemName: 'Door Seal',
+        oemPrice: '$35.00',
+        oemSupplier: 'Various',
+        aftermarket: [
+          {
+            partNumber: 'WI-200-AM',
+            name: 'Magnetic Door Seal',
+            supplier: 'Seal Solutions',
+            price: '$22.00',
+            compatibility: '100%',
+            quality: 'Excellent',
+            availability: 'High',
+            stockingPriority: 'High',
+            notes: 'Superior insulation properties'
+          }
+        ]
+      },
+      {
+        oemPartNumber: 'WI-300',
+        oemName: 'Light Switch',
+        oemPrice: '$25.00',
+        oemSupplier: 'Various',
+        aftermarket: [
+          {
+            partNumber: 'WI-300-AM',
+            name: 'LED Light Switch',
+            supplier: 'Switch Solutions',
+            price: '$18.00',
+            compatibility: '100%',
+            quality: 'Excellent',
+            availability: 'High',
+            stockingPriority: 'Medium',
+            notes: 'Energy efficient LED option'
+          }
+        ]
+      }
+    ]
+  },
+  
+  'southbend': {
+    name: 'Southbend Ranges',
+    parts: [
+      {
+        oemPartNumber: 'SB-100',
+        oemName: 'Thermocouple',
+        oemPrice: '$35.00',
+        oemSupplier: 'Southbend',
+        aftermarket: [
+          {
+            partNumber: 'SB-100-AM',
+            name: 'Safety Thermocouple',
+            supplier: 'Gas Solutions',
+            price: '$22.00',
+            compatibility: '100%',
+            quality: 'Excellent',
+            availability: 'High',
+            stockingPriority: 'High',
+            notes: '24V DC, up to 2000°F'
+          }
+        ]
+      },
+      {
+        oemPartNumber: 'SB-200',
+        oemName: 'Gas Valve',
+        oemPrice: '$180.00',
+        oemSupplier: 'Southbend',
+        aftermarket: [
+          {
+            partNumber: 'SB-200-AM',
+            name: 'Main Gas Control Valve',
+            supplier: 'Valve Solutions',
+            price: '$125.00',
+            compatibility: '100%',
+            quality: 'Excellent',
+            availability: 'High',
+            stockingPriority: 'High',
+            notes: 'Natural gas, 0.5-14 W.C.'
+          }
+        ]
+      },
+      {
+        oemPartNumber: 'SB-300',
+        oemName: 'Pilot Assembly',
+        oemPrice: '$85.00',
+        oemSupplier: 'Southbend',
+        aftermarket: [
+          {
+            partNumber: 'SB-300-AM',
+            name: 'Complete Pilot Assembly',
+            supplier: 'Pilot Solutions',
+            price: '$55.00',
+            compatibility: '100%',
+            quality: 'Excellent',
+            availability: 'High',
+            stockingPriority: 'High',
+            notes: '12 inch length, blue pilot flame'
+          }
+        ]
+      }
+    ]
+  },
+  
+  'chicago-folders': {
+    name: 'Chicago Folders',
+    parts: [
+      {
+        oemPartNumber: 'CF-100',
+        oemName: 'Feed Rollers',
+        oemPrice: '$125.00',
+        oemSupplier: 'Chicago Dryer',
+        aftermarket: [
+          {
+            partNumber: 'CF-100-AM',
+            name: 'Rubber Feed Rollers',
+            supplier: 'Roller Solutions',
+            price: '$85.00',
+            compatibility: '100%',
+            quality: 'Excellent',
+            availability: 'High',
+            stockingPriority: 'High',
+            notes: '2 inch diameter, 24 inch length'
+          }
+        ]
+      },
+      {
+        oemPartNumber: 'CF-200',
+        oemName: 'Air Pressure Valve',
+        oemPrice: '$75.00',
+        oemSupplier: 'Chicago Dryer',
+        aftermarket: [
+          {
+            partNumber: 'CF-200-AM',
+            name: 'Pressure Control Valve',
+            supplier: 'Valve Solutions',
+            price: '$45.00',
+            compatibility: '100%',
+            quality: 'Excellent',
+            availability: 'High',
+            stockingPriority: 'High',
+            notes: '0-100 PSI, brass construction'
+          }
+        ]
+      }
+    ]
+  },
+  
+  'ironers': {
+    name: 'Commercial Ironers',
+    parts: [
+      {
+        oemPartNumber: 'IR-100',
+        oemName: 'Heating Elements',
+        oemPrice: '$150.00',
+        oemSupplier: 'Various',
+        aftermarket: [
+          {
+            partNumber: 'IR-100-AM',
+            name: 'High-Wattage Elements',
+            supplier: 'Heating Solutions',
+            price: '$95.00',
+            compatibility: '100%',
+            quality: 'Excellent',
+            availability: 'High',
+            stockingPriority: 'High',
+            notes: '2000W, 240V, up to 400°F'
+          }
+        ]
+      },
+      {
+        oemPartNumber: 'IR-200',
+        oemName: 'Pressure Rollers',
+        oemPrice: '$200.00',
+        oemSupplier: 'Various',
+        aftermarket: [
+          {
+            partNumber: 'IR-200-AM',
+            name: 'Heavy-Duty Rollers',
+            supplier: 'Roller Solutions',
+            price: '$135.00',
+            compatibility: '100%',
+            quality: 'Excellent',
+            availability: 'High',
+            stockingPriority: 'High',
+            notes: 'Steel construction, 4 inch diameter'
+          }
+        ]
+      }
+    ]
+  },
+  
+  'laundry': {
+    name: 'Laundry Equipment',
+    parts: [
+      {
+        oemPartNumber: 'LA-100',
+        oemName: 'Drain Pump',
+        oemPrice: '$225.00',
+        oemSupplier: 'Various',
+        aftermarket: [
+          {
+            partNumber: 'LA-100-AM',
+            name: 'High-Capacity Drain Pump',
+            supplier: 'Pump Solutions',
+            price: '$165.00',
+            compatibility: '100%',
+            quality: 'Excellent',
+            availability: 'High',
+            stockingPriority: 'High',
+            notes: '50 GPM, 20 foot head'
+          }
+        ]
+      },
+      {
+        oemPartNumber: 'LA-200',
+        oemName: 'Lint Filter',
+        oemPrice: '$35.00',
+        oemSupplier: 'Various',
+        aftermarket: [
+          {
+            partNumber: 'LA-200-AM',
+            name: 'Reusable Lint Filter',
+            supplier: 'Filter Solutions',
+            price: '$22.00',
+            compatibility: '100%',
+            quality: 'Excellent',
+            availability: 'High',
+            stockingPriority: 'High',
+            notes: '100 micron mesh, 12x12 inches'
+          }
+        ]
+      }
+    ]
   }
 };
 
